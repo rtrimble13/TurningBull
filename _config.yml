@@ -1,4 +1,42 @@
-theme: minima
-title: The TurningBull Blog
-author: rtrimble13
-description: On topics about quantitative finance and economics.
+# Site settings
+title: the TurningBull 
+description: 'Random reflections on quantitative finance, economics and leadership'
+url: 'https://rtrimble13.github.io/TurningBull'
+baseurl: '/TurningBull'
+# google_analytics: 'UA-XXXXXX-X'
+# disqus_shortname: 'your-disqus-name'
+# disable_landing_page: true
+
+author:
+  name: 'Roger Trimble'
+  email: roger@turningbull.com
+  github_username: rtrimble13
+  linkedin_username: rogertrimble
+
+defaults:
+  -
+    scope:
+      path: ''
+      type: 'posts'
+    values:
+        layout: 'post'
+
+# Build settings
+destination: _site
+paginate: 10
+permalink: /:year/:title/
+markdown: kramdown
+highlighter: rouge
+
+sass:
+    sass_dir: _sass
+    style: compressed
+
+kramdown:
+  # use Github Flavored Markdown
+  input: GFM
+  # do not replace newlines by <br>s
+  hard_wrap: false
+
+plugins: ['jekyll-paginate']
+exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png']
