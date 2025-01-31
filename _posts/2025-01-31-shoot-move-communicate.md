@@ -14,6 +14,9 @@ The sounds of distant gunfire and artillery momentarily take you back to the fir
 
 Fortunately, you also have a platoon of the finest cavalry troopers you will ever know who share your sense of urgency.  Adding to your fortune, you are all well versed in the basic language of tactical maneuver.  You are free to improvise and problem solve on the spot because you've drilled the basics of *shoot, move and communicate* since day 1.    
 
+<img src="/images/posts/jan25//fm3-21-8_fig3-18.png | relative_url" style="display: block; margin: auto;" />
+
+
 ![Bounding Maneuver](/images/posts/jan25/fm3-21-8_fig3-18.png | relative_url)
 
 Concepts like *traveling overwatch* and *alternating bounds* are the articles and prepositions of your platoon's maneuver lingua.  It's the stuff that's spoken subconsciously, freeing up cycles to handle novel circumstances.  All of the classroom instruction and field training have led to this moment.  It's a moment where the bullets are real, the mosquitoes are hungry, and you're late....
