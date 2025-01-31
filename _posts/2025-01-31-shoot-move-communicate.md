@@ -14,7 +14,7 @@ The sounds of distant gunfire and artillery momentarily take you back to the fir
 
 Fortunately, you also have a platoon of the finest cavalry troopers you will ever know who share your sense of urgency.  Adding to your fortune, you are all well versed in the basic language of tactical maneuver.  You are free to improvise and problem solve on the spot because you've drilled the basics of *shoot, move and communicate* since day 1.    
 
-![Bounding Maneuver](/images/posts/jan25/fm3-21-8_fig3-18.png)
+![Bounding Maneuver](/images/posts/jan25/fm3-21-8_fig3-18.png | relative_url)
 
 Concepts like *traveling overwatch* and *alternating bounds* are the articles and prepositions of your platoon's maneuver lingua.  It's the stuff that's spoken subconsciously, freeing up cycles to handle novel circumstances.  All of the classroom instruction and field training have led to this moment.  It's a moment where the bullets are real, the mosquitoes are hungry, and you're late....
 
@@ -34,7 +34,7 @@ A full example of this exercise is available on my [notebooks git repository](ht
 
 Let's start with a plot of the monthly closing prices, sourced from [Yahoo! Finance](https://finance.yahoo.com), for the index to gain some intuition about its price evolution:
 
-![S&P 500 Index Closing Prices](/images/posts/jan25/s&p_close.png)
+![S&P 500 Index Closing Prices](/images/posts/jan25/s&p_close.png | relative_url )
 
 As we can see, it's been a good couple of years for the index.  Starting at close to the 4,000 level, it has gained ~2,000 points over the two-year period, with the strongest increase ocurring in 2024.  Even if you don't follow the markets, it has been hard to avoid the talking heads remarking on the dissonance between Wall Street and Main Street.
 
@@ -131,7 +131,7 @@ Putting it all together, starting with closing prices, we can compute the annual
 ### Visualizing the Data 
 We all know a good picture is worth more than a sentence or two..  Thus, putting some effort into a good visual is well worth the time.  Luckily, with just a handful of code, **matplotlib** makes this almost as easy as it sounds.  Contrast the bare-bones chart of closing prices above with this one depicting the index performance:
 
-![S&P 500 Investment Performance](/images/posts/jan25/spy_return_plot.png)
+![S&P 500 Investment Performance](/images/posts/jan25/spy_return_plot.png | relative_url)
 
 While this chart won't win any awards, I feel it is visually more appealing than the one above.  The full code to produce it is available in the companion notebook, so it won't add value to spill it here.  Some highlights to call out, though:
 1. Labeling data points is an art more than science.  I've added one for the total return (44.28%).  I could have added more at some key points in the series.
@@ -143,7 +143,7 @@ While this chart won't win any awards, I feel it is visually more appealing than
 
 As a teaser for next month, I'll add one more chart:
 
-![U.S. Stock Indices 5-Year Performance](/images/posts/jan25/stock_index_5y.png)
+![U.S. Stock Indices 5-Year Performance](/images/posts/jan25/stock_index_5y.png | relative_url)
 
 In this chart we have three major U.S. stock indices, the Nasdaq 100, the S&P 500 and the Russell 2K.  It's fairly easy to see the joy you may have experienced in owning stocks over the past few years has has depended on the index your portfolio most closely resembles.  For example, a portfolio resembling the tech-heavy Nasdaq has fared nearly 3x better than the small-cap'ish Russell year-over-year.  There's a lot to unpack in that statement, however, so let's shelve it for next time.  
 
