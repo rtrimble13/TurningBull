@@ -1,9 +1,10 @@
 ---
+layout: post
 title: "Shoot, Move and Communicate"
 date: 2025-01-31
+categories: jekyll update
+image: /images/posts/jan25/platoon_on_plain_202501.jpg
 ---
-
-![Platoon in Open Field](/images/posts/jan25/platoon_on_plain_202501.jpg)
 
 Despite the heat, you're in full battle dress, weighed down with an additional 50lbs of tactical equipment and ammunition.  Your sweat-soaked clothes cling to your body like a toddler testing your patience.  And then there are the mosquitoes.  You are a mosquito magnet - the tastiest one in a long time - and word has reached the biting gnats, too.  
 
