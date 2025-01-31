@@ -45,7 +45,7 @@ $$
 R_t = \frac{V_t - V_0}{V_0} \tag{1}
 $$
 
-Where $`V_0`$ is the starting value and $`V_t`$ is the ending value after $t$ amount of time.  For example, if you have a thing that is worth $10 at the beginning of the day and is worth $11 at the end of the day, then your return on the day is $10\% = \frac{\$11-\$10}{\$10}$.
+Where $$`V_0`$$ is the starting value and $$`V_t`$$ is the ending value after $t$ amount of time.  For example, if you have a thing that is worth $10 at the beginning of the day and is worth $11 at the end of the day, then your return on the day is $10\% = \frac{\$11-\$10}{\$10}$.
 
 If you received additional cash flows, or dividends, during the return period, then the expression becomes:
 
