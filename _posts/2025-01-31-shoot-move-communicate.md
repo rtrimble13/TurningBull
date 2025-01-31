@@ -14,7 +14,7 @@ The sounds of distant gunfire and artillery momentarily take you back to the fir
 
 Fortunately, you also have a platoon of the finest cavalry troopers you will ever know who share your sense of urgency.  Adding to your fortune, you are all well versed in the basic language of tactical maneuver.  You are free to improvise and problem solve on the spot because you've drilled the basics of *shoot, move and communicate* since day 1.    
 
-<img src="/images/posts/jan25//fm3-21-8_fig3-18.png | relative_url" style="display: block; margin: auto;" />
+<img src="/images/posts/jan25//fm3-21-8_fig3-18.png" style="display: block; margin: auto;" />
 
 
 ![Bounding Maneuver](/images/posts/jan25/fm3-21-8_fig3-18.png | relative_url)
