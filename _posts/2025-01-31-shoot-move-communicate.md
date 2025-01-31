@@ -31,10 +31,11 @@ Thus, it is in the spirit of *shoot, move, and communicate* that we'll start wit
 
 A full example of this exercise is available on my [notebooks git repository](https://github.com/rtrimble13/tb-notebooks/blob/main/src/twr.ipynb)
 
-Let's start with a plot of the monthly closing prices for the index to gain some intuition about its price evolution:
+Let's start with a plot of the monthly closing prices, sourced from [Yahoo! Finance](https://finance.yahoo.com), for the index to gain some intuition about its price evolution:
 
 ![S&P 500 Index Closing Prices](../images/posts/jan25/s&p_close.png)
-As we can see, it's been a good couple of years for the index.  Starting at close to the 4,000 level, it has gained ~2,000 points over the two-year period, with the strongest increase ocurring in 2024.  Even if you don't follow the markets, it has been hard to avoid the talking heads remarking on the disonance between Wall Street and Main Street.
+
+As we can see, it's been a good couple of years for the index.  Starting at close to the 4,000 level, it has gained ~2,000 points over the two-year period, with the strongest increase ocurring in 2024.  Even if you don't follow the markets, it has been hard to avoid the talking heads remarking on the dissonance between Wall Street and Main Street.
 
 ### Simple Returns 
 
@@ -52,7 +53,7 @@ R_t = \frac{V_t + D - V_0}{V_0} \tag{2}
 $$
 Where $D$ are the additional cash flows that occured during $t$.  For example, if your thing had a starting value $V_0$ and then paid a dividend $D$ during the day, the dividend event will have reduced the value of your thing.  Since, you still received the dividend, you need to add that cash flow back into the return calculation for it to be accurate.  We'll talk more about dividends at a later time $t$...
 
-The simple return is the most appropriate measure of returns over short time periods and when compounding is immaterial to the asset's return.  When compounding is material, e.g., when the price is affected by incoming and outgoing cash flows, then simple returns are likely to reflect an inacurate measure of performance.  Absent compounding effects, however, simple returns work as advertised.  They can give you a quick intuition about growth potential of a security, index, or anything else that has a measurable value.  They are also useful for comparing similar assets, such as the performance of two stocks over the course of a year.  Note, if either of those stocks pays dividends, or is impacted by corporate actions, such as a stock split, then those events need to be accounted for.  Also for another another time.
+The simple return is the most appropriate measure of investment performance over short time periods and when compounding is immaterial to the asset's return.  When compounding is material, e.g., when the price is affected by incoming and outgoing cash flows, then simple returns are likely to misstate performance.  Absent compounding effects, however, simple returns work as advertised.  They can provide quick intuition about the growth potential of a security, index, or anything else that has a measurable value.  They are also useful for comparing similar assets, such as the performance of two stocks over the course of a year.  Note, if either of those stocks pays dividends, or is impacted by corporate actions, such as a stock split, then those events need to be accounted for.  Also for another another time.
 
 In short, presenting performance in terms of simple returns is best for situations where compounding is not a factor in the asset's value.
 
@@ -65,10 +66,18 @@ sp_returns = sp_prices['Close'].rolling(window=2).apply(
     lambda x: x[1]/x[0] - 1, raw=True
 )  # method 2 
 ```
-Clearly, the first method is better for this exercise, since it uses a built-in function to compute the return.  The second method is more "dyi," and has a time and place better suited for more complex operations.
+Clearly, the first method is better for this exercise, since it's more readable.  The second method is more *'DYI'*, and has a time and place better suited for more complex operations.
 
 ### Geometric (Time-Weighted) Returns 
-As mentioned above, the simple return puches above its weight in many scenarios.  There are times, though, when it is not the best measure of return.  Consider an investment portfolio, for instance.  Over time, there are likely to be cash flows into and out of the portfolio.  Those flows will affect the overall value of the portfolio, since cash is either being invested in return-generating securities, or securities are being sold for cash to be withdrawn from the portfolio.  Either of these scenarios produce compounding effects that invalidate the simple return.  
+As mentioned above, the simple return puches above its weight in many scenarios.  There are times, though, when it is not the best return measure.  Consider an investment portfolio, for instance.  Over time, there are likely to be cash flows into and out of the portfolio.  Those flows will affect the overall value of the portfolio, since cash is either being invested in return-generating securities, or securities are being sold for cash to be withdrawn from the portfolio.  Either of these scenarios produce compounding effects that invalidate the simple return.
+
+For instance, let's say on Monday you have a portfolio with $100 invested in stock $FOO$.  On Tuesday you deposit another $100 and invest it in stock $BAR$ at the end of the trading session.  Also, the value of $FOO$ increased to $10.  Your day-over-day investment return is $10\% = \frac{\$120 - \$100}{\$100}$, due to $FOO$'s price gain even though your total portfolio value is \$220.  
+
+On Wednesday you sell $50 of $FOO$ and buy $50 of $BAR$ at the market open, and at the end of day your $FOO$ position is worth $72 and your $BAR$ position is worth \$135.  Your total portfolio value at Wednesday market close is $\$207=\$72 + \$135$.  The return on the day is $-5.9\%=\frac{\$207-\$220}{\$220}$.  Notice Wednesday's return is not impacted by cash flows.  All cash is invested and contributing to investment performance.  
+
+Thursday rolls around, and you sell \$50 of $FOO$ and \$50 of $BAR$ to buy a much needed book on investing.  By the end of session your $FOO$ position is worth \$10 and your $BAR$ position is worth \$90.  Your ending value on Thursday, including price action in the two stocks is \$100.  Your investment return is $-3.4\% = \frac{\$100 + \$100 - \$207}{\$207}$.  Notice our handling of the cash we withdrew.  
+
+Finally, it's Friday - thought we'd never get there!  And, fortunately, the investing book you bought had \$500 squirled away in the index.  You immediately deposit that cash into your account.  Your stock positions are flat for the day, so the ending value of your portfolio is $\$600 = \$100 + \$100$.  If we now wanted to compute our week-to-date return, we might be tempted to simply use starting and ending values and say it is $500\% = \frac{\$600 - \$100}{\$100}$, when in fact it is actually 0\%.
 
 To isolate the impact of investment performance from the effects of cash flows, we introduce the time-weighted return, or TWR.  Mathematically, TWR is a geometric linking of subperiod simple returns, or:
 
@@ -76,6 +85,8 @@ $$
 R_{TWR} = \prod_{i=1}^{N}{(1 + R_i)} - 1 \tag{3}
 $$
 Where $N$ is the number of subperiods, e.g., 24 months in a 2-year period, and $R_i$ are the subperiod (monthly) returns.  Under this approach, our return calculation will still be impacted by intra-month cash activity, but the impact is isolated to the return of the month the activity occured.  Increasing the frequency of subperiods, e.g., from monthly to weekly or daily, improves the accuracy of the performance return.  Fortunately, in our case with S&P data, we're unaffected by compounding effects, so this exercise is largely for show!  Sometimes, though, we might only have returns data provided to us.  Computing the TWR is then often the best way to go. 
+
+Using our portfolio example from above, we would compute our total return for the week as $0\% = (1 + 10\%) \times (1 - 5.9\%) \times (1 - 3.4\%)-1$.
 
 So, how do we compute a TWR with **pandas**?  There are many ways to skin this cat, and here's one of them:
 
@@ -127,7 +138,7 @@ While this chart won't win any awards, I feel it is visually more appealing than
 
 Action front!  Let's move out and draw fire!!
 
-**Note:** This post is not investment advice.  It is meant to be educational and entertaining.  If you find it useful, please let me know.  If you think it sucks, please also let me know - though I prefer constructive advice : >
+**Note:** This post is not investment advice.  It is meant to be educational and entertaining.  If you find it useful, please let me know.  If you think it sucks, please also let me know - though I prefer constructive criticism : >
 
 **Sources:**
 
@@ -140,3 +151,5 @@ Action front!  Let's move out and draw fire!!
 [Pandas documentation page](https://pandas.pydata.org/docs/)
 
 [Matplotlib documentation page](https://matplotlib.org/)
+
+[Yahoo! Finance](https://finance.yahoo.com)
