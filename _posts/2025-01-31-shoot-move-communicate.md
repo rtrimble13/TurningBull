@@ -45,14 +45,15 @@ $$
 R_t = \frac{V_t - V_0}{V_0} \tag{1}
 $$
 
-Where $$`V_0`$$ is the starting value and $$`V_t`$$ is the ending value after $t$ amount of time.  For example, if you have a thing that is worth $10 at the beginning of the day and is worth $11 at the end of the day, then your return on the day is $10\% = \frac{\$11-\$10}{\$10}$.
+Where $$V_0$$ is the starting value and $$V_t$$ is the ending value after $$t$$ amount of time.  For example, if you have a thing that is worth $10 at the beginning of the day and is worth $11 at the end of the day, then your return on the day is $$10\% = \frac{\$11-\$10}{\$10}$$.
 
 If you received additional cash flows, or dividends, during the return period, then the expression becomes:
 
 $$
 R_t = \frac{V_t + D - V_0}{V_0} \tag{2}
 $$
-Where $D$ are the additional cash flows that occured during $t$.  For example, if your thing had a starting value $V_0$ and then paid a dividend $D$ during the day, the dividend event will have reduced the value of your thing.  Since, you still received the dividend, you need to add that cash flow back into the return calculation for it to be accurate.  We'll talk more about dividends at a later time $t$...
+
+Where $$D$$ are the additional cash flows that occured during $$t$$.  For example, if your thing had a starting value $$V_0$$ and then paid a dividend $$D$$ during the day, the dividend event will have reduced the value of your thing.  Since, you still received the dividend, you need to add that cash flow back into the return calculation for it to be accurate.  We'll talk more about dividends at a later time $$t$$...
 
 The simple return is the most appropriate measure of investment performance over short time periods and when compounding is immaterial to the asset's return.  When compounding is material, e.g., when the price is affected by incoming and outgoing cash flows, then simple returns are likely to misstate performance.  Absent compounding effects, however, simple returns work as advertised.  They can provide quick intuition about the growth potential of a security, index, or anything else that has a measurable value.  They are also useful for comparing similar assets, such as the performance of two stocks over the course of a year.  Note, if either of those stocks pays dividends, or is impacted by corporate actions, such as a stock split, then those events need to be accounted for.  Also for another another time.
 
