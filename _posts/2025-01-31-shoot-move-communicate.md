@@ -4,6 +4,7 @@ title: "Shoot, Move and Communicate"
 date: 2025-01-31
 categories: jekyll update
 image: /images/posts/jan25/platoon_on_plain_202501.jpg
+image1: /images/posts/jan25/fm3-21-8_fig3-18.png
 ---
 
 Despite the heat, you're in full battle dress, weighed down with an additional 50lbs of tactical equipment and ammunition.  Your sweat-soaked clothes cling to your body like a toddler testing your patience.  And then there are the mosquitoes.  You are a mosquito magnet - the tastiest one in a long time - and word has reached the biting gnats, too.  
@@ -14,7 +15,7 @@ The sounds of distant gunfire and artillery momentarily take you back to the fir
 
 Fortunately, you also have a platoon of the finest cavalry troopers you will ever know who share your sense of urgency.  Adding to your fortune, you are all well versed in the basic language of tactical maneuver.  You are free to improvise and problem solve on the spot because you've drilled the basics of *shoot, move and communicate* since day 1.    
 
-<img src="/images/posts/jan25/fm3-21-8_fig3-18.png"/>
+![Tactical Maneuver]({{page.image1 | relative_url}})
 
 
 Concepts like *traveling overwatch* and *alternating bounds* are the articles and prepositions of your platoon's maneuver lingua.  It's the stuff that's spoken subconsciously, freeing up cycles to handle novel circumstances.  All of the classroom instruction and field training have led to this moment.  It's a moment where the bullets are real, the mosquitoes are hungry, and you're late....
