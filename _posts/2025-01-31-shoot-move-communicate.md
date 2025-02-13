@@ -79,11 +79,11 @@ Clearly, the first method is better for this exercise, since it's more readable.
 ### Geometric (Time-Weighted) Returns 
 As mentioned above, the simple return puches above its weight in many scenarios.  There are times, though, when it is not the best return measure.  Consider an investment portfolio, for instance.  Over time, there are likely to be cash flows into and out of the portfolio.  Those flows will affect the overall value of the portfolio, since cash is either being invested in return-generating securities, or securities are being sold for cash to be withdrawn from the portfolio.  Either of these scenarios produce compounding effects that invalidate the simple return.
 
-For instance, let's say on Monday you have a portfolio with $100 invested in stock $$FOO$$.  On Tuesday you deposit another $100 and invest it in stock $$BAR$$ at the end of the trading session.  Also, the value of $$FOO$$ increased to $120.  Your day-over-day investment return is $$10\% = \frac{\$120 - \$100}{\$100}$$, due to $$FOO$$'s price gain even though your total portfolio value is $220.  
+For instance, let's say on Monday you have a portfolio with $100 invested in stock $$FOO$$.  On Tuesday you deposit another $110 and invest it in stock $$BAR$$ at the end of the trading session.  Also, the value of $$FOO$$ increased to $110.  Your day-over-day investment return is $$10\% = \frac{\$110 - \$100}{\$100}$$, due to $$FOO$$'s price gain even though your total portfolio value is $220.  
 
 On Wednesday you sell $50 of $$FOO$$ and buy $50 of $$BAR$$ at the market open, and at the end of day your $$FOO$$ position is worth $72 and your $$BAR$$ position is worth $135.  Your total portfolio value at Wednesday market close is $$\$207=\$72 + \$135$$.  The return on the day is $$-5.9\%=\frac{\$207-\$220}{\$220}$$.  Notice Wednesday's return is not impacted by cash flows.  All cash is invested and contributing to investment performance.  
 
-Thursday rolls around, and you sell $50 of $$FOO$$ and $50 of $$BAR$$ to buy a much needed book on investing.  By the end of session your $$FOO$$ position is worth $10 and your $$BAR$$ position is worth $90.  Your ending value on Thursday, including price action in the two stocks is $100.  Your investment return is $$-3.4\% = \frac{\$100 + \$100 - \$207}{\$207}$$.  Notice our handling of the cash we withdrew.  
+Thursday rolls around, and you sell $50 of $$FOO$$ and $50 of $$BAR$$ to buy a much needed book on investing.  By the end of session your $$FOO$$ position is worth $10 and your $$BAR$$ position is worth $90.  Your ending value on Thursday, including price action in the two stocks, is $100.  Your investment return is $$-3.4\% = \frac{\$100 + \$100 - \$207}{\$207}$$.  Notice our handling of the cash we withdrew.  
 
 Finally, it's Friday - thought we'd never get there!  And, fortunately, the investing book you bought had $500 squirled away in the index.  You immediately deposit that cash into your account.  Your stock positions are flat for the day, so the ending value of your portfolio is $$\$600 = \$100 + \$500$$.  If we now wanted to compute our week-to-date return, we might be tempted to simply use starting and ending values and say it is $$500\% = \frac{\$600 - \$100}{\$100}$$, when in fact it is actually 0%.
 
@@ -150,7 +150,7 @@ As a teaser for next month, I'll add one more chart:
 
 ![U.S. Stock Indices 5-Year Performance]({{page.image4 | relative_url}})
 
-In this chart we have three major U.S. stock indices, the Nasdaq 100, the S&P 500 and the Russell 2K.  It's fairly easy to see the joy you may have experienced in owning stocks over the past few years has has depended on the index your portfolio most closely resembles.  For example, a portfolio resembling the tech-heavy Nasdaq has fared nearly 3x better than the small-cap'ish Russell year-over-year.  There's a lot to unpack in that statement, however, so let's shelve it for next time.  
+In this chart we have three major U.S. stock indices, the Nasdaq 100, the S&P 500 and the Russell 2K.  It's fairly easy to see the joy you may have experienced in owning stocks over the past few years has depended on the index your portfolio most closely resembles.  For example, a portfolio resembling the tech-heavy Nasdaq has fared nearly 3x better than the small-cap'ish Russell year-over-year.  There's a lot to unpack in that statement, however, so let's shelve it for next time.  
 
 In the meantime, there's an enemy objective to occupy, and we're late to the party...
 
