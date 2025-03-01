@@ -68,7 +68,7 @@ Technology companies have revolutionized not only how we interact with the world
 
 As that S&P investor, you might believe those investment returns are the result of tech innovation being shared in a *diversified* manner among all of those 500 largest companies.  Afterall, how much can a few Tech companies really influence the performance of a 500-stock portfolio?  Why not rely on the power of numbers and let their momentum ride?  Well, here's where a little scrutiny of the market cap weighting method becomes useful.  As we discussed above, the S&P chooses its constituents based on market cap.  So long as the market caps of the largest 500 companies in the U.S. equities market are of a similar order of magnitude, then I would argue you are getting roughly the diversified exposure you would expect.  However, if the market caps of a minority of companies begins to dominate the rest, then you start to see that *double envelopment* action start to kick in.  
 
-For instance, let's say we have a three-stock index comprised of stocks $$FOO$$, $$BAR$$, $$BAZ$$ and $$OOF$$.  If they each have a market cap of ~$1Bn, then according to **(1)**, their individual weights are each 0.25 (25%).  If the stocks' respective returns are 4%, 3%, 2% and -2%, then the resulting (simplified) index return is $$1.75\% = (0.25 \times 4\%) + (0.25 \times 3\%) + (0.25 \times 2\%) + (0.25 \times -2\%)$$.  In this case, no single stock is driving the index.  Now, let's say $$OOF$$ has a market cap that dwarfs the rest such that its weight is 0.4 (40%), and the others are equal weighted at 0.2 (20%).  The index return becomes $$1\% = (0.2 \times 4\%) + (0.2 \times 3\%) + (0.2 \times 2\%) + (0.4 \times -2\%)$$.  $$OOF$$'s price action is clearly driving the index due to its hefty weight relative to the rest.  
+For instance, let's say we have a three-stock index comprised of stocks $$FOO$$, $$BAR$$, $$BAZ$$ and $$OOF$$.  If they each have a market cap of ~$1Bn, then according to **(1)**, their individual weights are each 0.25 (25%).  If the stocks' respective returns are 4%, 3%, 2% and -2%, then the resulting (simplified) index return is $$1.75\% = (0.25 \times 4\%) + (0.25 \times 3\%) + (0.25 \times 2\%) + (0.25 \times -2\%)$$.  In this case, no single stock is driving the index.  Now, let's say $$OOF$$ has a market cap that dwarfs the rest such that its weight is 0.4 (40%), and the others are equal weighted at 0.2 (20%).  The index return according to **(3)** becomes $$1\% = (0.2 \times 4\%) + (0.2 \times 3\%) + (0.2 \times 2\%) + (0.4 \times -2\%)$$.  $$OOF$$'s price action is clearly driving the index due to its hefty weight relative to the rest.  
 
 ### The Magnificent 7
 
@@ -78,6 +78,14 @@ Our task this month is to assess just how much influence the Mag-7 have on the S
 
 
 ![Cumulative Returns]({{page.image_m1 | relative_url}})
+
+$$
+R_{S\&P} = (\omega_{Mag7} \times R_{Mag7}) + (\omega_{\not{Mag7}} \times R_{\not{Mag7}})
+\\
+\omega_{\not{Mag7}} \times R_{\not{Mag7}} = R_{S\&P} - (\omega_{Mag7} \times R_{Mag7})
+\\
+R_{\not{Mag7}} = \frac{R_{S\&P} - (\omega_{Mag7} \times R_{Mag7})}{\omega_{\not{Mag7}}}    
+$$
 
 ![Rolling 1Y Returns]({{page.image_m2 | relative_url}})
 
