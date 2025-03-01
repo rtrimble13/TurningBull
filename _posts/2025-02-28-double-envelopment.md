@@ -36,21 +36,46 @@ And, so there you were, with Hannibal's infantry to your front and flanks, and w
 
 While Hannibal ultimately lost the Second Punic War, he decicively defeated the Romans at Cannae through a maneurver that became known as a double envelopment.  Whereas an envelopment is a tactical maneuver that consists of attacking an enemy on a flank.  A double envelopement is just more of that, applied to both flanks.  I think, though, that Hannibal's true genious at Cannae was the way in which he lured the Romans into a false sense that they controlled the tempo of the fight.  The concave formation of his front line was deliberately designed to enable the Romans to build forward momentum.  As the Romans pushed foward, that line became convex and allowed the infantry on both sides of the line to pivot inward onto the Roman flanks.  Meanwhile, Hannibal used his cavalry to close in from the rear and prevent a Roman retreat.  The Romans found themselves fighting in every direction, lost their momentum, and were effectively decimated.
 
-### The Magnificent-7
+### The Market Index
 
-And now for something completely different...  Well, sort of.  I actually believe one can draw an analogy between the Roman experience at Cannae and the influence that a small number of stocks has on the U.S. equities market today.  The **S&P 500**, if you recall from last month, is an index comprised of the largest 500 publicly traded U.S. companies.  It is often seen as a barometer for the equities market.  One of its main features is its market capitalization (market cap) weighting scheme.  Index constituents are selected based on market cap, or the number of shares outstanding (float), multiplied by the current market price per share.  We can think of a company's market cap as its equity market value.  While a market cap-weighted index is arguably better than a price-weighted one like the **DOW** - let's shelve that one for another time - it is definitely worthy of a little investigative scrutiny.  
+And now for something completely different...  Well, sort of.  I actually believe one can draw an analogy between the Roman experience at Cannae and the influence that a small number of stocks has on the U.S. equities market today.  The **S&P 500**, if you recall from last month, is an index comprised of the largest 500 publicly traded U.S. companies.  It is often seen as a barometer for the equities market.  One of its main features is its free-float market capitalization (market cap) weighting scheme.  Index constituents are selected based on market cap, or the number of shares outstanding for investors (float), multiplied by the current market price per share.  We can think of a company's market cap as its equity market value.  While a market cap-weighted index is arguably better than a price-weighted one like the **DOW** - let's shelve that one for another time - it is definitely worthy of a little investigative scrutiny. 
 
-As of the end of 2024, the S&P 500 (S&P) market cap was hovering around $53Tn.  With the inaguration now in the rearview, the books are open on how durable that $50Tn level remains...  Regardless, the index has had a hell of a run over the last 10 years.  <mkt return and mkt cap growth stats>.  From [last month], we know that means if you had invested $1 in a fund tracking the S&P on Jan 1st, 2015, you would have ~<$$> by December 31st, 2024.  Now, imagine a number larger than $1, and you get the picture.  As that investor in an S&P tracker, though, you might wonder what's driving those gains.  Well, a significant contributor to the success of the U.S. equities market as been *Big Tech*.  
+Under a free-float market cap weighting approach to indexing, the weight of each constituent company is computed as:
 
-Technology companies have revolutionized not only how we interact with the world - think personal computing, mobile devices, wearables, e-commerce, etc. - but also how the world interacts with us - think social media, automation, personalized marketing, cyber warfare, and so on.  Thanks to technological innovation, the world has accomplished in the past couple of decades what would have taken centuries in other eras.  And then, there's humanity.., but that's besides the point.  As technology has exploded, economic growth has come along for the ride.  So you have the S&P.
+$$
+\omega_{i,t} = \frac{M_{i,t}} {\sum_{j=1}^{N} M_{j,t}} \tag{1}
+$$
+Where $$\omega_{i,t}$$ is the index weight of company $$i$$ at month $$t$$, and $$N$$ is the total number of companies in the index.  
 
-As that S&P investor, you might believe those investment returns are the result of tech innovation being shared in a *diversified* manner among all of those 500 largest companies.  Afterall, how much can a few Tech companies really influence the performance of a 500-stock portfolio?  Why not rely on the power of numbers and let their momentum ride?  Well, here's where a little scrutiny of the market cap weighting method becomes useful.  As we discussed above, since the S&P chooses its constituents based on market cap, so long as the market caps of the largest 500 companies in the U.S. equities market are of a similar order of magnitude, then 
+The contribution to the index return of each company is the stock return of that company multiplied by its weight, or
 
-set the situation; market cap history; potential for largest companies to dominate
+$$
+C_{i,t} = \omega_{i,t} \times r_{i,t} \tag{2}
+$$
+Where $$r_{i,t}$$ is the investment return of stock $$i$$ at month $$t$$.
 
-talk about tech; fangs, faangs, mag7
+The total index return at month $$t$$ thus becomes
 
-set up the analysis; task, conditions standard
+$$
+R_{index,t} = \sum_{i=1}^{N} C_{i,t} \tag{3}
+$$
+
+The actual index level as you would see it published is a little more involved, but the basic mechanics are as described above.
+
+As of the end of 2024, the S&P 500 (S&P) market cap was hovering around $52Tn.  With the inaguration now in the rearview, the books are open on how durable that $50Tn level remains...  Regardless, the index has had a hell of a run over the last 10 years, returnig ~11% per year.  From [last month](https://rtrimble13.github.io/TurningBull/2025/shoot-move-communicate), we know that means if you had invested $1 in a fund tracking the S&P on Jan 1st, 2015, you would have ~$$\$2.84 = (1 + 11\%)^{10}$$ by December 31st, 2024.  Now, imagine a number larger than $1, and you get the picture.  As that investor in an S&P tracker, though, you might wonder what's driving those gains.  Well, a significant contributor to the success of the U.S. equities market as been *Big Tech*.  
+
+Technology companies have revolutionized not only how we interact with the world - think personal computing, mobile devices, AI, e-commerce, etc. - but also how the world interacts with us - think social media, automation, AI, cyber warfare, and so on.  Thanks to technological innovation, the world has changed in the past couple of decades in ways that would have taken centuries in other eras.  Besides the point, but at least human behavior hasn't changed, right??  As technology has exploded, economic growth has come along for the ride.  And, there you have the S&P.
+
+As that S&P investor, you might believe those investment returns are the result of tech innovation being shared in a *diversified* manner among all of those 500 largest companies.  Afterall, how much can a few Tech companies really influence the performance of a 500-stock portfolio?  Why not rely on the power of numbers and let their momentum ride?  Well, here's where a little scrutiny of the market cap weighting method becomes useful.  As we discussed above, the S&P chooses its constituents based on market cap.  So long as the market caps of the largest 500 companies in the U.S. equities market are of a similar order of magnitude, then I would argue you are getting roughly the diversified exposure you would expect.  However, if the market caps of a minority of companies begins to dominate the rest, then you start to see that *double envelopment* action start to kick in.  
+
+For instance, let's say we have a three-stock index comprised of stocks $$FOO$$, $$BAR$$, $$BAZ$$ and $$OOF$$.  If they each have a market cap of ~$1Bn, then according to **(1)**, their individual weights are each 0.25 (25%).  If the stocks' respective returns are 4%, 3%, 2% and -2%, then the resulting (simplified) index return is $$1.75\% = (0.25 \times 4\%) + (0.25 \times 3\%) + (0.25 \times 2\%) + (0.25 \times -2\%)$$.  In this case, no single stock is driving the index.  Now, let's say $$OOF$$ has a market cap that dwarfs the rest such that its weight is 0.4 (40%), and the others are equal weighted at 0.2 (20%).  The index return becomes $$1\% = (0.2 \times 4\%) + (0.2 \times 3\%) + (0.2 \times 2\%) + (0.4 \times -2\%)$$.  $$OOF$$'s price action is clearly driving the index due to its hefty weight relative to the rest.  
+
+### The Magnificent 7
+
+So, let's take the discussion back to Big Tech.  We've established technology's impact on the world.  As it happens, market commentators began to coin a new term for the largest tech growth stocks that were regularly impacting the market.  **FANG** came to represent the combined influence of Facebook, Amazon, Netflix and Google.  They became **FAANGs** in 2017 after adding Apple in the mix.  In 2023, the group's membership changed to include Alphabet (was Google), Amazon, Apple, Meta (was Facebook), Microsoft, Nvidia, and Tesla.  Absent a crafty acronym, they're known as the *Magnificent 7*, not to be confused with the Western.  Though don't be surprised if there's an executive order in the pipeline to change the name to the *Beautiful American 7*.
+
+Our task this month is to assess just how much influence the Mag-7 have on the S&P by comparing their performance and allocation within the index over the last 10 years. The conditions under which we'll undertake this analysis include having access to monthly returns of the index and the Mag-7 stocks, as well as the historical index composition over the period.  The standard, like last month, is to develop a set of useful visualizations to communicate our conclusion.  For those who are interested, there is a [companion Jupyter Notebook](https://github.com/rtrimble13/tb-notebooks.git) with the code used for the analysis.
+
 
 ![Cumulative Returns]({{page.image_m1 | relative_url}})
 
@@ -59,3 +84,11 @@ set up the analysis; task, conditions standard
 ![Monthly Returns]({{page.image_m3 | relative_url}})
 
 ![Mag-7 Weights]({{page.image_m4 | relative_url}})
+
+#### Sources
+
+[Wikipedia: S&P 500](https://en.wikipedia.org/wiki/S%26P_500)
+
+[US News: History of the Magnificent 7](https://money.usnews.com/investing/articles/magnificent-7-stocks-explainer)
+
+[TurningBull companion Jupyter Notebook Git Repository](https://github.com/rtrimble13/tb-notebooks.git)
