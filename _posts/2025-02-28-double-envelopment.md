@@ -45,6 +45,7 @@ Under a free-float market cap weighting approach to indexing, the weight of each
 $$
 \omega_{i,t} = \frac{M_{i,t}} {\sum_{j=1}^{N} M_{j,t}} \tag{1}
 $$
+
 Where $$\omega_{i,t}$$ is the index weight of company $$i$$ at month $$t$$, and $$N$$ is the total number of companies in the index.  
 
 The contribution to the index return of each company is the stock return of that company multiplied by its weight, or
@@ -52,6 +53,7 @@ The contribution to the index return of each company is the stock return of that
 $$
 C_{i,t} = \omega_{i,t} \times r_{i,t} \tag{2}
 $$
+
 Where $$r_{i,t}$$ is the investment return of stock $$i$$ at month $$t$$.
 
 The index return at month $$t$$ thus becomes
@@ -119,7 +121,7 @@ Still awake?  Or, are you pretending to be a Roman again?  Well, the last chart 
 
 Here, I've plotted the S&P market cap for the last 10 years overlayed with the Mag-7 weights.  While I believe my market cap data may not be entirely correct - most sources on the web indicate the S&P market cap is closer to $52Tn than $55Tn - the trend seems to be spot on.  Over the last 10 years, the S&P market has grown ~190%, with particularly explosive periods between 2020 - 2022 and from 2023 on.  The allocation afforded to the Mags has grown from 10% of the S&P in 2015 to just over 30% at the end of 2024.  Seven stocks commanding ~32% of the index price action.  I'm a taker of opinions of which one you think resembles the Carthaginian Cavalry.
 
-To wrap up, my goal this month was to explore the impact that a small number of tech stocks is having on an index that is supposed to be symbolic of a diversifed basket of the largest publically traded U.S. companies.  Chances are that if you are an investor of stocks, then you probably have exposure to these stocks through packaged products, such as ETFs and mutual funds.  And, if you have most of your U.S. equity exposure spread across a selection of various funds, then you are probably more concentrated in these seven stocks than you realize.  The recent times have been good, and momentum has been on your side.  I encourage you to consider the cautionary tale of the Roman infantryman at Cannae, though.  The tempo of this market is being driven by a small, disruptive force.  As such, the direction of battle can change very quickly.  When that line starts to bow, watch your flanks, and beware the cavalry to your rear, lest you find yourself uttering, "Well, I'll be damned..."
+To wrap up, my goal this month was to explore the impact that a small number of tech stocks is having on an index that is supposed to be symbolic of a diversifed basket of the largest publically traded U.S. companies.  Chances are that if you are an investor of stocks, then you probably have exposure to these stocks through packaged products, such as ETFs and mutual funds.  And, if you have most of your U.S. equity exposure spread across a selection of various funds, then you are probably more concentrated in these seven stocks than you realize.  The recent times have been good, and momentum has been on your side.  I encourage you to consider the cautionary tale of the Roman infantryman at Cannae, though.  The tempo of this market is being driven by a small, disruptive force.  As such, the direction of battle can change very quickly.  When that line starts to bow, watch your flanks and beware the cavalry to your rear, lest you find yourself uttering, "Well, I'll be damned..."
 
 Action front!  Let's move out and draw fire!!
 
