@@ -26,11 +26,11 @@ This bizarre allegory was inspired by the true events of April, 2025.  Honestly,
 
 Let's pick this apart some.  First, by repeating three of the stated reasons for launching a trade war:
 
-**Allegation 1:** America is being ripped off by our trading partners, so tariffs are a *retaliatory* measure to fight back.
+**Claim 1:** America is being ripped off by our trading partners, so tariffs are a *retaliatory* measure to fight back.
 
-**Allegation 2:** Tariffs are a source of revenue and will help reduce the national debt.
+**Claim 2:** Tariffs are a source of revenue and will help reduce the national debt.
 
-**Allegation 3:** Tariffs will help rekindle America's manufacturing capabilities. 
+**Claim 3:** Tariffs will help rekindle America's manufacturing capabilities. 
 
 **(1)** is supported by the framing of the April 2nd tariffs as retaliatory as well as the convoluted methodology of setting variable rates for each U.S. trading partner as something close to:
 
