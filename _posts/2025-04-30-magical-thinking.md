@@ -3,7 +3,7 @@ layout: post
 title: "Magical Thinking"
 date: 2025-04-30
 categories: jekyll update
-image: /images/posts/apr25/apprentice.png
+image: /images/posts/apr25/apprentice.jpg
 image1: /images/posts/apr25/US10Y.png
 ---
 
