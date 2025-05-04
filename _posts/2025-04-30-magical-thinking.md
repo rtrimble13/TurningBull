@@ -4,7 +4,7 @@ title: "Magical Thinking"
 date: 2025-04-30
 categories: jekyll update
 image: /images/posts/apr25/apprentice.jpg
-image1: /images/posts/apr25/US10Y.png
+image1: /images/posts/apr25/us10y.png
 ---
 
 I'd like to ask you to channel your inner Goethe for a moment and envision yourself as the [Sorcerer](https://en.wikipedia.org/wiki/The_Sorcerer%27s_Apprentice).  That's right: the stern old guy with a full beard and a moon hat.  It doesn't have to be an old man, though.  Use your imagination - to the point of this segment, the *details don't matter.*  Are we good?  So, you're the Sorcerer, and you have an apprentice.  The apprentice can be a boy, a girl, even a mouse.  It doesn't matter.  Remember, we're engaging in magical thought and the details do *not* matter.  What if things had turned out differently, though?  What if you hadn't spent the full day conjuring solutions to a massive set of domestic economic issues and geopolitical crises.  After all, just one of these problems could require the efforts of multiple sorcerers, let alone the full basket of them.  What if you hadn't exhaused yourself after so much toiling that you would have thought twice about leaving your apprentice unsupervised.  
