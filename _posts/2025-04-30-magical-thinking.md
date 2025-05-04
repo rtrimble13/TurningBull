@@ -5,6 +5,7 @@ date: 2025-04-30
 categories: jekyll update
 image: /images/posts/apr25/apprentice.jpg
 image1: /images/posts/apr25/us10y.png
+image2: /images/posts/apr25/mouse.png
 ---
 
 I'd like to ask you to channel your inner Goethe for a moment and envision yourself as the [Sorcerer](https://en.wikipedia.org/wiki/The_Sorcerer%27s_Apprentice).  That's right: the stern old guy with a full beard and a moon hat.  It doesn't have to be an old man, though.  Use your imagination - to the point of this segment, the *details don't matter.*  Are we good?  So, you're the Sorcerer, and you have an apprentice.  The apprentice can be a boy, a girl, even a mouse.  It doesn't matter.  Remember, we're engaging in magical thought and the details do *not* matter.  What if things had turned out differently, though?  What if you hadn't spent the full day conjuring solutions to a massive set of domestic economic issues and geopolitical crises.  After all, just one of these problems could require the efforts of multiple sorcerers, let alone the full basket of them.  What if you hadn't exhaused yourself after so much toiling that you would have thought twice about leaving your apprentice unsupervised.  
@@ -73,6 +74,8 @@ For instance, if you, the Sorcerer, borrowed $100 dollars for 10 years at 2% to 
 As the Sorcerer, perhaps, the lesson learned is less about lamenting the decision to leave your apprentice unsupervised.  Perhaps, just maybe, it is more about taking care to chose the right apprentice in the first place.  With such a heavy burden on your shoulders to be a force for good in the world, it is those decisions that carry the greatest effect.  As we've seen, it takes just one enhanted evening to flood your lair and upend a reputation that's taken nearly a century to build. 
 
 Candidly, my objective for this article was to nerd out on bonds and interest rates with a focus on the U.S. 10-Year T-Note.  Diving into an analysis of tariffs just sort of happened, but seemed like a reasonable foundation to help provide context for the market's reaction.  So, I just ran with it.  As this article suggests, T-Notes will still be around next month, and I promise to get us back on track then.  Following up with some of the basics of fixed income mechanics should be a good complement to the macro themes we've discussed here.
+
+![Mouse]({{page.image2 | relative_url}})
 
 Action front!  Let's move out and draw fire!!
 
