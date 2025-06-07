@@ -61,7 +61,7 @@ Where $$R_{0.5}$$ is the interest rate used to discount the cash flow received i
 One more layer of complexity.  Let's say we're evaluating a semiannual coupon bond that matures in ten years.  Determining its present value is mechanically the same as before, but now we have to discount 20 cash flows: two per year for the next ten years.  We can generalize this formula as:
 
 $$
-PV_{bond} = \sum_{t=1}^{n} \frac{\frac{C}{2}}{(1 + \frac{R_t}{2})^{2t}} + \frac{F}{(1 + \frac{R_t}{2})^{2t}}  \tag{5}
+PV_{bond} = \sum_{t=1}^{n} \frac{\frac{C}{2}}{(1 + \frac{R_t}{2})^{2t}} + \frac{F}{(1 + \frac{R_n}{2})^{2n}}  \tag{5}
 $$
 
 Where $$C$$ is the coupon payment, $$F$$ is the face value, and $$R_t$$ is the interest rate used to discount the cash flows at time *t*.  Our challenge is to determine the appropriate interest rate at each *t*.  We call these interest rates **spot rates**, and we can think of them as the interest rates that apply to a zero-coupon bond that matures at time *t*.  In other words, the spot rate is the rate used to discount a cash flow that occurs at time *t*.  They are generally not constant, and they change over time.  And, unlike bond prices, spot rates are not observable in the market.  Rather, they are just below the surface and we have to probe for them, one rate at a time.  
