@@ -158,10 +158,10 @@ for i in range(1, len(coupons)):
     c = coupons[i]      # coupon for current unknown spot rate
     
     ## compute discount factors for cash flows.
-    df = sum(1. / (1 + spot_rates[j] / 2) ** j for j in range(len(spot_rates)))
+    df = sum(1. / (1 + spot_rates[j] / 2) ** (j + 1) for j in range(i))
 
     ## solve for the unknown rate.
-    new_rate = 2 * (((fv + c) / (fv - c * df)) ** (1. / i) - 1)
+    new_rate = 2 * (((fv + c) / (fv - c * df)) ** (1. / (i + 1)) - 1)
 
     spot_rates.append(new_rate) 
 ```
