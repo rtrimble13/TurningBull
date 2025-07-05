@@ -38,9 +38,11 @@ If my June campaign is successful, then we'll have island hopped our way though 
 Recall from last month that we discussed the concept of spot rates and how they can be used to value a bond.  This month, we'll take a closer look at how to apply spot rates to calculate the present value of a bond's cash flows.  The process is straightforward: we discount each cash flow by its corresponding spot rate and sum them up to get the bond's present value.
 
 Using our universal present value formula, we can express the present value of a bond as:
+
 $$
 PV = \sum_{t=0.5}^{n} \frac{\frac{C_t}{2}}{(1 + \frac{R_t}{2})^{2t}} + \frac{F}{(1 + \frac{R_n}{2})^{2n}} \tag{1}
 $$
+
 Where $$t$$ is the time in years until each cash flow, $$C_t$$ is the coupon payment at time $$t$$, $$R_t$$ is the spot rate for that time period, and $$F$$ is the face value of the bond.  Since we are using semi-annual coupons, we divide the coupon rate by 2 and multiply the time by 2 to account for the semi-annual payments.
 
 So, if we have a Treasury bond with a 5% coupon rate maturing in 10 years, and a bootstrapped spot rate curve on 1 July 2025, then we can apply **(1)** to determine a present value of $105.66 per $100 face value.  The below chart illustrates the effect of discounting on each of the cash flows.
@@ -73,9 +75,11 @@ As a buyer of the bond, then, part of the purchase will include payment of accru
 1. **Nominal Yield**: This is the simplest measure, calculated as the annual coupon payment divided by the face value of the bond. For our example bond with a 5% coupon rate and $1,000 face value, the nominal yield is 5% $$(=\frac{50}{1000})$$.
 2. **Current Yield**: This measure takes into account the bond's current market price. It is calculated as the annual coupon payment divided by the current market price of the bond. For our bond priced at $1,056.56, the current yield is approximately 4.73% $$(=\frac{50}{1056.56})$$.  Notice that we compute current yield using the clean price, not including that dirty-nasty accrued interest.  Also note that the current yield is lower than nominal.  This fact is true for any premium bond.  You've probably heard it a million times: "bond prices and yields move in opposite directions."  Well, this is the case in point.
 3. **Yield to Maturity (YTM)**: This is a more comprehensive measure that considers the bond's current market price, coupon payments, and the time remaining until maturity. It represents the total return an investor can expect if the bond is held until maturity. Calculating YTM can be complex, as it involves solving for the interest rate that equates the present value of the bond's cash flows to its current market price.  We'll tackle this when we hit **Okinawa**.  A back-of-the-envelope approximation of YTM can be made by amortizing the difference between the current price and par value over the remaining life of the bond:
+
 $$
 YTM \approx \frac{C + \frac{(F - P)}{n}}{\frac{{F + P}}{2}} \tag{2}
 $$
+
 Where $$C$$ is the annual coupon payment, $$F$$ is the face value, $$P$$ is the current price, and $$n$$ is the number of years to maturity.  For our example bond, this gives us a YTM of approximately 4.31% $$(=\frac{50 + \frac{(1000 - 1056.56)}{10}}{\frac{(1000 + 1056.56)}{2}})$$.  This is a good approximation, but it does not account for the time value of money in the same way as the full YTM calculation.  Notice that YTM is lower than both nominal and current yield since the bond is trading at a premium.
 4. **Yield to Call (YTC)**: This measure is relevant for callable bonds, which can be redeemed by the issuer before maturity. YTC is similar to YTM but assumes the bond is called at the earliest possible date. It is calculated using the call price and the time until the call date.  Solving for YTC involves numerical methods and is a particular joy to all us financial engineers out there.  Out of scope for today, but we'll set our sights on it before too long...  If our bond was hypothetically callable at par in 5 years, that would mean the issuer, i.e., Uncle Sam for this Treasury, could call the bond away from us at a price of par.  Using **(2)**, we can approximate YTC as 3.76% $$(=\frac{50 + \frac{(1000 - 1056.56)}{5}}{\frac{(1000 + 1056.56)}{2}})$$.  Notice that YTC is the lowest of the yields we calculated so far.
 5. **Yield to Worst (YTW)**: This measure calculates the lowest yield an investor can receive.  Technically, its is the lower of YTM and YTC.  It is useful for assessing the worst-case scenario for a bondholder.  Besides a credit event, e.g., a default, a bad outcome for a bond investor is to have their bond called early and be stuck with reinvesting the proceeds at less favorable rates.  This is commonly referred to as reinvestment risk.  YTW is a way to quantify that risk.  Sticking with our example, YTW would be 3.76%.
@@ -113,18 +117,24 @@ From this chart we can see, given a number of bonds with different coupon rates,
 Whew, thanks for sticking with me this far.  It's been quite a trip.  I have to warn you, though, some of this section might elicit painful memories of college calculus.  Let's jump in it...
 
 For starters, let's assume we have our trusty semi-annual 5% Treasury bond with 10 years to maturity, quoted at 105-21.  We want to calculate YTM rather than just approximate it (perhaps we're out of envelopes..).  From last month, we know the equation for PV using yield is:
+
 $$
 PV = \sum_{t=0.5}^{n} \frac{\frac{C_t}{2}}{(1 + \frac{YTM}{2})^{2t}} + \frac{F}{(1 + \frac{YTM}{2})^{2n}} \tag{3}
 $$
+
 YTM is the only unknown, but solving for it is not as simple as rearranging the terms.  Instead, we'll use a numerical method called the **Newton-Raphson** method.  This method is an iterative approach that starts with an initial guess for YTM and refines it until we converge on a solution.  The formula for the Newton-Raphson iteration is:
+
 $$
 YTM_{n+1} = YTM_n - \frac{f(YTM_n)}{f'(YTM_n)} \tag{4}
 $$
+
 Where $$f(YTM)$$ is the objective function representing the difference between the calculated PV and the market price, and $$f'(YTM)$$ is its derivative with respect to YTM.  In our case, we can express this as:
+
 $$
 f(YTM) = P_{market} - PV_{YTM} \\
 f'(YTM) = -\sum_{t=0.5}^{n} \frac{t \cdot C_t}{2(1 + \frac{YTM}{2})^{2t+1}} - \frac{n \cdot F}{2(1 + \frac{YTM}{2})^{2n+1}}
 $$
+
 Where $$P_{market}$$ is the market price of the bond, and $$PV_{YTM}$$ is the present value calculated using the current guess for YTM.
 
 After each iteration with **(4)**, we have a new estimate for YTM.  The objective function $$f(YTM)$$ and its derivative will determine the size of leap we take toward the new estimate.  If our updated estimate is still far away from the actual YTM, then the leap will be large.  As we converge to the true value the leaps will get smaller and smaller.  We stop iterating once the absolute value of the difference in YTM estimates $$(YTM_{n+1} - YTM_n)$$ is less than a predetermined tolerance level, e.g., 1e-6.  This means we are close enough to the true YTM that further iterations would not yield a materially different result.  Applying the algorithm looks a little like this:
