@@ -179,6 +179,6 @@ Our island hopping campaign through the fixed income has taken us from spot rate
 
 Action front!  Move out and draw fire!!
 
-!![Guadalcanal]({{ page.image8 | relative_url }})
+![Guadalcanal]({{ page.image8 | relative_url }})
 
 **Note:** This post is not investment advice.  Any opinions stated are my own and do not reflect those of my employer.  This post is meant to be educational and entertaining.  If you find it useful, then please let me know.  If you think it sucks, then please let me know that, too!
