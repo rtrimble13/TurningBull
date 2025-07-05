@@ -77,7 +77,7 @@ As a buyer of the bond, then, part of the purchase will include payment of accru
 3. **Yield to Maturity (YTM)**: This is a more comprehensive measure that considers the bond's current market price, coupon payments, and the time remaining until maturity. It represents the total return an investor can expect if the bond is held until maturity. Calculating YTM can be complex, as it involves solving for the interest rate that equates the present value of the bond's cash flows to its current market price.  We'll tackle this when we hit **Okinawa**.  A back-of-the-envelope approximation of YTM can be made by amortizing the difference between the current price and par value over the remaining life of the bond:
 
 $$
-YTM \approx \frac{C + \frac{(F - P)}{n}}{\frac{{F + P}}{2}} \tag{2}
+YTM \approx \frac{C + \frac{F - P}{n}}{\frac{F + P}{2}} \tag{2}
 $$
 
 Where $$C$$ is the annual coupon payment, $$F$$ is the face value, $$P$$ is the current price, and $$n$$ is the number of years to maturity.  For our example bond, this gives us a YTM of approximately 4.31% $$(=\frac{50 + \frac{(1000 - 1056.56)}{10}}{\frac{(1000 + 1056.56)}{2}})$$.  This is a good approximation, but it does not account for the time value of money in the same way as the full YTM calculation.  Notice that YTM is lower than both nominal and current yield since the bond is trading at a premium.
@@ -131,7 +131,10 @@ $$
 Where $$f(YTM)$$ is the objective function representing the difference between the calculated PV and the market price, and $$f'(YTM)$$ is its derivative with respect to YTM.  In our case, we can express this as:
 
 $$
-f(YTM) = P_{market} - PV_{YTM} \\
+f(YTM) = P_{market} - PV_{YTM}
+$$
+
+$$
 f'(YTM) = -\sum_{t=0.5}^{n} \frac{t \cdot C_t}{2(1 + \frac{YTM}{2})^{2t+1}} - \frac{n \cdot F}{2(1 + \frac{YTM}{2})^{2n+1}}
 $$
 
