@@ -156,9 +156,10 @@ for i in range(max_iterations):
     objective_func = bond_price - pv_bond_ytm
     (coupon_rate, ytm, n_maturity, face_value)
     # Calculate the derivative of the bond price with respect to YTM.
-    ## Use equation (4) to calculate the derivative of the bond price.
+    ## Use equation (5) to calculate the derivative of the bond price.
     objective_prime = pv_bond_prime(coupon_rate, ytm, n_maturity, face_value)
     # Update the YTM estimate using the Newton-Raphson formula. 
+    ## Use equation (4)..
     ytm = ytm_old - objective_func / objective_prime
 ```
 The below chart shows the Newton-Raphson convergence for our bond using three different initial guesses:
