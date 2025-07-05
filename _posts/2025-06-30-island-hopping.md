@@ -96,7 +96,7 @@ There, that's a million and one times.  The point is that important, though.  Le
 
 ![Price and Yield Dynamics 1]({{ page.image2 | relative_url }})
 
-The main point to take away from this image is that the price curves as a function of yield are downward sloping.  It's a golden rule: increasing yields leads to decreasing prices.  A million and two...  Also notable is how the three curves are similarly convex.  The similarity in shape is mostly due to the shared maturity of 10 years, and the absence of other factors that impact price and are out of scope for this post.  About the convex shape, though, we can infer that the price of a bond will change more for a given change in yield when the yield is low than when it is high.  We'll also set an azimuthon this topic in more detail in the future.  But before we hop to the next rock in the Pacific, one more chart:
+The main point to take away from this image is that the price curves as a function of yield are downward sloping.  It's a golden rule: increasing yields leads to decreasing prices.  A million and two...  Also notable is how the three curves are similarly convex.  The similarity in shape is mostly due to the shared maturity of 10 years, and the absence of other factors that impact price and are out of scope for this post.  About the convex shape, though, we can infer that the price of a bond will change more for a given change in yield when the yield is low than when it is high.  We'll also set an azimuth on this topic in more detail in the future.  But before we hop to the next rock in the Pacific, one more chart:
 
 ![Price and Yield Dynamics 2]({{ page.image3 | relative_url }})
 
@@ -175,7 +175,7 @@ The Newton-Raphson method is a powerful tool for calculating yields, especially 
 ### Japan
 **or "Reaching our Objective"**
 
-Our island hopping campaign through the fixed income has taken us from spot rates to Newton-Raphson, with some strategic stops along the way.  A part of me wants to say that *Liberation Day* was my Pearl Harbor moment for exploring this topic, but that would just be silly..  Instead, think of it as *One Big Beautiful Bond Introduction* that has set us up for future campaigns in portfolio and risk managment.  Yup.  And on that note, as I write this, the **Big Beautiful Bill** is about the roll through Congress and has the potential to further stretch U.S. debt burden beyond sustainable levels - by as much as $5 trillion over the next decade according to some estimates.  Rather than *beautiful*, we may look back on this moment and think of it as the **One Big Boned Bill**.  We'll just have to stay awake and watch what happens.  'Til next time..
+Our island hopping campaign through the fixed income has taken us from spot rates to Newton-Raphson, with some strategic stops along the way.  A part of me wants to say that *Liberation Day* was my Pearl Harbor moment for exploring this topic, but that would just be silly..  Instead, think of it as *One Big Beautiful Bond Introduction* that has set us up for future campaigns in portfolio and risk managment.  Yup.  And on that note, as I write this, the **Big Beautiful Bill** is about the roll through Congress and has the potential to further stretch U.S. debt burden beyond sustainable levels - by as much as $5 trillion over the next decade according to some estimates.  Rather than *beautiful*, we may look back on this moment and think of it as the **One Big-Boned Bill**.  We'll just have to stay awake and watch what happens.  'Til next time..
 
 Action front!  Move out and draw fire!!
 
