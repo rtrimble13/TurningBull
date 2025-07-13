@@ -81,7 +81,9 @@ YTM \approx \frac{C + \frac{F - P}{n}}{\frac{F + P}{2}} \tag{2}
 $$
 
 Where $$C$$ is the annual coupon payment, $$F$$ is the face value, $$P$$ is the current price, and $$n$$ is the number of years to maturity.  For our example bond, this gives us a YTM of approximately 4.31% $$(=\frac{50 + \frac{(1000 - 1056.56)}{10}}{\frac{(1000 + 1056.56)}{2}})$$.  This is a good approximation, but it does not account for the time value of money in the same way as the full YTM calculation.  Notice that YTM is lower than both nominal and current yield since the bond is trading at a premium.
+
 4. **Yield to Call (YTC)**: This measure is relevant for callable bonds, which can be redeemed by the issuer before maturity. YTC is similar to YTM but assumes the bond is called at the earliest possible date. It is calculated using the call price and the time until the call date.  Solving for YTC involves numerical methods and is a particular joy to all us financial engineers out there.  Out of scope for today, but we'll set our sights on it before too long...  If our bond was hypothetically callable at par in 5 years, that would mean the issuer, i.e., Uncle Sam for this Treasury, could call the bond away from us at a price of par.  Using **(2)**, we can approximate YTC as 3.76% $$(=\frac{50 + \frac{(1000 - 1056.56)}{5}}{\frac{(1000 + 1056.56)}{2}})$$.  Notice that YTC is the lowest of the yields we calculated so far.
+
 5. **Yield to Worst (YTW)**: This measure calculates the lowest yield an investor can receive.  Technically, its is the lower of YTM and YTC.  It is useful for assessing the worst-case scenario for a bondholder.  Besides a credit event, e.g., a default, a bad outcome for a bond investor is to have their bond called early and be stuck with reinvesting the proceeds at less favorable rates.  This is commonly referred to as reinvestment risk.  YTW is a way to quantify that risk.  Sticking with our example, YTW would be 3.76%.
 
 If the main takeaway from this island is that there are different measures of yield, each serving a different purpose, then the secondary takeaway is to understand the relationship between the various yields depending on whether the bond is trading at a preium or discount.  The below chart plots nominal, current YTM, and YTC for a 5.5% semi-annual bond with 8 years until maturity.  
@@ -131,7 +133,7 @@ $$
 Where $$f(YTM)$$ is the objective function representing the difference between the calculated PV and the market price, and $$f'(YTM)$$ is its derivative with respect to YTM.  In our case, we can express this as:
 
 $$
-f(YTM) = P_{market} - PV_{YTM}
+f(YTM) = PV_{YTM} - P_{market}
 $$
 
 $$
