@@ -3,11 +3,11 @@ layout: post
 title: "Sappers Clear the Way"
 date: 2025-05-31
 categories: jekyll update
-image: /images/posts/may25/minefield1.jpg
-image1: /images/posts/may25/mine_clearing1.jpg
-image2: /images/posts/may25/yield_curve.png
-image3: /images/posts/may25/spot_curve.png
-image4: /images/posts/may25/minefield2.jpg
+image: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/may25/minefield1.jpg
+image1: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/may25/mine_clearing1.jpg
+image2: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/may25/yield_curve.png
+image3: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/may25/spot_curve.png
+image4: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/may25/minefield2.jpg
 ---
 
 "Look lively, young sapper!" ... Allow me to introduce Staff Sergeant (SSG) Jones...  "Quit f-ing around and place those markers!" ...  For the record, I thought I had seen movement in the woodline.  But, when your sergeant accuses you of *"f-ing around,"* the best response is: "Yes, Sergeant."  

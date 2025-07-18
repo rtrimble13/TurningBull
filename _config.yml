@@ -3,6 +3,7 @@ title: the TurningBull
 description: 'Random reflections on quantitative finance, economics and leadership'
 url: 'https://rtrimble13.github.io/TurningBull'
 baseurl: '/TurningBull'
+image_base: 'https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main'
 # google_analytics: 'UA-XXXXXX-X'
 # disqus_shortname: 'your-disqus-name'
 # disable_landing_page: true

@@ -3,15 +3,15 @@ layout: post
 title: "Island Hopping to the Objective"
 date: 2025-06-30
 categories: jekyll update
-image: /images/posts/jun25/marines.jpg
-image1: /images/posts/jun25/spotrate.png
-image2: /images/posts/jun25/price_yield1.png
-image3: /images/posts/jun25/price_yield2.png
-image4: /images/posts/jun25/yieldorder.png
-image5: /images/posts/jun25/yield_evol.png
-image6: /images/posts/jun25/nr1.png
-image7: /images/posts/jun25/nr2.png
-image8: /images/posts/jun25/guadalcanal.jpg
+image: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jun25/marines.jpg
+image1: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jun25/spotrate.png
+image2: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jun25/price_yield1.png
+image3: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jun25/price_yield2.png
+image4: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jun25/yieldorder.png
+image5: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jun25/yield_evol.png
+image6: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jun25/nr1.png
+image7: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jun25/nr2.png
+image8: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jun25/guadalcanal.jpg
 ---
 
 Tarawa.  They told us we'd land right on the beach...  Said the tide would carry the boats over the reef... But the water stopped too soon - just short of safety - and left us exposed.  The landing craft stopped abruptly, shoving us uncontrollably into each other.  A memory of packing into the NY subway at Chambers every morning before the war slid into focus for a moment before the heat set in.  When traveling toward the beach at 10 knots the breeze had lulled us into a pensive state where all you could hear was the LCVP's drone and the rumble of distant shelling.  Now there was just heat in the still air.  Heat and noise.  

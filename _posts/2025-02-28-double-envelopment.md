@@ -3,13 +3,13 @@ layout: post
 title: "Double Envelopment"
 date: 2025-02-28
 categories: jekyll update
-image: /images/posts/feb25/battle_of_cannae.png
-image0: /images/posts/feb25/battle_scene.jpg
-image1: /images/posts/feb25/cannae_diagram.png
-image_m1: /images/posts/feb25/image_m1.png
-image_m2: /images/posts/feb25/image_m2.png
-image_m3: /images/posts/feb25/image_m3.png
-image_m4: /images/posts/feb25/image_m4.png
+image: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/feb25/battle_of_cannae.png
+image0: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/feb25/battle_scene.jpg
+image1: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/feb25/cannae_diagram.png
+image_m1: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/feb25/image_m1.png
+image_m2: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/feb25/image_m2.png
+image_m3: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/feb25/image_m3.png
+image_m4: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/feb25/image_m4.png
 ---
 
 "So, there I was," you might say to your buddies at the canteen, if you'll humor me on this one.  Telling war stories long after the sun has set and the drinks have risen is one of humanity's staples, afterall.  Yet, you were there, and this story is yours.  You might have been the son of a slave and spent your formative years working the fields for a Roman landowner.  You might have seen your father cut down over a petty dispute when you were twelve.  And you might have lost your mother and sisters to the plague not long after.  None of that would have shielded you from conscription as a Roman foot soldier in support of the consul Paullus during the Second Punic War.  
