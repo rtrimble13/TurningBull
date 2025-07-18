@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>the TurningBull</title>
+    <description>Random reflections on quantitative finance, economics and leadership</description>
+    <link>http://0.0.0.0:4000/TurningBull/</link>
+    <atom:link href="http://0.0.0.0:4000/TurningBull/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 18 Jul 2025 12:21:49 +0000</pubDate>
+    <lastBuildDate>Fri, 18 Jul 2025 12:21:49 +0000</lastBuildDate>
+    <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>Island Hopping to the Objective</title>
+        <description>&lt;p&gt;Tarawa.  They told us we’d land right on the beach…  Said the tide would carry the boats over the reef… But the water stopped too soon - just short of safety - and left us exposed.  The landing craft stopped abruptly, shoving us uncontrollably into each other.  A memory of packing into the NY subway at Chambers every morning before the war slid into focus for a moment before the heat set in.  When traveling toward the beach at 10 knots the breeze had lulled us into a pensive state where all you could hear was the LCVP’s drone and the rumble of distant shelling.  Now there was just heat in the still air.  Heat and noise.&lt;/p&gt;
+
+&lt;p&gt;The ramp dropped, and the world exploded into sound: machine guns barking from the bunkers, mortar shells whistling overhead, the sharp snap of rounds cracking through the air like breaking sticks.  Men started yelling - some from pain, some just to be heard over the chaos.  The sergeant shouted “Over the side!  Move!”&lt;/p&gt;
+
+&lt;p&gt;It’s moments like this when your body becomes a sack of potatoes, weighed down with equipment and ammunition.  I hit the water hard, boots sinking instantly into the reef.  It was waist-deep, then chest-deep.  My rifle was slung across my back, useless now.  My pack dragged behind me like a sandbag tied to my spine.  I was trying to keep my helmet steady, but the saltwater was in my eyes, my mouth and ears.  To this day that saltwater is in my throat.  I couldn’t hear anything clearly - just noises through saltwater ears and a pounding heartbeat.&lt;/p&gt;
+
+&lt;p&gt;When you find yourself in such a pickle, you wade.  You don’t run, you can’t.  Every step is like progressing through cement.  My thighs were burning and my shoulders felt like they were being ripped from their sockets.  Bullets kicked up in the water in front of us as rain on concrete.  Jimmy pitched forward face-first.  He never surfaced.  Just vanished into the red tide.  There was no cover.  No rocks, no logs…  Just open water and flat beach 500 yards ahead.&lt;/p&gt;
+
+&lt;p&gt;My legs started to shake - not from fear, that had passed.  Rather, from the effort.  If you’ve never swum in full gear, you should try it, especially before landing on a hot beach.  My rifle banged against my back like a dead weight.  My canteen dug into my side.  The bullet it caught exchanged my clean water for salt, which I only realized later that day.  “Better it than my hip” was little comfort then when my thirst felt like death…  I thought about dropping my pack just to move faster.  But that would have meant stopping.&lt;/p&gt;
+
+&lt;p&gt;The closer we got, the louder everything became.  The sand was packed hard and streaked with blood.  Guys who’d made it ahead of me were crawling now - elbows in, heads down.  I dropped beside them and tried to breathe.  My lungs felt tight, like they were being squeezed by the heat.  My hands shaking, I blinked hard, trying to clear the salt from my eyes.  I hadn’t even fired a shot yet.  There are many memories packed into that moment.  I remember someone screaming for a corpsman.  I remember the metallic taste of fear - like biting down on a coin.  And I remember the smell.  Burned cordite, seawater, and battle - sickly and sour, of burnt flesh and diesel fuel.  All I could think was: Keep moving.  Get to the objective.  Stay low.&lt;/p&gt;
+
+&lt;h3 id=&quot;postcards-from-the-west&quot;&gt;Postcards from the West&lt;/h3&gt;
+
+&lt;p&gt;To say that defeating Imperial Japan would require creative thinking is at best an understatement.  It is about as useful as stating there are a lot of islands in the Pacific.  Islands with names that to this day most people have never heard of were occupied with Japanese forces dug into defensive positions just waiting for the advancing Americans.  General MacArthur, commanding U.S. Army forces, and Admiral Nimitz, heading up the U.S. Navy, both knew they had neither the time nor the resources to take every Island.  They also knew Japan was unreachable without a secure supply chain and airfields close enough to reach it.  The plan, then, was for the Army and Navy to carry out parallel campaigns to seize key islands and bypass non-critical ones, forging a path toward Tokyo.  The plan, though simple in concept, was never simple in execution.  On the ground, each island took on a life of its own from the perspectives of the marines and soldiers who fought there.  Some landings were hot, meaning the Japanese actively defended the beaches the Americans landed on.  And some were not, concealing deadly battles that would ensue as the Americans tredged inland.  Sometimes an island battle lasted a couple weeks, while others consumed months.  The island hopping strategy, hellish as it was, proved successful in the end.  And that is were the metaphore will take us today.&lt;/p&gt;
+
+&lt;p&gt;If my June campaign is successful, then we’ll have island hopped our way though a few more topics in the vast world of fixed income with the objective of gaining better appreciation for the complexity of this field.  And in a more direct application of the metaphore, we’ll explore the elegant and extremely useful &lt;strong&gt;Newton-Raphson&lt;/strong&gt; algorithm for calculating bond yields.&lt;/p&gt;
+
+&lt;h3 id=&quot;guadalcanal&quot;&gt;Guadalcanal&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;or “Valuing a Bond Using Spot Rates”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Recall from last month that we discussed the concept of spot rates and how they can be used to value a bond.  This month, we’ll take a closer look at how to apply spot rates to calculate the present value of a bond’s cash flows.  The process is straightforward: we discount each cash flow by its corresponding spot rate and sum them up to get the bond’s present value.&lt;/p&gt;
+
+&lt;p&gt;Using our universal present value formula, we can express the present value of a bond as:&lt;/p&gt;
+
+\[PV = \sum_{t=0.5}^{n} \frac{\frac{C_t}{2}}{(1 + \frac{R_t}{2})^{2t}} + \frac{F}{(1 + \frac{R_n}{2})^{2n}} \tag{1}\]
+
+&lt;p&gt;Where \(t\) is the time in years until each cash flow, \(C_t\) is the coupon payment at time \(t\), \(R_t\) is the spot rate for that time period, and \(F\) is the face value of the bond.  Since we are using semi-annual coupons, we divide the coupon rate by 2 and multiply the time by 2 to account for the semi-annual payments.&lt;/p&gt;
+
+&lt;p&gt;So, if we have a Treasury bond with a 5% coupon rate maturing in 10 years, and a bootstrapped spot rate curve on 1 July 2025, then we can apply &lt;strong&gt;(1)&lt;/strong&gt; to determine a present value of $105.66 per $100 face value.  The below chart illustrates the effect of discounting on each of the cash flows.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/jun25/spotrate.png&quot; alt=&quot;PV with Spot Rates&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There’s a few things we can take away from this example.  Notice the bars representing coupon payments are the same height, but the PV of those bars decreases over time.  The rate of decrease is a function both of time and the spot rate such that by the time we reach the 10-year mark, nearly all of the value of the cash flow has been erroded away.  The chart is plotted on a logarithmic scale so we can better see this effect on the cash flows.  They would otherwise get dwarfed by the face value cash flow.  In summing the PVs we arrive at the bond price at the far left, $105.66.  Since this value is above $100 par, we can say the bond is trading at a premium.  This is because the coupon rate of 5% is above the average level of spot rates in the term structure, plotted as the red curve against the right axis.  If the bond PV was below $100, we would say it is trading at a discount.&lt;/p&gt;
+
+&lt;h3 id=&quot;tarawa&quot;&gt;Tarawa&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;or “Bond Price Conventions”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;So, we know our bond is valued at $105.66.  How would that be quoted in the market, though?  When quoting stocks, ETFs and funds, we typically see them quoted directly in dollars and cents.  Not so with bonds, however.  First, bonds are typically quoted in terms of a percentage of par value.  $105.66 would be quoted, then, as 105.66%.  Second, the decimal component of the quote can be expressed as either a decimal or a fraction, but on different scales than we’re used to.  Treasury bonds, and bonds issued by government agencies, are quoted in 32nds of a point.  So, 105.66% would be expressed as 105 21/32, or 105-21 (=105 + 0.66 * 32).  Bonds issued by corporations and municipalities are quoted in 1/8ths of a point.  If our bond was issued by Ford Motor Company, for instance, it would be quoted as 105 5/8 (=105 + 0.66 * 8).&lt;/p&gt;
+
+&lt;p&gt;With this fun fact, we now know not to either despair over a miscalibrated spot rate curve or to squeal with glee over a potential abritrage opportunity when we see our bond quoted at 105-21.  It’s simply a confirmation that our valuation is inline with the market.&lt;/p&gt;
+
+&lt;h3 id=&quot;saipan&quot;&gt;Saipan&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;or “Determining the Actual Price You Pay”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;While we have been anchoring on $100 face value in our example, bonds more commonly have a face value of $1,000.  This means our Treasury bond quoted at 105-21 would carry a price of $1,056.56 \((=\$1,000 \times \frac{105 + \frac{21}{32}}{100})\).  As with so many things, though, that is not the full price you would pay, and I’m not talking about mark ups or fees.&lt;/p&gt;
+
+&lt;p&gt;Let me illustrate this point from the perspective of someone who holds this bond and wants to sell it.  Since the bond makes regular coupon payments, if that person sells the bond anytime before the next coupon payment, then they are forfeiting that payment.  As a holder of the bond up to that moment, wouldn’t you want to be compensated for the time you’ve held it since the previous payment?  Short answer: “Oui!”  Naturally, you would expect to receive the &lt;strong&gt;accrued interest&lt;/strong&gt; that has accumulated since the last coupon date.  Otherwise, bond holders would have a perverse incentive not to sell until the next coupon, and it would just create a weird market environment.&lt;/p&gt;
+
+&lt;p&gt;As a buyer of the bond, then, part of the purchase will include payment of accrued interest.  We call the quoted price of $1,056.56 the &lt;strong&gt;clean price&lt;/strong&gt;.  It is the price of the bond based on it’s present value, which excludes accrued interest.  Adding that component gives us the &lt;strong&gt;dirty price&lt;/strong&gt;, or the price that we’ll actually pay to buy that bond.  Working out this example, lets say it is the 24th of May, 2025, and the next coupon date of this bond we’re going to buy is July 1st.  Since it is a semi-annual bond, we know that the previous coupon payment was made on January 1st.  That means we are 143 days into the 181-day coupon period.  As a fraction of the period, that is 0.7601 \((=\frac{143}{181})\).  The July 1 coupon payment will be $25 \((=\frac{5\% \times $1,000}{2})\), so the accrued interest is $19 \((=\$25 \times 0.7601)\).  Soiling our clean price of $1,056.56 with that filthy $19 of accrued interest gives us our &lt;em&gt;dirty price&lt;/em&gt; of $1,075.56 \((=\$1,056.56 + \$19)\).  This is the price we would pay to buy the bond on May 24th, 2025, per $1,000 notional face value.&lt;/p&gt;
+
+&lt;h3 id=&quot;guam&quot;&gt;Guam&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;or “Yields of our Bonds”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;“What’s the yield on that bond!” shouts the trader from across the floor.  “What yield?” is the reply.  “The bond yield, a-hole!” is the thundering response.  “Oh, that yield!” is the exasperated reply.  OK, that probably never happens.  But I mention it to illustrate that there are different meaures of yield, and their differences are nuanced.  Conceptually they say something similar about how much an investor can expect to earn in percentage terms from a bond.  But let’s go through a few of the main ones:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Nominal Yield&lt;/strong&gt;: This is the simplest measure, calculated as the annual coupon payment divided by the face value of the bond. For our example bond with a 5% coupon rate and $1,000 face value, the nominal yield is 5% \((=\frac{50}{1000})\).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Current Yield&lt;/strong&gt;: This measure takes into account the bond’s current market price. It is calculated as the annual coupon payment divided by the current market price of the bond. For our bond priced at $1,056.56, the current yield is approximately 4.73% \((=\frac{50}{1056.56})\).  Notice that we compute current yield using the clean price, not including that dirty-nasty accrued interest.  Also note that the current yield is lower than nominal.  This fact is true for any premium bond.  You’ve probably heard it a million times: “bond prices and yields move in opposite directions.”  Well, this is the case in point.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Yield to Maturity (YTM)&lt;/strong&gt;: This is a more comprehensive measure that considers the bond’s current market price, coupon payments, and the time remaining until maturity. It represents the total return an investor can expect if the bond is held until maturity. Calculating YTM can be complex, as it involves solving for the interest rate that equates the present value of the bond’s cash flows to its current market price.  We’ll tackle this when we hit &lt;strong&gt;Okinawa&lt;/strong&gt;.  A back-of-the-envelope approximation of YTM can be made by amortizing the difference between the current price and par value over the remaining life of the bond:&lt;/li&gt;
+&lt;/ol&gt;
+
+\[YTM \approx \frac{C + \frac{F - P}{n}}{\frac{F + P}{2}} \tag{2}\]
+
+&lt;p&gt;Where \(C\) is the annual coupon payment, \(F\) is the face value, \(P\) is the current price, and \(n\) is the number of years to maturity.  For our example bond, this gives us a YTM of approximately 4.31% \((=\frac{50 + \frac{(1000 - 1056.56)}{10}}{\frac{(1000 + 1056.56)}{2}})\).  This is a good approximation, but it does not account for the time value of money in the same way as the full YTM calculation.  Notice that YTM is lower than both nominal and current yield since the bond is trading at a premium.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Yield to Call (YTC)&lt;/strong&gt;: This measure is relevant for callable bonds, which can be redeemed by the issuer before maturity. YTC is similar to YTM but assumes the bond is called at the earliest possible date. It is calculated using the call price and the time until the call date.  Solving for YTC involves numerical methods and is a particular joy to all us financial engineers out there.  Out of scope for today, but we’ll set our sights on it before too long…  If our bond was hypothetically callable at par in 5 years, that would mean the issuer, i.e., Uncle Sam for this Treasury, could call the bond away from us at a price of par.  Using &lt;strong&gt;(2)&lt;/strong&gt;, we can approximate YTC as 3.76% \((=\frac{50 + \frac{(1000 - 1056.56)}{5}}{\frac{(1000 + 1056.56)}{2}})\).  Notice that YTC is the lowest of the yields we calculated so far.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Yield to Worst (YTW)&lt;/strong&gt;: This measure calculates the lowest yield an investor can receive.  Technically, its is the lower of YTM and YTC.  It is useful for assessing the worst-case scenario for a bondholder.  Besides a credit event, e.g., a default, a bad outcome for a bond investor is to have their bond called early and be stuck with reinvesting the proceeds at less favorable rates.  This is commonly referred to as reinvestment risk.  YTW is a way to quantify that risk.  Sticking with our example, YTW would be 3.76%.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If the main takeaway from this island is that there are different measures of yield, each serving a different purpose, then the secondary takeaway is to understand the relationship between the various yields depending on whether the bond is trading at a preium or discount.  The below chart plots nominal, current YTM, and YTC for a 5.5% semi-annual bond with 8 years until maturity.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/jun25/yieldorder.png&quot; alt=&quot;Price and Yield Dynamics&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Nominal yield is always at the intersection of the curves at par ($100).  The blue line represents current yield.  When the bond is trading at discount, it will be above nominal, but less than YTM - the orange curve.  When trading at a premium, current yield is below nominal, but higher than YTM.  For callable bonds, YTC will always be at the extremes. It will be the highest yield measure for discount bonds, since the chances of the issuer calling the bond at a price above the discounted one are low.  And, it will be the lowest yield measure when the bond is priced above the call price, reflecting the likelihood of the issuer exercising the call feature.&lt;/p&gt;
+
+&lt;h3 id=&quot;peleliu&quot;&gt;Peleliu&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;or “Prices Move Inversely to Yields”&lt;/strong&gt;
+There, that’s a million and one times.  The point is that important, though.  Let’s look at three bonds with different coupon rates all maturing in 10 years:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/jun25/price_yield1.png&quot; alt=&quot;Price and Yield Dynamics 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The main point to take away from this image is that the price curves as a function of yield are downward sloping.  It’s a golden rule: increasing yields leads to decreasing prices.  A million and two…  Also notable is how the three curves are similarly convex.  The similarity in shape is mostly due to the shared maturity of 10 years, and the absence of other factors that impact price and are out of scope for this post.  About the convex shape, though, we can infer that the price of a bond will change more for a given change in yield when the yield is low than when it is high.  We’ll also set an azimuth on this topic in more detail in the future.  But before we hop to the next rock in the Pacific, one more chart:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/jun25/price_yield2.png&quot; alt=&quot;Price and Yield Dynamics 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The only thing I want to call out here is the impact maturity has on the price-yield relationship.  The longer the maturity, the more pronounced the convexity of the price curve.  This is because longer-term bonds are more sensitive to changes in interest rates, leading to larger price fluctuations for a given change in yield: a key concept in fixed income investing and risk management.&lt;/p&gt;
+
+&lt;h3 id=&quot;iwo-jima&quot;&gt;Iwo Jima&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;or “Bond Price Evolution”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Unlike the actual experience on Iwo Jima, this one will be short and sweet.  I saw a similar chart in a text book once, and it has stayed with me ever since:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/jun25/yield_evol.png&quot; alt=&quot;Bond Price Evolution&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From this chart we can see, given a number of bonds with different coupon rates, the same maturity and yield, how the price evolves over time until maturity.  The key takeaway is that the price approaches par as the bond nears maturity.  It’s intuitive, since the bond will eventually pay out its face value plus a final coupon payment at maturity.  Absent a credit event, the price will converge to par regardless of the yield.  As a buy-and-hold investor, then, credit risk becomes your biggest concern when holding a non-callable bond.  While yield is an important factor when making the initial investment decision, the price is otherwise fairly deterministic.  Active bond traders view the world differently, though, since expectations of yield and market conditions, among other things, will inform their holding periods.&lt;/p&gt;
+
+&lt;h3 id=&quot;okinawa&quot;&gt;Okinawa&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;or “Calculating Yields with Newton-Raphson”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Whew, thanks for sticking with me this far.  It’s been quite a trip.  I have to warn you, though, some of this section might elicit painful memories of college calculus.  Let’s jump in it…&lt;/p&gt;
+
+&lt;p&gt;For starters, let’s assume we have our trusty semi-annual 5% Treasury bond with 10 years to maturity, quoted at 105-21.  We want to calculate YTM rather than just approximate it (perhaps we’re out of envelopes..).  From last month, we know the equation for PV using yield is:&lt;/p&gt;
+
+\[PV = \sum_{t=0.5}^{n} \frac{\frac{C_t}{2}}{(1 + \frac{YTM}{2})^{2t}} + \frac{F}{(1 + \frac{YTM}{2})^{2n}} \tag{3}\]
+
+&lt;p&gt;YTM is the only unknown, but solving for it is not as simple as rearranging the terms.  Instead, we’ll use a numerical method called the &lt;strong&gt;Newton-Raphson&lt;/strong&gt; method.  This method is an iterative approach that starts with an initial guess for YTM and refines it until we converge on a solution.  The formula for the Newton-Raphson iteration is:&lt;/p&gt;
+
+\[YTM_{n+1} = YTM_n - \frac{f(YTM_n)}{f&apos;(YTM_n)} \tag{4}\]
+
+&lt;p&gt;Where \(f(YTM)\) is the objective function representing the difference between the calculated PV and the market price, and \(f&apos;(YTM)\) is its derivative with respect to YTM.  In our case, we can express this as:&lt;/p&gt;
+
+\[f(YTM) = PV_{YTM} - P_{market}\]
+
+\[f&apos;(YTM) = -\sum_{t=0.5}^{n} \frac{t \cdot C_t}{2(1 + \frac{YTM}{2})^{2t+1}} - \frac{n \cdot F}{2(1 + \frac{YTM}{2})^{2n+1}}\]
+
+&lt;p&gt;Where \(P_{market}\) is the market price of the bond, and \(PV_{YTM}\) is the present value calculated using the current guess for YTM.&lt;/p&gt;
+
+&lt;p&gt;After each iteration with &lt;strong&gt;(4)&lt;/strong&gt;, we have a new estimate for YTM.  The objective function \(f(YTM)\) and its derivative will determine the size of leap we take toward the new estimate.  If our updated estimate is still far away from the actual YTM, then the leap will be large.  As we converge to the true value the leaps will get smaller and smaller.  We stop iterating once the absolute value of the difference in YTM estimates \((YTM_{n+1} - YTM_n)\) is less than a predetermined tolerance level, e.g., 1e-6.  This means we are close enough to the true YTM that further iterations would not yield a materially different result.  Applying the algorithm looks a little like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ytm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;initial_guess&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# Set up parameters..
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ytm_old&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;## Iterate until convergence
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max_iterations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;abs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ytm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ytm_old&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tolerance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# tolerance is a very small number, e.g., 1e-6
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ytm&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Set the prior YTM estimate to the current one.
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;ytm_old&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ytm&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# calculate f(YTM) and f`(YTM) 
+&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;## Use equation (3) to calculate the bond price using the current YTM guess.
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;objective_func&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bond_price&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pv_bond_ytm&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;coupon_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ytm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_maturity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;face_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Calculate the derivative of the bond price with respect to YTM.
+&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;## Use equation (5) to calculate the derivative of the bond price.
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;objective_prime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pv_bond_prime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;coupon_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ytm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_maturity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;face_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Update the YTM estimate using the Newton-Raphson formula. 
+&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;## Use equation (4)..
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;ytm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ytm_old&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;objective_func&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;objective_prime&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The below chart shows the Newton-Raphson convergence for our bond using three different initial guesses:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/jun25/nr1.png&quot; alt=&quot;Newton-Raphson Convergence&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see, convergence happens quickly - within six iterations for the worst initial guess.  They all converge to the same YTM of ~4.2982%.  Recall our back-of-the-envelope approximation was 4.31% - pretty good for when precision is less important.  For a another view showing the convergence given the initial guess that was furthest from the true value, we can see how the step sizes decrease as we the objective function approaches zero:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/jun25/nr2.png&quot; alt=&quot;Newton-Raphson Convergence 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The Newton-Raphson method is a powerful tool for calculating yields, especially when dealing with complex bonds or when precision is paramount.  It allows us to find the yield that equates the present value of a bond’s cash flows to its market price, providing a more accurate measure of the bond’s return.  It’s also useful in an array of other contexts ranging from calculating implied volatility for options pricing to solving for the internal rate of return (IRR) in capital budgeting.  Truly and elegant algorithm that punches well above its weight.&lt;/p&gt;
+
+&lt;h3 id=&quot;japan&quot;&gt;Japan&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;or “Reaching our Objective”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Our island hopping campaign through the fixed income has taken us from spot rates to Newton-Raphson, with some strategic stops along the way.  A part of me wants to say that &lt;em&gt;Liberation Day&lt;/em&gt; was my Pearl Harbor moment for exploring this topic, but that would just be silly..  Instead, think of it as &lt;em&gt;One Big Beautiful Bond Introduction&lt;/em&gt; that has set us up for future campaigns in portfolio and risk managment.  Yup.  And on that note, as I write this, the &lt;strong&gt;Big Beautiful Bill&lt;/strong&gt; is about the roll through Congress and has the potential to further stretch U.S. debt burden beyond sustainable levels - by as much as $5 trillion over the next decade according to some estimates.  Rather than &lt;em&gt;beautiful&lt;/em&gt;, we may look back on this moment and think of it as the &lt;strong&gt;One Big-Boned Bill&lt;/strong&gt;.  We’ll just have to stay awake and watch what happens.  ‘Til next time..&lt;/p&gt;
+
+&lt;p&gt;Action front!  Move out and draw fire!!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/jun25/guadalcanal.jpg&quot; alt=&quot;Guadalcanal&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This post is not investment advice.  Any opinions stated are my own and do not reflect those of my employer.  This post is meant to be educational and entertaining.  If you find it useful, then please let me know.  If you think it sucks, then please let me know that, too!&lt;/p&gt;
+</description>
+        <pubDate>Mon, 30 Jun 2025 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/TurningBull/2025/island-hopping/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/island-hopping/</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Sappers Clear the Way</title>
+        <description>&lt;p&gt;“Look lively, young sapper!” … Allow me to introduce Staff Sergeant (SSG) Jones…  “Quit f-ing around and place those markers!” …  For the record, I thought I had seen movement in the woodline.  But, when your sergeant accuses you of &lt;em&gt;“f-ing around,”&lt;/em&gt; the best response is: “Yes, Sergeant.”&lt;/p&gt;
+
+&lt;p&gt;So, SSG Jones is a non-commissioned officer.  That means he works for a living.  And I am but a private in his section.  Together, our task is to clear a path through the 100 meters of anti-personnel mines ahead of us so the infantry platoon pulling security to our rear can continue moving toward their objective.  I have to get up on my elbows and stretch my neck out to even see the other side of the field.  “Keep your head down, dummy!” he scolds from five meters ahead in a way that only a non-comm can.  Clearly, SSG Jones has eyes in the back of his head because he’s been probing for mines in his spot for the last several minutes.  “Yes, Sergeant,” I mutter as I’m low crawling my way to the next designated spot to emplace a lane marker.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/may25/mine_clearing1.jpg&quot; alt=&quot;Probing&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;“There you are..” he remarks.  He’s found another mine.  “Guess what happens if this baby blows while you got your head up the sky, young sapper?”  Pretty sure this is still part of the last scolding…  “I catch shrapnel, Sergeant.”  I’m still low crawling my way to a G.I. Bill.  “That’s right, and you’ll be back on the block, smokin’ and jokin’ with a hole in your face.”  I’ve lost count how many times I heard that one.  And still, vivid imagery of me hanging out with my imaginary girlfriend back home and a gaping hold in my head flashes in my mind.  The sounds of birds in the trees make me question my life choices for a moment.  If I hadn’t made my choices, though, I would never have met SSG Jones.  I’m pretty sure he is the best damned sapper in the Army.  Before rotating back to the line he was an instructor at the Sapper Leader Course, and he knows everything.  Demolitions, patrolling, obstacle emplacement and clearing.  Everything.  My Army recruiter had told me I would have a desk job.  To his credit, I didn’t think he meant I’d have to wait until I left the Army to have a comfy 9-5 with good coffee and benefits.  Imagine my surprise to learn I’d been assigned to a combat engineer battalion.  My recruiter also told me my enlistment would probably only last a couple of years.  It’s moments like this, with my head in the dirt, fiddling for a lane marker and locking eyes with a half-exposed land mine, that I wonder if maybe my recruiter was withholding information…  Since meeting SSG Jones, though, all I can see myself ever being is like him.  His first words at morning formation after I reported to the unit were, “Hey, young sapper!  You know what we do here?”  Probably I just mouth-breathed.  “We clear the way!”  And, so here we are, clearing our way through this field, one mine at a time.&lt;/p&gt;
+
+&lt;p&gt;“Another marker over here,” SSG Jones says casually as he’s already probing his way to the next mine.  “Only one way outta here, young sapper.”  He’s quizzing me now.  “Through, Sereant,” is my response.  “Very good,” is the reply, just loud enough for me to hear.  And by through, he means one mine at a time.  Our path is determined by the next obstacle, yet we can only reach it by reducing all the obstacles that came before it.  The sun has traveled a wide arc by the time we reach the other side of the field.  Looking back over our path, littered with mines that will never accomplish their purpose, it’s hard not to feel a sense of pride.  “Good job, young sapper,” SSG says as he stuffs a wad of tobacco in his mouth.  “We cleared the way.”&lt;/p&gt;
+
+&lt;h3 id=&quot;from-land-mines-to-interest-rates&quot;&gt;From Land Mines to Interest Rates&lt;/h3&gt;
+
+&lt;p&gt;Ah, the merry month of May - complete with hamburgers, hotdogs, and Memorial Day.  If you recall, we left off last month with a promise to get into the tall grass with bond fundamentals.  Before we can do that though, we should talk about interest rates.  Just as the non-commissioned officer is the backbone of the Army, interest rates are the foundation upon which finance is built.  Without the SSG Jone’s there is no Army to speak for this country when diplomacy and politics fall short.  Without interest rates, there are no incentives to raise, lend or allocate capital; no bonds to serve as debt obligations, no stocks to represent equity stakes, no forward commitments or contingent claims, and no real assets.  It all is made possible through the concept of the time value of money, and the time value of money only exists by the grace of interest rates.&lt;/p&gt;
+
+&lt;p&gt;While we have touched on interest rates some, &lt;a href=&quot;&quot;&gt;March specifically&lt;/a&gt;, let’s probe the concept more deliberately.  With a little more formality an interest rate is used to determine the future value of a quantity.  In math terms, it looks like this:&lt;/p&gt;
+
+\[FV_t = PV \times (1 + R_t)^t  \tag{1}\]
+
+&lt;p&gt;Where \(FV_t\) is the future value at some time &lt;em&gt;t&lt;/em&gt;, \(PV\) is the present value, and \(R_t\) is the rate of interest.  For instance, if you borrow $1 today with an obligation to pay it back in one year with 5% interest, then you are on the hook to pay your creditor $1.05 \((= \$1 \times (1.05))\) in a year’s time.  This is a super simple example, though.  Let’s add a little necessary complexity.&lt;/p&gt;
+
+&lt;p&gt;Let’s now say that you need $1 in a year’s time and you’d like to invest in a security that offers a fixed rate of return of 5%.  The question becomes how much should you pony up to get that future dollar.  If you’ve never heard the expression “a doller today is worth more than a dollar tomorrow,” then you’ve heard it here first!  This is the &lt;strong&gt;time value of money&lt;/strong&gt; at it’s core.  Logically, you must agree that if you have money on hand that has the potential to grow with interest, then the value of that money must equate to a larger sum of money in the future.  That is equation &lt;strong&gt;(1)&lt;/strong&gt;.  However, to determine the present value of $1 in the future, we just rearrange that equation and turn it into a discount function:&lt;/p&gt;
+
+\[PV = \frac{FV_t}{(1 + R_t)^t}  \tag{2}\]
+
+&lt;p&gt;So, with this we can say that we’ll invest ~$0.95 \((= \$1 \times (1.05)^{-1})\) and be content with the promise that we’ll get $1 when the security matures in one year, ignoring default risk of course.  Don’t worry about that; just invest in Treasuries because the U.S. will never default ;)  Okay, so there’s a name for this type of security that only pays back the initial invested principal plus interest.  We call them zero-coupon bonds.  Equation &lt;strong&gt;(2)&lt;/strong&gt; is how you, young investor, determine the present value of a future cash flow.&lt;/p&gt;
+
+&lt;p&gt;Let’s add a little more complexity.  Rather than making a one year investment, we’re interested in a security that pays us back in six months, or half a year.  The quoted interest rate is still 5% annual.  However, since we’re getting our $1 back in six months, its present value should be a little different.  In this scenario, our discount function becomes:&lt;/p&gt;
+
+\[PV = \frac{FV_t}{(1 + \frac{R_{t}}{2})^{2t}}  \tag{3}\]
+
+&lt;p&gt;Applying this one, we’ll conclude a fair present value of ~$0.976 \((=\$1 \times (1.025)^{2(0.5)})\).  As we’ll see going forward &lt;strong&gt;(3)&lt;/strong&gt; is crucial for working with semiannual cash flows.&lt;/p&gt;
+
+&lt;p&gt;Now a little more complexity.  Let’s say you have the opportunity to buy a 1-year security that pays an annual fixed rate of interest of 5% semiannually on every $1 notional invested.  Oof, I could probably say that better…  Said differently, this security will make two payments: one in six months and another in one year.  The payment in six months will be an interest-only payment of 2.5% of however much (read: notional) you’ve invested, or 2.5 cents for each $1.  The $1 bit is also called the security’s &lt;strong&gt;face value&lt;/strong&gt;.  The second payment will include both another 2.5% interest payment as well as the original notional amount invested.  Said one more may differently, if we buy one of these securities, then we’ll receive 2.5 cents in six months and another $1.025 in one year.  The total money we’ll have received is $1.05 - financial independence, here we come!!  The question we have to ask ourselves is: how much are we willing to pay for this security today?&lt;/p&gt;
+
+&lt;p&gt;Well, if we put this security under our little financial microscope, we’ll see that it is just two separate cash flows separated in time.  If we can calculate and sum the present values of both cash flows, then we should have a good sense for how much this security is worth.  Mathematically, this becomes:&lt;/p&gt;
+
+\[PV = \frac{\$0.025}{(1 + \frac{R_{0.5}}{2})^{2(0.5)}} + \frac{\$1.025}{(1 + \frac{R_1}{2})^{2(1)}}  \tag{4}\]
+
+&lt;p&gt;Where \(R_{0.5}\) is the interest rate used to discount the cash flow received in six months, and \(R_1\) is the rate used for the cash flow in one year.  If the rates we used in our first two examples were still valid, then we could apply them here.  Doing so would give us a present value for this security of $1 \((=\$0.025 \times (1.025)^{-1} + \$1.025 \times (1.025)^{-2})\).  So, there we are: our $1 face value security that pays an annual 5% interest rate (also known as a coupon) is presently worth $1.  This makes sense; so long as this security behaves as advertised, we’ll end up with $1.05 after a year.  It helps, too, that the interest rates used to discount the cash flows are equal to our coupon rate.  Coincidentally, this type of security also has a name.  We call it a &lt;strong&gt;coupon bond&lt;/strong&gt;, or even just a bond.  And because the present value of this bond equals it’s face value, we can further describe it as a &lt;strong&gt;par bond.&lt;/strong&gt;  Bonds can be structured in many ways, but semiannual coupon payments are very common.&lt;/p&gt;
+
+&lt;p&gt;One more layer of complexity.  Let’s say we’re evaluating a semiannual coupon bond that matures in ten years.  Determining its present value is mechanically the same as before, but now we have to discount 20 cash flows: two per year for the next ten years.  We can generalize this formula as:&lt;/p&gt;
+
+\[PV_{bond} = \sum_{t=1}^{n} \frac{\frac{C}{2}}{(1 + \frac{R_t}{2})^{2t}} + \frac{F}{(1 + \frac{R_n}{2})^{2n}}  \tag{5}\]
+
+&lt;p&gt;Where \(C\) is the coupon payment, \(F\) is the face value, and \(R_t\) is the interest rate used to discount the cash flows at time &lt;em&gt;t&lt;/em&gt;.  Our challenge is to determine the appropriate interest rate at each &lt;em&gt;t&lt;/em&gt;.  We call these interest rates &lt;strong&gt;spot rates&lt;/strong&gt;, and we can think of them as the interest rates that apply to a zero-coupon bond that matures at time &lt;em&gt;t&lt;/em&gt;.  In other words, the spot rate is the rate used to discount a cash flow that occurs at time &lt;em&gt;t&lt;/em&gt;.  They are generally not constant, and they change over time.  And, unlike bond prices, spot rates are not observable in the market.  Rather, they are just below the surface and we have to probe for them, one rate at a time.&lt;/p&gt;
+
+&lt;p&gt;“Yes, sergeant,” you may, or may not, be thinking..  “But how do we find these spot rates outside of this strained military metaphor?” you’re more likely thinking.  Well, young sapper, let’s jump in it.&lt;/p&gt;
+
+&lt;h3 id=&quot;probing-for-spot-rates-in-the-yield-curve&quot;&gt;Probing for Spot Rates in the Yield Curve&lt;/h3&gt;
+
+&lt;p&gt;A term structure of interest rates, commonly referred to as a &lt;strong&gt;yield curve&lt;/strong&gt;, is a graphical representation of the relationship between interest rates and the time to maturity of debt securities.  The yield curve is typically upward sloping, indicating that longer-term securities have higher yields than shorter-term ones.  This is because investors demand a premium for taking on the additional risk associated with longer maturities, such as inflation and interest rate risk.  It is also a reflection of the market’s expectations for future interest rates and economic conditions.  It is not always upward sloping, though.  Sometimes it can be flat or even inverted, which can indicate different economic conditions.  An inverted yield curve, for example, is often seen as a predictor of an economic recession.  There are also many different types of yeild curves, such as the nominal yield curve, real yield curve, and forward yield curve, each of which provides different insights into the market’s expectations for interest rates and economic conditions.  For today’s mine field clearing exercise, we’ll construct a nominal spot rate yield curve as inferred from the U.S. Treasury Par Yield Curve.&lt;/p&gt;
+
+&lt;p&gt;Okay, &lt;strong&gt;par yields&lt;/strong&gt;, that’s yet another new term.  We can think of a par yield as the coupon rate of a bond that is priced at par, or face value.  In other words, a par yield is the interest rate that makes the present value of a bond’s cash flows equal to its face value, just like our example above of the 5% coupon bond.  The U.S. Treasury publishes daily a par yield curve that represents the yields on U.S. Treasury securities at various maturities.  This curve is constructed using the yields on newly issued Treasury securities.  Note: the Big Beautiful Bill going through the Senate will require a lot of new Treasury issuances.  In that vein, the par yield curve historically serves, but maybe not so much in the future, as a useful big beautiful benchmark for determining the risk-free rate upon which adjustments for credit risk and other factors are based.&lt;/p&gt;
+
+&lt;p&gt;There’s a hitch, though.  The government only publishes rates for a subset of the maturities we need to construct a full yield curve; specifically maturities of 1, 2, 3, and 6 months and 1, 2, 3, 5, 7, 10, 20 and 30 years.  To construct a full yield curve, we need to interpolate the missing maturities.  Interpolation is a method of estimating values between two known values.  For example, if we have the par yields for 1 and 2 year maturities, one way we can estimate the par yield for a 1.5 year maturity is by taking the average of the two known values.&lt;/p&gt;
+
+&lt;p&gt;The below chart shows interpolated par yield curves as of 30 April ‘25 and a few other dates:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/may25/yield_curve.png&quot; alt=&quot;Yield Curve&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see, the yield curve breathes with the market; it changes over time as the market’s expectations for interest rates and economic conditions change.  At this point, we’re one big step - or prolonged low crawl through the mud - closer to finding our spot rates.  To accomplish this, we’ll use a method called &lt;strong&gt;bootstrapping&lt;/strong&gt;.  Bootstrapping is a technique used to derive spot rates from the par yield curve.  It involves calculating the spot rate for each maturity by solving for the interest rate that makes the present value of the bond’s cash flows equal to its face value.  In other words, we can use the par yields to infer the spot rates by working our way through the yield curve, one maturity at a time, discovering each new spot rate by negotiating our way past the prior ones we’ve already uncovered.  Is the multi-layered metaphor sinking in? :&amp;gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;bootstrapping-clears-the-way&quot;&gt;Bootstrapping Clears the Way&lt;/h3&gt;
+
+&lt;p&gt;All right, we’ve finally reached our task, conditions, and standards for this session.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Our Task, young sapper:&lt;/strong&gt; Construct a spot rate yield curve that can be used to determine the present value of a risk-free semiannual coupon bond.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Conditions:&lt;/strong&gt; Available to us are a set Treasury par yields, a choice of interpolation method, a bootstrapping algorithm, and a trusty Python interpreter.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Standard:&lt;/strong&gt;  Our complete yield curve will have a spot rate for each maturity date contained in the par yield curve plus each six month interval between years 1 and 30.&lt;/p&gt;
+
+&lt;p&gt;An example of a recent par yield dataset downloaded from the U.S. Treasury website looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-csv&quot;&gt;date  month1  month2  month3  month6  year1  year2  year3  year5  \
+0  2025-05-16    4.37    4.34    4.37    4.30   4.13   3.98   3.95   4.06   
+1  2025-05-15    4.37    4.35    4.38    4.29   4.10   3.96   3.95   4.07   
+2  2025-05-14    4.39    4.36    4.41    4.30   4.14   4.05   4.05   4.17   
+3  2025-05-13    4.39    4.35    4.41    4.29   4.11   4.02   4.00   4.12   
+4  2025-05-12    4.38    4.36    4.42    4.29   4.11   3.98   3.97   4.09   
+
+   year7  year10  year20  year30  
+0   4.24    4.43    4.92    4.89  
+1   4.25    4.45    4.93    4.91  
+2   4.35    4.53    5.00    4.97  
+3   4.30    4.49    4.97    4.94  
+4   4.27    4.45    4.92    4.89
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see, there are a lot of blanks to fill in if we want to construct a full yield curve and value a bond with several years until maturity.  Our first step will be to interpolate the missing maturities in the par yield data.  For the sake of demonstration, and because it’s just too easy not to, we’ll use a cubic spline interpolation method.  While explaining the cubic spline is beyond the scope of this exercise, think of it as a method for producing the smoothest curve possible through a set of known points.  As always, Python makes it as easy as imposing unilateral tariffs:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scipy.interpolate&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CubicSpline&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;tenors&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.083&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# in years
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;par_rates&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;4.37&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.34&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.37&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.13&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;3.98&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;3.95&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.06&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.43&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.92&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.89&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# in percent
+&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;xt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;concatenate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tenors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;31&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# full range of tenors
+&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CubicSpline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tenors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;par_rates&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bc_type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;natural&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;par_yield_curve&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# Interpolated par yields for all tenors
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;par_yield_curve_df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DataFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;tenor&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;par_yield&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;par_yield_curve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now that we have a full set of par yields, we can bootstrap our way to the spot rates.  The bootstrapping process involves iteratively calculating the spot rate for each maturity based on the par yield and the previously calculated spot rates.  Since the rates associated with maturities less than a year are not associated with coupon payments, we can treat them like zero-coupon bonds.  In other words, the spot rates for the 1-month, 3-month, and 6-month maturities will be equal to their respective par yields.  For subsequent maturities, we use the par yield as the coupon rate for a bond with the associated maturity and the previously calculated spot rates to determine the new spot rate.&lt;/p&gt;
+
+&lt;p&gt;Starting with equation &lt;strong&gt;(5)&lt;/strong&gt;, and using the above data to work out the 1-year spot rate, we have:&lt;/p&gt;
+
+\[100 = \frac{\frac{4.30}{2}}{(1 + \frac{0.0437}{2})^{1}} + \frac{100 + \frac{4.30}{2}}{(1 + \frac{R_1}{2})^{2}}\]
+
+&lt;p&gt;A couple things to note:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The PV of 100 is because we know a bond priced at par equals its face value, which is 100 in this case.&lt;/li&gt;
+  &lt;li&gt;The first term symbolizes the present value of the first coupon payment in six months, discounted at the 6-month par (and spot) rate.  The coupon payment is half of the 1-year par yield, since we are simulating a semiannual 1-year bond (4.30% / 2 = 2.15%).&lt;/li&gt;
+  &lt;li&gt;The second term represents the present value of the second coupon payment and the face value, discounted at the unknown 1-year spot rate.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;By rearranging the terms, we can solve for the 1-year spot rate:
+\(R_1 = 2 \times \left[ \left( \frac{100 + \frac{4.30}{2}}{\frac{100 - \frac{4.30}{2}}{(1 + \frac{0.0437}{2})^{1}}} \right)^{\frac{1}{2}} - 1 \right]\)&lt;/p&gt;
+
+&lt;p&gt;All we’ve done is solve for the unknown spot rate.  And with that one under our belt, we can move on to the next one.  Only 59 to go…  If the math looks like it’s getting a little hairy, rest assured that’s why the nerds put computers on this Earth.  An algorithm to finish the job looks a little like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;## Bootstratp algorithm for computing spot rates between year 1 and 30 in six-month intervals.
+&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;coupons&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;par_rates&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# par_rates are interpolated par yields.  Divide by 2 for semiannual calculations.
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spot_rates&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;par_rates&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Container for our spot rates.  The first rates is the 6-month rate.
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fv&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;                    &lt;span class=&quot;c1&quot;&gt;# Notional face value
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;## in this routine, par_rates starts at 1
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;coupons&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coupons&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;# coupon for current unknown spot rate
+&lt;/span&gt;    
+    &lt;span class=&quot;c1&quot;&gt;## compute discount factors for cash flows.
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spot_rates&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;## solve for the unknown rate.
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;new_rate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fv&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fv&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;spot_rates&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When all is said and done, we should get something that looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/may25/spot_curve.png&quot; alt=&quot;Spot Rate Curve&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And there we are..  The mine field is cleared.  Nice work, young sapper!  At this point, it would make sense to demonstrate using our yield curve to value some bonds.  This was a deceptively meaty topic, though.  So, let’s leave it here and pick it up next month.  For those already familiar with the material we covered, you know that the devil lives in the details with every thing fixed income related.  For those not so familiar, I encourage you to sit with it and work it out on your own to appreciate how tricky the devil can be.  Having a solid grasp of the fixed income fundamentals we’ve covered here gives us a foundation to build upon as we delve deeper into the field.  So, take stock of it, pack it up in your ruck sack, and look lively, because SSG Jones is already conducting a reconnaissance of the next mine field.&lt;/p&gt;
+
+&lt;p&gt;Action Front!  Let’s move out and draw fire!!&lt;/p&gt;
+
+&lt;p&gt;This article is dedicated to Micala “Mikey” Hicks, West Point ‘01, and first female ever to graduate from the Sapper Leadership Course.  You cleared the way, Mikey, and will never be forgotten.  ‘Till Duty is Done!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/may25/minefield2.jpg&quot; alt=&quot;Cleared the way&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This post is not investment advice.  Any opinions stated are my own and do not reflect those of my employer.  This post is meant to be educational and entertaining.  If you find it useful, then please let me know.  If you think it sucks, then please let me know that, too!&lt;/p&gt;
+
+&lt;h4 id=&quot;sources&quot;&gt;Sources&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics/par-yield-curve&quot;&gt;U.S. Treasury Par Yield Curve&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Bootstrapping_(finance)&quot;&gt;Wikipedia: Bootstrapping (finance)&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Yield_curve&quot;&gt;Wikipedia: Yield Curve&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html&quot;&gt;Python: Cubic Spline Interpolation&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 31 May 2025 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/TurningBull/2025/clear-the-way/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/clear-the-way/</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Magical Thinking</title>
+        <description>&lt;p&gt;I’d like to ask you to channel your inner Goethe for a moment and envision yourself as the &lt;a href=&quot;https://en.wikipedia.org/wiki/The_Sorcerer%27s_Apprentice&quot;&gt;Sorcerer&lt;/a&gt;.  That’s right: the stern old guy with a full beard and a moon hat.  It doesn’t have to be an old man, though.  Use your imagination - to the point of this segment, the &lt;em&gt;details don’t matter.&lt;/em&gt;  Are we good?  So, you’re the Sorcerer, and you have an apprentice.  The apprentice can be a boy, a girl, even a mouse.  It doesn’t matter.  Remember, we’re engaging in magical thought and the details do &lt;em&gt;not&lt;/em&gt; matter.  What if things had turned out differently, though?  What if you hadn’t spent the full day conjuring solutions to a massive set of domestic economic issues and geopolitical crises.  After all, just one of these problems could require the efforts of multiple sorcerers, let alone the full basket of them.  What if you hadn’t exhaused yourself after so much toiling that you would have thought twice about leaving your apprentice unsupervised.&lt;/p&gt;
+
+&lt;p&gt;Look at him, though, your apprentice.  “He’s just a boy (or girl, or mouse),” you would have thought to yourself.  “What true harm could he (she, it) really inflict?”  Perhaps if you hadn’t been so worn out from a hard day’s work you would have rememberd your Lord Acton from your Sorcery University days.  Isn’t he the one who warned about absolute power?  Looking around your lair, though, it was a mess of half-conjured spells, failed attempts, and invoices for raw materials.  So much to do when you’re a Sorcerer, and you probably bristled at the thought of returning to this sty in the morning and finding it in the condition in which you left it.  And so, in your exhaustion it’s understandable that you’d leave it to your apprentice to do the sorting.&lt;/p&gt;
+
+&lt;p&gt;Well, what if you had put your spell books just out of reach?  You know, the 3rd edition abridged &lt;em&gt;Wizard’s Guide&lt;/em&gt;, with Gandolf’s personal autograph.  Your prized &lt;em&gt;Learning C++ for Fun and Profit&lt;/em&gt; would not have posed a risk.  You could have left it open to the chapter on working with raw pointers without a second thought.  But, you should have thought twice about the magic book, perhaps.  Probably that one should have gone in the safe before you doffed your moon hat and dotted off to bed.&lt;/p&gt;
+
+&lt;p&gt;That is how it played out, though.  With access to your spells, your apprentice assumed that you had issued a mandate: fix this mess.  Can you picture it now, after seeing the result?  Your apprentice, recklessly flipping through the pages, looking for a shortcut to make the lair clean again.  Spitting out some words in the wrong tone; in some cases leaving key words out, and in others injecting random phrases.  With a large enough imagination, I’ll bet you can even picture the electricity in the air as your apprentice gave legs to the broom.  No, not the mop in the closet; the broom.  Don’t ask where the broom was - details don’t matter, remember!  And, can you picture the look on your apprentice’s face as he finally took an ax to the broom.  Perhaps that look was a mixture of sly-eyed hubris and despair.  Later, when your apprentice recounted these events while dripping with water and redirecting the blame at you, you might start to doubt yourself.  You even may ask youself if, in all your years of wizarding, you had even considered how to animate a broom, not to mention cause one to multiply and deliver endless buckets of water to your lair.  It wouldn’t really matter now, though.  The damage had been done.  Even your C++ book suffered too much water damage to be useful.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/apr25/apprentice2.png&quot; alt=&quot;The Apprentice&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Events could have turned out differently.  Perhaps with a little more care, tomorrow could have been just another day of conjuring solutions to the world’s problems.  Perhaps that would have been a better outcome than instead struggling to undo the mess your apprentice left behind.  What if it had been different?  What if we had all done with a little less magical thinking?&lt;/p&gt;
+
+&lt;h3 id=&quot;the-magical-month-of-april&quot;&gt;The Magical Month of April&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/apr25/us10y.png&quot; alt=&quot;Bond Selloff&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This bizarre allegory was inspired by the true events of April, 2025.  Honestly, it was a toss-up between &lt;em&gt;The Sorcerer’s Apprentice&lt;/em&gt; and &lt;em&gt;The Cat in the Hat.&lt;/em&gt;  Both seem apt.  Following a mind-numbing March that saw the U.S. take bold steps in the opposite direction from the liberal world order it helped to build after the Second World War, April began with wild U.S.-led alchemy.  The much anticipated tariff strategy was unveiled in the afternoon of April 2nd.  With so much written on it already, I won’t go too far into the weeds here except to summarize it as a 10% base rate + an additional variable rate levied on all of our trading partners resulting in tariffs against some countries approaching 50%.  One could describe it as bananas.  Magical bananas, since the mathematical/economic logic behind the rate setting was highly unorthodox.  The following two days saw a sell-off in stocks and an initial &lt;em&gt;flight to safety&lt;/em&gt; in U.S. Treasuries.  However, that flight to safety started to fizzle as the world went back to work the following Monday.  The yield on the 10-Year Treasury Note climbed from 3.9% to 4.5% when tariffs were paused in time for lunch on Wednesday the 9th.  By Friday, that yield had inched in 10 more basis points to hit 4.6%, signaling continued sell-off of Treasuries.  Since then, at least up to the time of this writing, the administration has continued to mop up the flooded lair.  It was a lot of water, though, and probably a fair bit of damage that will be hard to repair.&lt;/p&gt;
+
+&lt;p&gt;Let’s pick this apart some.  First, by repeating three of the stated reasons for launching a trade war:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Claim 1:&lt;/strong&gt; America is being ripped off by our trading partners, so tariffs are a &lt;em&gt;retaliatory&lt;/em&gt; measure to fight back.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Claim 2:&lt;/strong&gt; Tariffs are a source of revenue and will help reduce the national debt.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Claim 3:&lt;/strong&gt; Tariffs will help rekindle America’s manufacturing capabilities.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;(1)&lt;/strong&gt; is supported by the framing of the April 2nd tariffs as retaliatory as well as the convoluted methodology of setting variable rates for each U.S. trading partner as something close to:&lt;/p&gt;
+
+\[\frac{Net\ Exports}{Total\ Imports} \times 0.5\]
+
+&lt;p&gt;The problem with this formula is that it is not grounded in economic logic.  To say that the trade deficit with another country divided by the total amount we import from that country represents an imbalance is a stretch.  An example posed by &lt;strong&gt;The Economist&lt;/strong&gt; illustrates the absurdity.  In 2024, the America imported $405MM from Botswanna, primarily in &lt;em&gt;duty-free&lt;/em&gt; diamonds, as that is one of their main exports.  America exported $104MM, leading to a net deficit for the U.S. of $301MM.  The resulting 37% tariff \((=\frac{\$301}{\$405} \times 0.5)\) presumably addresses an unfair trade practice.  To solve this problem, it seems that either Botswanna can buy an additional $300MM of goods from us, whatever that is, or we can ramp up our domestic diamond mining industry.  Either way, one of the effects is that Americans end up paying a lot more for diamonds.&lt;/p&gt;
+
+&lt;p&gt;On &lt;strong&gt;(2)&lt;/strong&gt;, the logic is also a little magical.  To believe that the revenue earned on tariffs will make a dent in the national debt, and possibly allow the administration to reduce tax rates, assumes imposing tariffs doesn’t otherwise affect trade.  However, there is a fairly well understood effect of tariffs that goes a little like this:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Tax on imports increases the cost of goods, causing Americans to spend less.&lt;/li&gt;
+  &lt;li&gt;Lower American consumption causes companies to import fewer foreign goods.&lt;/li&gt;
+  &lt;li&gt;Lower U.S. company purchasing leads to fewer dollars in circulation.&lt;/li&gt;
+  &lt;li&gt;Lower supply of dollars leads to higher demand to swap for foreign currency, which leads to a stronger dollar.&lt;/li&gt;
+  &lt;li&gt;A stronger dollar makes U.S. exports more expensive to foreign companies.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The end effect is a tax on exports along with imports, or a double tax.  It’s difficult to see how Americans win in this scenario.  To cap this mini analysis, between &lt;strong&gt;(1)&lt;/strong&gt; and &lt;strong&gt;(2)&lt;/strong&gt;, there is an apparent contradiction.  If the motivation for a trade war is to address unfair trade practices, then we’re to assume the administration’s end goal is to renegnotiate trade deals with all of the world’s countries.  Yes, that includes renegotiating USMCA, presumably.  However, if the goal is also to reduce debt with bountiful tariff revenue, then renegotiating trade deals seems to be off the mark.  We’ll never know, but perhaps this is where magical thinking can help.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;(3)&lt;/strong&gt; also seems a bit far-fetched.  By definition, tariffs are protectionary.  They disincentivize foreign investment in favor of domestic.  An effect of this protection of domestic industry, though, is a reduction in competitiveness.  Companies that are protected have less incentive to innovate.  Over time the measurable effect is higher prices for lower productivity.  Look no further than America’s defense contractors for cases in point.  Further, the evidence for tariffs reducing taxpayer expenses is also thin.  Take agricultural tariffs implemented in 2017, for instance.  To make America’s farmers whole in the midst of the president’s first term, Uncle Sam bailed them out in the form of farm subsidies.  I’ll admit my negative view of tariffs.  However, across the three publically stated motivations for them, it is just seems really difficult to build a coherent argument in their favor.&lt;/p&gt;
+
+&lt;p&gt;Let’s transition to the Treasury market reaction.  In my view this was much more interesting than the equity market one.  I can hear that scoff - here’s why.  As depicted in the 10-Year Treasury chart, the tariff announcement drove an initial reduction in bond yields.  Market analysts typically describe this phenomenon as a flight to safety.  When investors get spooked, they often reduce their exposure to &lt;em&gt;risky&lt;/em&gt; assets, such as stocks, and divert their cash to assets that are considered to be &lt;em&gt;risk free,&lt;/em&gt; such as U.S. Treasuries.  This is because U.S. government debt is historically considered one of the safest areas to invest, since it is backed by the government’s implied promise that it will never default.  So, investors fleeing to safety buy Treasuries, and just as buying stocks pushes up their prices in accordance with the laws of supply and demand, the same happens to &lt;em&gt;risk-free&lt;/em&gt; bonds.  As Treasury prices rise, their yields decrease.&lt;/p&gt;
+
+&lt;p&gt;The interesting happened on the World’s Monday morning walk to the office.  Global investors started thinking about that &lt;em&gt;risk-free&lt;/em&gt; quality of U.S. debt.  After all, we’re not living in our parents’ America anymore.  This is no longer just an America with an addiction to debt, it is also an America that seems to be playing with fire: making crazy incantations, flailing its wand all over the place, and jeopordizing its future growth prospects.  Naturally, as investors are witnessing what appears to be a train wreck in motion, they come to the reasonable conclusion that Treasuries may not be the safe haven they used to be.  So, they start unloading U.S. bonds.  And that explains an upward climb in yields.&lt;/p&gt;
+
+&lt;p&gt;That alone would be interesting enough, but the real kicker is that the yield on the 10-Year Treasury Note climbed from 3.9% to 4.5% in just a few days.  This is a massive move in such a short time frame, and it was driven by a single event: the tariff announcement.  The market’s reaction was so swift and severe that it suggests that investors were not only reacting to the immediate implications of the tariffs, but also to the broader implications for U.S. economic policy and stability.  This is where we can see the true power of magical thinking at work.&lt;/p&gt;
+
+&lt;h3 id=&quot;deficits-and-debt&quot;&gt;Deficits and Debt&lt;/h3&gt;
+
+&lt;p&gt;Exploring this a little further, let’s dig into some numbers to help illustrate the problem.  According to the Treasury Department, the government collected $4.9Tn in revenue in 2024.  About 49% of it ($2.4Tn) came from individual income taxes.  The next largest source of revenue was payroll taxes, which accounted for about 36% ($1.8Tn).  Corporate income taxes made up about 7% ($350Bn), and the remaining 8% ($400Bn) came from various other sources, including tariffs, estate taxes, and excise taxes.  Notably, tariffs accounted for less than 2%.  In subcribing to the belief that tariffs can become a major player as a source of revenue, there is a lot of ground it must cover to reach parity with coporate taxes, let alone individual income tax.  Again, for that to happen, one needs to assume the administration can fiddle with tariff rates without impacting other things, such as the quanitity of imports and exports.&lt;/p&gt;
+
+&lt;p&gt;On the other side of the ledger, the government spent $6.8Tn in 2024.  Outlays are either manadatory, as in spending the government must undertake by law to support various things, such as entitlement programs, or discretionary, which is spending that can be adjusted based on annual budget decisions.  Roughly 2/3rds ($4.6Tn) of spending is mandatary.  Of the $2.2Tn of discretionary spend, more than half of it is spent on defense.  The remaining discretionary spending is allocated to various programs, including foreign aid, education, transportation, scientific and environmental research, and national parks.  It is this slice of the discretionary pie that has been notably in the administration’s sights: ~1.1Tn, or 16% of the budget.  Conincidentally, this amount is just shy - by $200Bn - of what the government spent on debt interest in 2024.  I think the main takeaway here is, for all the administration’s claims that it can meaningfully cut the size of the budget with tools, such as the DOGE hatchet, there are major limits to what it can accomplish without seriously taking on entitlement programs and defense spending.&lt;/p&gt;
+
+&lt;p&gt;So, if the government took in $4.9Tn in 2024, and spent $6.8Tn, that leaves us with a deficit of $1.9Tn.  The annual deficit varies year over year.  The Covid Pandemic and a 20-year couple of wars led to increased deficits.  The last time we had a surplus was when Clinton was in office - a remarkably bipartisan time in American politics by today’s standards.  When the government runs a deficit it does what any rational person would do and borrows money.  Yes, that’s an attempt at a joke..  Over time, the total outstanding government debt has grown to $36Tn, or roughly 124% of GDP.  This has a lot of folks worried, especially when you consider the amount in interest payments ($1.3Tn in 2024) required to service that debt.  Debt service is a manadatory outlay, so long as we don’t want to find ourselves in the same peer group as Argentina.  And so long as America continues to spend at greater rates than we take in, we will continue to take from the future to live for today.  Complicating the picture with tariffs adds to the unease.  As we’ve discussed, it is not clear that tariffs will meaningfully increase revenues - it is more likely that trade will reduce.  And protecting domestic industry will lead to increased spending on subsidies while reducing consumer consumption - due to higher prices and lower productivity.  The long-term sustainability is questionable, and investors are right to be nervous.&lt;/p&gt;
+
+&lt;h3 id=&quot;taking-interest-in-interest-rates&quot;&gt;Taking Interest in Interest Rates&lt;/h3&gt;
+
+&lt;p&gt;One last brush stroke to paint this rosy picture.  For much of the last decade interest rates have been at historic lows.  When you’re paying back a loan at a low interest rate, the amount you’re borrowing is less important, to an exent.  This is because, especially if you are the largest economy and are leading the world’s liberal order, then there are presumably plenty of opportunities to earn a higher return on investment for the money you are borrowing.  Yes, that statement is slightly Pollyannish, but theoretically not far off the mark.  However, when interest rates rise, then then next time you have to go to the market to borrow money, you’re doing so at a greater cost.  Borrowing at a greater cost means your interest expense, or debt servicing costs, are higher.&lt;/p&gt;
+
+&lt;p&gt;For instance, if you, the Sorcerer, borrowed $100 dollars for 10 years at 2% to help fund research for improved potions, then your interest expense is $2 per year until you pay back the original $100 at the end of 10 years.  Perhaps the expected return on that research is a 3% increase in GSP (Gross Sorcerer Production).  A 3% expected return relative to 2% borrowing cost makes the endeavor worth it.  If you then need to go back to the market to borrow money for another 10 years, but interest rates have risen to 4%, you will now have to service the debt at $4 per year.  The increased interest expense is just that - it is an expense to be weighed against the potential return on investment.  The higher the cost of borrowing, the higher the required return to make investments worth pursuing.  However, if a large part of your budget deficit is from mandatory costs, such as funding the Sorcerer Security Fund and Wizacaid, or in subsidizing local potion powder producers, then you have reduced flexibility in managing your debt expenses.  In other words, without real reform you just have to keep going to the market to borrow from the future to fund current mandatory commitments.  As the largest economy, the market is watching you, though.  And, when it starts to question your management of the debt your are borrowing, it will demand greater assurance that your credit is good.  It will do that by demanding a higher interest rate to lend you money.  Thus begins a vicious cycle, underscoring the importance of a well-run government.&lt;/p&gt;
+
+&lt;p&gt;As the Sorcerer, perhaps, the lesson learned is less about lamenting the decision to leave your apprentice unsupervised.  Perhaps, just maybe, it is more about taking care to chose the right apprentice in the first place.  With such a heavy burden on your shoulders to be a force for good in the world, it is those decisions that carry the greatest effect.  As we’ve seen, it takes just one enhanted evening to flood your lair and upend a reputation that’s taken nearly a century to build.&lt;/p&gt;
+
+&lt;p&gt;Candidly, my objective for this article was to nerd out on bonds and interest rates with a focus on the U.S. 10-Year T-Note.  Diving into an analysis of tariffs just sort of happened, but seemed like a reasonable foundation to help provide context for the market’s reaction.  So, I just ran with it.  As this article suggests, T-Notes will still be around next month, and I promise to get us back on track then.  Following up with some of the basics of fixed income mechanics should be a good complement to the macro themes we’ve discussed here.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/apr25/mouse.png&quot; alt=&quot;Mouse&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Action front!  Let’s move out and draw fire!!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This post is not investment advice.  Any opinions stated are my own, and do not reflect those of my employer.  This post is meant to be educational and entertaining.  If you find it useful, please let me know.  If you think it sucks, send me your owl and I’ll take that as an omen.&lt;/p&gt;
+
+&lt;h4 id=&quot;sources&quot;&gt;Sources&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://beezone.com/the-sorcerers-apprentice&quot;&gt;The Sorcerer’s Apprentice&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://fiscaldata.treasury.gov/&quot;&gt;U.S. Fiscal Data&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.tradingview.com/&quot;&gt;TradingView&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.economist.com/&quot;&gt;The Economist&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 30 Apr 2025 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/TurningBull/2025/magical-thinking/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/magical-thinking/</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>The Alternate Hypothesis of OG-6</title>
+        <description>&lt;p&gt;&lt;em&gt;Dearest Mother,&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;I am writing you this letter in the hope that I will deliver it to you personally.  My enlistment is up within the fortnight, and I am eager to rejoin you on the farm in time for Spring.  Upon my arrival I will also offer my apologies for not writing since acting on my decision to take up arms against the Red Coats.  I do hope you will forgive my decision, for it was with the best of intentions.  Our financial situation is not lost on me, and the promise of nine months earnings could help us pull through at least one more harvest.  That is, of course, if this Continental currency holds any value by the time I return…&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;I’m honestly unsure I would make the same decision if presented it again.  Since Brooklyn, it seems that all we do is flee further inland.  To think that just a few months ago we held such confidence in our position on Long Island.  And, the last image I have of New York is of it engulfed in fire.  We encamp in one spot for just a few days before the King’s men or the Hessians are on the move.  Somehow, though, the Old Fox continues to keep them at bay.  Since winter’s onset, both food and ammunition always seem to be in short supply.  Even the locals, those who are sympathtic to our cause, seem to look the other way in our presence.  It is as if they hold less optimism for our success than we do, and yet we are the ones who march through the night often without shoes or coats.  We are the ones who face the gallows if we desert, or impressment into His Majesty’s Navy if we are captured.  The soldiers’ lot is bleak, my dearest Mother.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Tomorrow is Christmas Eve and we are preparing something bold, I am told.  The Old Fox has us making preparations to cross the Deleware for a place called Trenton.  I am told the Hessians have set up for the winter there, and my guess is this is our Fox’s last chance before all our enlistments are through.  It does little to lighten the heart to know that our sentry’s password and challenge tonight is “Victory or Death.”  I know not why I write this to you, Mother, except perhaps it is the cold, hunger and fear that have crept into my bones.  It is my hope that this letter will never come to you, and that in three months time we will be reunited.  Pray for us all, Mother&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Signed: Your Loving Son, 23 December, 1776&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/mar25/Washington-wretched-army.jpg&quot; alt=&quot;March&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;hypothesis-testing-the-battle-of-trenton&quot;&gt;Hypothesis Testing the Battle of Trenton&lt;/h3&gt;
+
+&lt;p&gt;Two guesses who the &lt;em&gt;‘Old Fox’&lt;/em&gt; was…  That’s right: the Original Gangster.  In the spirit of contemporary military parlance, let’s just refer to him as OG-6.  Although the year began with a confident Continental Army arriving in New York after a sucessful go at the British at Bunker Hill, by year end the mood had decidedly shifted.  Outnumbered and outmaneuvered at the Battle of Brooklyn in the Summer of 1776, OG-6 retreated from New York only by luck of foul weather that concealed his movements.  His steady retreat spanned the Fall and crept into December, taking the army from a demolished New York City north to present day Westchester County, across the Hudson into New Jersey, past Newark, and ultimately opposite the Deleware River from Trenton.  Suffice it to say that the army was on its last legs.  The Continental Congress had fled Philadelphia, &lt;em&gt;‘American’&lt;/em&gt; currency was nearly worthless, supplies were thin, roughly half of the colonial population sided with the British, and a significant number of enlistments were due to expire in January.  Without a turn in morale, OG-6 would be unable to enlist more volunteers.  The odds were good that he, along with a few other American &lt;em&gt;“traitors”&lt;/em&gt;, would soon meet the long end of a rope.  And, that would have been the end of the American Project.  So, this was the situation in which OG-6 found himself. He needed a victory, or it would be death.&lt;/p&gt;
+
+&lt;p&gt;I raise this story because, in my view, it is a good example of decision making through hypothesis testing.  Yes, it’s also a demonstration of decision making under pressure, and I’m sure OG-6 didn’t formally &lt;em&gt;“state his alternate hypothesis”&lt;/em&gt; or &lt;em&gt;“reject his null hypothesis,”&lt;/em&gt; but follow me on this one for a moment while I don my nerd spectacles…&lt;/p&gt;
+
+&lt;p&gt;Hypothesis testing is a core statistical concept.  It is the structural framework through which decisions are made based on a rigorous analysis of the data available.  Given the task of making a decision in an uncertain world armed only with some factual prior observations and a handful of assumptions, structuring the decision problem as a hypothesis test allows one to make an &lt;em&gt;informed&lt;/em&gt; decision within a specified confidence level.  &lt;em&gt;Informed&lt;/em&gt; is the key word, since the outcome is never certain.  Inaccurate data, flawed assumptions, and pure bad luck can all lead to the wrong decision.  That is why in the realm of probability and statistics one can never be 100% certain.  The strongest assertion we can ever make is that something is true, &lt;em&gt;almost surely.&lt;/em&gt;  It can be infuriating to contend with that specter of uncertainty, but that’s just how probabilies work.  So, next time someone asks you if you are positively sure that imposing 20th-Century-style tariffs on your trading partners is a bad idea, for example, try responding with “Yes! Almost surely!!”  You’re almost surely to get strange looks.  Jokes aside, leaders are charged with making decisions, and having a process beats sticking a finger in the air all of the time, almost surely.&lt;/p&gt;
+
+&lt;p&gt;How does the process work, then?  There are countless resources out there that describe the hypothesis testing framework in similar ways.  My personal favorite approach is the six-step proess outlined in the CFA curriculum:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;State the hypothesis.&lt;/strong&gt;  In stating the hypothesis, you’re actually making two statements.  The first is the null hypothesis \((H_o)\), or the statment that contradicts what you suspect to be true.  The second is the alternate hypothesis \((H_a)\), in which you state what you suspect to be true.  In OG-6’s case, it might have been:&lt;/p&gt;
+
+    &lt;p&gt;\(H_o:\) A surprise attack on Trenton will fail because the Hessians are prepared and the American army is too weak.&lt;/p&gt;
+
+    &lt;p&gt;\(H_a:\) The Hessians will be vulnerable due to post-Christmas fatigue, and a well-executed surprise attack can result in victory.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Identify the appropriate test statistic.&lt;/strong&gt;  Typically, one would leverage a statistical measure based on the assumed probability distribution that characterizes the data.  In our historical case study, it likely analogizes best to think of this step as determining the key factors that should inform the decision, such as:
+    &lt;ul&gt;
+      &lt;li&gt;The likelihood that the Hessians would expect the Americans to abide by the conventional norm of ceasing military activities during winter.  As such, they would likely celebrate Christmas and be vulnerable to a surprise attack.&lt;/li&gt;
+      &lt;li&gt;A belief that, since the British had spread its forces thin in the area in preparation for winter, the town would be lightly defended and difficult to reinforce.&lt;/li&gt;
+      &lt;li&gt;A realization that American morale was nearing a breaking point, and opportunities to turn it around were scarce.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Specify the level of significance.&lt;/strong&gt;  Getting back to that &lt;em&gt;uncertainty&lt;/em&gt; thing..  Specifying a significance level for your hypothesis test is equivalent to establishing how much confidence you want to have in your decision.  The relationship between significance level, \(\alpha\), and confidence, \(C\), is \(\alpha = 100 - C\).  Your gut reaction might be to say that you want to be 100% confident in your decision, e.g., a level of significance of 0 \((100\% - 100\%)\).  The trouble there, which we’ll discuss further below, is that an unreasonably high[low] level of confidence[\(\alpha\)] puts you at risk of decision paralysis.  A typical level of significance is \(\alpha = 0.05\), which suggests that you will be 95% confident in your decision.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;State the decision rule.&lt;/strong&gt;  This step uses the output of (2) and (3) to formalize our &lt;em&gt;go/no-go&lt;/em&gt; decision.  When working with quantifiable data, we will compare our test statistic from (2) against the &lt;em&gt;critical value (CV)&lt;/em&gt; that aligns with our stated significance level from (3) - more on that in our worked case study.  If the test statistic is below the CV, then we will conclude there is not enough evidence to reject the null hypothesis.  In that case OG-6 would call off the surprise attack because he would be reasonably confident it would fail.  On the other hand, if the test statistic is above the CV, we will reject the null and accept the alternate hypothesis, i.e., proceed with the attack because we’re reasonably confident of success.  I envision OG-6, rather than looking up probability tables and running calculations, was instead reasoning in his mind the odds that his base assumptions underlying the Trenton plan held true.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Calculate the test statistic.&lt;/strong&gt;  In practice, this step entails data collection and processing to arrive at a measure to compare against the CV from (4).  OG-6, for his part, would have leveraged his extensive network of spies and informants, his knowledge of British standard operating procedure, and a wealth of knowledge accumulated in the course of out-foxing the Red Coats.  On compiling all the relevant data, he would have built a set of facts to weigh against the critical factors informing his go/no-go decision.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Make a decision.&lt;/strong&gt;  Time to lead, young leader!  In this final step, you are armed with data, you have a test measure from (5) and a CV from (4).  You implement your decision rule and make that decision.  This is not to say that at this point you let the chips fall where they may and blindly execute on the decision.  As new information becomes available, it is important to reassess the decision and determine if revisions are necessary.  For instance, OG-6 may have found that crossing the Deleware became impossible as a northeaster set in that night.  Or, a sufficient number of his supporting forces may not have been able to reach their objectives and aborted their part in the operation (which actually happened).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The hypothesis testing framework is rigorous, but not rigid.  Even if OG-6 would not have recognized his decision process in the way I’ve described it here, his objective and flexible application of hypothesis testing enabled him to execute a daring surprise attack that neutralized the Hessian presence in Trenton.  The battle is widely seen as the turning point in the Revolution, after which the British never regained their momentum.&lt;/p&gt;
+
+&lt;h3 id=&quot;equity-market-risk-premium&quot;&gt;Equity Market Risk Premium&lt;/h3&gt;
+
+&lt;p&gt;That’s right, there’s only so much one can write about Trenton, NJ.  Let’s turn our sights to another practical application of hypothesis testing.  Have you, as an investor, ever asked yourself if you are being sufficiently rewarded for investing in the equity market?  If not, then, let’s do it now.  In a world flush with options for how to deploy capital, let us ask the simple question: “Should I invest my capital in equities, i.e., stocks, or should I put it towards government bonds?” In the former, I’m betting on the hope that my capital appreciates and I earn a return on my investment.  On the latter, I’m resigned to the fact that my investment will at best keep pace with the &lt;em&gt;risk-free&lt;/em&gt; interest rate of growth.  I’m assuming market risk with the former, and there’s a good chance that I will lose money.  In the latter, I’m banking on the idea that the U.S. will not default and my principal is secure - historically a very good assumption.  By this logic, I should base my decision to allocate capital to equities if I can expect to earn an average rate of return \((r_e)\) in excess of the risk-free rate \((r_f)\). This excess return is the &lt;strong&gt;equity market risk premium&lt;/strong&gt;, or &lt;strong&gt;ERP&lt;/strong&gt;, defined as:&lt;/p&gt;
+
+\[ERP = r_e - r_f  \tag{1}\]
+
+&lt;p&gt;As with many things in finance, there are several ways to measure ERP.  For instance, one can take a forward-looking view, or &lt;em&gt;ex ante&lt;/em&gt;, by measuring ERP as a function of market P/E ratios, expected dividend rates and GDP growth outlooks.  If you have confidence in your forecasting abilities, then this is a good measure that incorporates your expectations for the future.  Another way to measure to ERP is backwards-looking, or &lt;em&gt;ex post&lt;/em&gt;.  Rather than making explicit predictions, this approach assumes that history is a good guide to the future.  Clearly, there are shortcomings to both approaches.  Your ex ante inputs could be fundamentally flawed, resulting in inaccurate forward-looking estimates.  On the other hand, past performance does not guarantee future results, and ex post estimates that characterized a prior regime may no longer hold if the regime has changed.  One need not look further than the first quarter of 2025 in America to illustrate the challenge.  2024 ended on a bullish note following a strong bull run.  2025 woke up on the wrong side of bed.  If you grounded your ERP view on ex ante assumptions, then your model is already invalidated.  Similarly, if you assumed the 2024 music would keep playing, then your ex post estimates are potentially biased from the prior regime.  Confronted with this challenge, my personal view, from the standpoint of a long-term investor, is to favor an ex post approach with a sufficiently long time horizon that captures potentially more than one regime.&lt;/p&gt;
+
+&lt;p&gt;So, on that note, here’s our task, conditions and standard this month:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Task:&lt;/strong&gt; Conduct a hypothesis test to determine if ERP is greater than 0 over the long run.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Conditions:&lt;/strong&gt; Data inputs will consist of the &lt;strong&gt;SPY&lt;/strong&gt; etf as a proxy for the U.S. equity market and &lt;strong&gt;3-Month (T-Bill) Treasury&lt;/strong&gt; yields as a proxy for the risk-free rate.  We’ll use price action and yields dating back to the early 1990’s.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Standard:&lt;/strong&gt; Apply the 6-step framework to structure a rigorous hypothesis test to inform our decision.&lt;/p&gt;
+
+&lt;p&gt;Taking a break from Python, this month we’ll conduct the exercise in R.  For those not familiar with R, it comes just before S :&amp;gt;  I’ll be here all week, folks…  Actually, R is a statistical software that was named somewhat in jest as an open source version of S and S-Plus.  While I’ll be the first to admit that gaining proficiency in R is a bit of a dark art, it is an extremely powerful tool for statistical analysis, and a very good addition to Python in the quantitative analyst’s kit.  For those who like to dig into the code, you can find this analysis in the &lt;a href=&quot;https://github.com/rtrimble13/tb-notebooks.git&quot;&gt;companion notebook&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;by-the-numbers&quot;&gt;By the Numbers…&lt;/h3&gt;
+
+&lt;p&gt;And here we go, starting at the top:&lt;/p&gt;
+
+&lt;h4 id=&quot;step-1&quot;&gt;Step 1&lt;/h4&gt;
+
+&lt;p&gt;We want to test our hypothesis that long-term ERP is greater than 0.  Our null and alternate hypotheses are thus:&lt;/p&gt;
+
+\[H_o := ERP \le 0 \\
+
+H_a := ERP \gt 0\]
+
+&lt;p&gt;If we simply wanted to test that ERP was non-zero, then we could have stated:&lt;/p&gt;
+
+\[H_o := ERP = 0 \\
+
+H_a := ERP \neq 0\]
+
+&lt;p&gt;This small nuance would have downstream implications.  However, we’ll stick with the first statement since we want to base our investment decision on the premise that ERP is positive.&lt;/p&gt;
+
+&lt;h4 id=&quot;step-2&quot;&gt;Step 2&lt;/h4&gt;
+
+&lt;p&gt;We’re not tackling Trenton here; we need a more quantifiable measure to test.  In our case, we’ll make the assumption that our estimate of long-term average ERP, or \(\bar{\mu_{ERP}}\), is normally distributed, and that our statistic to test that \(\bar{\mu_{ERP}} \gt 0\) is &lt;strong&gt;Student’s-T distributed&lt;/strong&gt; with 375 degrees of freedom.  “Say what??” you ask..  I’ll explain.  We have to make an assumption that ERP conforms to some probability distribution.  With a large enough number of observations, or samples, of ERP we can assume it is normally distributed.  The normal distribution is the classical bell curve that describes many things in the world, such as the IQ’s of the world’s population, or the height of people with brown hair (I’m being random on purpose..).  Often times, though, assuming normality is too strong of an assumption due to the presence of outliers, especially when the dataset is not sufficiently large.  The Student’s-T distribution is commonly used in statistics for hypothesis testing when the true standard deviation of our sample population is unknown.  It resembles the normal bell curve, but has “fatter tails” at lower degrees of freedom.  Whereas the normal distribution must be specified with a mean \((\mu)\) and standard deviation \((\sigma)\), Student’s-T has one parameter, degrees of freedom.  We set that parameter as one less than the number of observations in our dataset, or 375 for monthly data between 1993 and Feb’25.  The below plot compares the normal verses T at with different degrees of freedom.  We can see that the T converges to normal as degrees of freedom increases.  Intuitively this makes sense because data becomes more “normal” as the number of observations grows.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/mar25/dist.png&quot; alt=&quot;Distribution Plot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In settling on our choice of distribution (Student’s-T), we’ll define our test statistic as:&lt;/p&gt;
+
+\[t = \frac{\bar{\mu_{ERP}} - 0}{\frac{\sigma_{\bar{\mu_{ERP}}}}{\sqrt{n}}}  \tag{2}\]
+
+&lt;p&gt;where \(\bar{\mu_{ERP}}\) is average ERP, and the denominator is our measure of standard error as a function of the standard deviation of ERP and the number of observations in our dataset.  Said differently, the test statistic is our measure of how different our average ERP is from 0, normalized by the variation of ERP in our observation set.&lt;/p&gt;
+
+&lt;h4 id=&quot;step-3&quot;&gt;Step 3&lt;/h4&gt;
+
+&lt;p&gt;In keeping with convention, we’ll specify a significance \(\alpha\) of 0.05, which corresponds to a 95% \((= 100 - 0.05)\) level of confidence.  To better understand this concept, it helps to visualize the probability density curve:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/mar25/area.png&quot; alt=&quot;Area under the curve&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Focusing on the left-hand plot, our test statistic, t-stat for short, will fall somewhere along the x-axis.  If it happens to be ~-2.2, for instance, then that would mean approximately 2.5% of the area under the curve is to the left of the t-stat (the shaded region in the left tail).  In this case, assuming we were conducting a two-sided test in line with the second set of hypothesis statements above, we would conclude that average ERP is significantly different (less than) 0, which would cause us to reject the null hypothesis and accept the alternate.  If instead the t-stat was 0 - in the middle of the distribution - then that would mean it is in the 50% percentile, or half of the area under the curve is less than the t-stat.  In that case, we would conclude there is not sufficient evidence that average ERP is different from 0 and we would fail to reject the null hypothesis.  This would be equivalent to OG-6 deciding against his surprise attack.  Since we are conducting a one-sided test, we should focus on the right-hand plot.  The shaded area to the right denotes the 5% \(\alpha\) significance, or the 5% of the area under the curve that will help us decide if our t-stat is significantly greater than 0.  The shaded areas in both plots represent our 95% confidence threshold for rejecting the null hypothesis.  With fewer observations (data points), the tails of the curves would be larger, and the areas that represent 5% of the distribution would be further away from 0.  Intuitively, this is because the standard errors of our measurements would be higher, thus requiring a larger t-stat for us to reject the null.&lt;/p&gt;
+
+&lt;h4 id=&quot;step-4&quot;&gt;Step 4&lt;/h4&gt;
+
+&lt;p&gt;We’re getting there…  Given our choice of \(\alpha = 0.05\) and T-distribution with 375 degrees of freedom, we can identify the critical value that corresponds to the shaded area in the right-hand plot above.  R makes this very simple:&lt;/p&gt;
+
+&lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;## Determining the t-test critical value..&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;   &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# erp is our dataset of monthly excess returns of SPY over T-bill yields since 1993; n is our degrees of freedom.&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0.05&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;          &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# significance level&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;crit_value&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;qt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower.tail&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;FALSE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;em&gt;qt&lt;/em&gt; funtion returns the value representing the qth percentile in the T-distribution.  For us, this value is +1.65.  If our yet-to-be-computed t-stat is greater than 1.65, then we know it falls within the top (right-hand side) 5% in the distribution of probable values.  We would then conclude that our t-stat and our average ERP is significantly greater than 0.  Otherwise, we’ll have to conclude insufficient evidence to make that claim.&lt;/p&gt;
+
+&lt;h4 id=&quot;step-5&quot;&gt;Step 5&lt;/h4&gt;
+
+&lt;p&gt;Now we can start working with our data.  Starting with &lt;strong&gt;SPY&lt;/strong&gt;, we need to transform daily adjusted-close prices into monthly returns:&lt;/p&gt;
+
+&lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;spy_monthly&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spy_daily&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;adjClose&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;adjClose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                         &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;## reformat the date and compute returns&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spy_monthly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;as.Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;paste&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;01&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sep&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spy_monthly&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spy_monthly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;adjClose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spy_monthly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rtn&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;round&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;adjClose&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shift&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;adjClose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, we need to convert our 3-Month T-Bill yields into monthly equivalent yields.  Since the yield on a T-Bill is quoted in simple annual rates - simple because they do not pay coupons - we will simply divide by 12 to get the monthly equivalent:&lt;/p&gt;
+
+&lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;t_bill&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t_bill&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# t_bill already pre-processed to monthly observations similar to SPY&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t_bill&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;round&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, we merge the two series into one dataset and compute ERP for each month:&lt;/p&gt;
+
+&lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;erp_monthly&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;na.omit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spy_monthly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t_bill&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;date&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;all.x&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;TRUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erp_monthly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erp&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rtn&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Before going further, let’s take a few moments to note a few key assumptions we have to make for our test to be valid:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Our random variable, monthly ERP in this case, should be independent and identically distributed, or i.i.d.  Based on our sampling approach, i.e., using monthly returns and yields, we satisfy this assumption.&lt;/li&gt;
+  &lt;li&gt;Our data should be approximately normally distributed.  We can plot a histogram and Quantile-Quantile chart to check this assumption.&lt;/li&gt;
+  &lt;li&gt;Our data should be continuous, meaning that ERP can theoretically take on any value between +/- infinity, which it can.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The below plots show the monthly time series of ERP and associated QQ chart.  The the left-hand chart we see ERP is both positive and negative through time.  By visual inspection, it’s plausible that it is positive on average, though not surprising to see the negative values tend to have larger magnitudes than the positive ones.  The right-hand chart compares the empirical quantiles relative to theoretical, normally distributed ones.  If our data was truely normally distributed, then all of the points would fall neatly on the red line.  The tails of our data veer off the line, though, so we know we’re not dealing with a truely normal set.  For our purposes, though, we can say the data is normal enough to support our assumptions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/mar25/qqplot.png&quot; alt=&quot;QQ&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here we plot a histogram of ERP and compare with a normal distribution.  As we saw in the time series plot, there is a negative skew driven by the larger values in the left tail.  The sample average is 73 basis points.  So long as the standard error does not dominate the t-stat, we will be able to conclude that this estimate is significantly greater than 0.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/mar25/hist.png&quot; alt=&quot;ERP Histogram&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you’re still with me, I applaud your moxy.  We’ll calculate our test statistic with one more line of code:&lt;/p&gt;
+
+&lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;t.test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erp_monthly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mu&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alternative&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;greater&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In the above, we’re computing our t-stat as defined in equation (2), specifying that the value we’re comparing average ERP against is 0, and that the test is one-sided, e.g., “greater” than 0.&lt;/p&gt;
+
+&lt;h4 id=&quot;step-6&quot;&gt;Step 6&lt;/h4&gt;
+
+&lt;p&gt;Time to evaluate the test results and make a decision!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/mar25/t_test.png&quot; alt=&quot;T-Test&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The test output contains all the information we need to make a decision.  Let’s interpret it line by line:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Our data is monthly observations of ERP.&lt;/li&gt;
+  &lt;li&gt;The computed t-stat is 3.11 (recall the critical value is 1.65), based on 375 degrees of freedom.&lt;/li&gt;
+  &lt;li&gt;The p-value is close to 0, and well below our significance level of 0.05.  This means the probability of average ERP being less than or equal to 0 to be virtually 0.&lt;/li&gt;
+  &lt;li&gt;The 95% confidence interval of average ERP to be significant is \([0.37, +\infty)\), and our estimated mean value of 73bps is within that interval.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So, based on this test result, we will reject the null hypothesis and conclude that there is positive premium over the risk-free rate to be earned by investing in equities.  Great success!!  Annualizing 73bp suggests an 8.76% annual ERP on average.&lt;/p&gt;
+
+&lt;p&gt;To the seasoned investor, the result is probably obvious, almost surely.  However, what we’ve demonstrated is a rigorous approach to decision making that can be generalized towards all sorts of problems, and, in my view, is something to celebrate.  This sprawling narrative barely scratches the surface (of the theory, application, and flexibility of this framework), but I hope it has provided some insight to the power of applied statistics in making informed decisions.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-psa-on-error&quot;&gt;A PSA on Error&lt;/h3&gt;
+
+&lt;p&gt;As discussed earlier, there is no certainty in decision making.  Even when acting on flawless information built from the strongest assumptions, there remains uncertainty in the outcome.  So, it is useful to talk a little of the types of errors we may encounter as a result of our decisioning.&lt;/p&gt;
+
+&lt;p&gt;When we reject \(H_o\) even though it is correct, we are making a &lt;strong&gt;Type I&lt;/strong&gt; error.  This is an error of commission, meaning that we are accepting the alternate hypothesis when it is in fact a false positive.  These sorts of errors are often the easiest to measure because we’ve taken an action only to learn first hand that it was the wrong decision.  If we set our significance level too high, it increases the chances of a Type I.  This is because the t-stat has a higher likelihood of being greater than the critical value, making us more likely to reject the null.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;For OG-6, a Type I error would have resulted in encountering a well-fortified and angry mob of Hessians just waiting to mow down the Continentals.&lt;/li&gt;
+  &lt;li&gt;In our case, a Type I error would result from acting on the decision to invest in equities only to find that T-Bill’s outpace our returns over the investment horizon.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Another type of error occurs when we fail to reject \(H_o\) even though it is wrong.  This is an error of omission, commonly thought of as an opportunity cost.  In this case we reject the alternate hypothesis when it is actually true.  We fail to act when we should have done so.  This is a &lt;strong&gt;Type II&lt;/strong&gt; error, also known as a false negative.  It can happen if we set our significance level too low, increasing the chances that the t-stat will have less magnitude than the critical value.  These errors can be just as bad as Type Is, but they are also more difficult to measure and less often felt directly.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;For OG-6, a Type II would have resulted from a decision to call off the attack.  As a missed opportunity, the demoralized Colonial Army would have fallen appart, and today we Americans would be drinking tea while continuing to gripe about taxation without representation - oh, the irony!&lt;/li&gt;
+  &lt;li&gt;In our case, a Type II error would have us sink our wealth in Treasuries and miss out on the opportunity to earn more in equities.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So, there you have it.  I, for one, believe that OG-6, like Chuck Norris, always correctly rejected the null hypothesis, almost surely :&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;Action front!  Let’s move out and draw fire!!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This post is not investment advice.  Any opinions stated are my own, and do not reflect those of my employer.  This post is meant to be educational and entertaining.  If you find it useful, please let me know.  If you think it sucks, and are sure you’re not committing a Type I error, please also let me know.&lt;/p&gt;
+
+&lt;h4 id=&quot;sources&quot;&gt;Sources&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Battle_of_Trenton&quot;&gt;Wikipedia: Battle of Trenton&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.americanhistorycentral.com/entries/battle-of-trenton/&quot;&gt;American History Central&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://cran.r-project.org&quot;&gt;R Statistical Software&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://fred.stlouisfed.org/&quot;&gt;Federal Reserve Data - FRED&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/rtrimble13/tb-notebooks.git&quot;&gt;TurningBull companion Jupyter Notebook Git Repo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://site.financialmodelingprep.com&quot;&gt;Financial Modeling Prep (FMP)&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 31 Mar 2025 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/TurningBull/2025/ha-og6/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/ha-og6/</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Double Envelopment</title>
+        <description>&lt;p&gt;“So, there I was,” you might say to your buddies at the canteen, if you’ll humor me on this one.  Telling war stories long after the sun has set and the drinks have risen is one of humanity’s staples, afterall.  Yet, you were there, and this story is yours.  You might have been the son of a slave and spent your formative years working the fields for a Roman landowner.  You might have seen your father cut down over a petty dispute when you were twelve.  And you might have lost your mother and sisters to the plague not long after.  None of that would have shielded you from conscription as a Roman foot soldier in support of the consul Paullus during the Second Punic War.&lt;/p&gt;
+
+&lt;p&gt;So, there you were on a sweltering sunny day on the outskirts of Cannae, probably somewhere in the middle front of the formation.  This is where the expendable soldiers typically found themselves.  Nothing personal, you’ve spent a short life acquiring a deep understanding of what it is to be expendable.  At least that day didn’t start with a twenty-five mile foot march or exhausting drill with wooden swords.  Your blisters were lanced and your welts, well, at least you didn’t earn new ones that day…&lt;/p&gt;
+
+&lt;p&gt;Around you in tight formation were your family-in-arms.  Boys, mostly, not so different from you in almost every way.  To your your front, across the field, stood Hannibal’s horde.  They looked like savages.  Perhaps an illusion, but they didn’t even appear to be formed in a straight line.  The center of their formation was bowed, and you could hear your sergeant growl that it was a ploy to make their numbers seem larger.  Numbers matter on open fields, and the odds were squarely against them.&lt;/p&gt;
+
+&lt;p&gt;Upon the order to advance, you began a steady march toward contact.  Your view was limited: not only were you not in the front rank, but the dry earth quickly gave way to plumes of dust that lingered in the windless air.  You could see well enough to conclude that they indeed were savages, though.  Lightly armored and apparently not as disciplined, their concave line started to pull back at first contact.  The Roman line was a machine that knew one direction - &lt;em&gt;forward&lt;/em&gt;.  As the tempo of battle started to quicken, you saw the face of Death, and it was staring at them.  Their casualties seemed to build, and their apparent response was to fall back.&lt;/p&gt;
+
+&lt;p&gt;As the drone of battle roared to the front your section kept up the tempo, and you hadn’t even yet swung your sword.  By now, you started minding your steps so as not to trip over bodies that were alive just a few moments ago.  At this pace, you had to keep moving foward since there was an entire army to your back.  But something caught your attention.  There were new sounds of battle besides those to your front.  You looked to your right.  Fellow Romans in your file were fighting on their flank.  Shifting your gaze to the left showed the same.  The dust had hung like a blanket, but your ears could hear what your eyes could not see.  The tempo had just changed, and the battle was now coming for you from both sides.  It was finally time to use that sword.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/feb25/battle_scene.jpg&quot; alt=&quot;Battle&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;“During a fight, time loses value.  Seconds feel like minutes, and minutes stand still while Death works at his own pace,” you might tell your friends.  But you weren’t thinking about that.  You weren’t thinking about anything.  You were just reacting to the fight, trying to keep up with the tempo.  All the while, your brothers were slashing and being slashed to your front, sides, and back.  Hannibal had broken your lines, and the only sensible thing to do was begin to fall back.  The face of Death was now looking in your direction.&lt;/p&gt;
+
+&lt;p&gt;“When you no longer control the tempo in a fight, your sense of direction is one of the first things go,” you might further explain.  Amid the dust and broken bodies, it was all you could do to assess your bearing based on the direction most of your surviving brothers seemed to be going.  However, you quickly found yourself stuck.  Puzzled, you cursed your fellow Romans to pick up the retreat.  It took just a second, or was it a minute, to discover the reason for the holdup.  Through a momentary break in the dust you caught a glimpse of the area of the field you had marshalled over before the battle.  Where there had been Romans, confident in their numerical superiority, there were now Iberian cavalry racing towards you, blocking any hope for an orderly retreat.&lt;/p&gt;
+
+&lt;p&gt;And, so there you were, with Hannibal’s infantry to your front and flanks, and with his cavalry closing in from behind.  Perhaps the only thing you could mutter to yourself was, “Well, I’ll be damned…”&lt;/p&gt;
+
+&lt;h3 id=&quot;a-lesson-in-tempo&quot;&gt;A Lesson In Tempo&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/feb25/cannae_diagram.png&quot; alt=&quot;Battle Formation&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;While Hannibal ultimately lost the Second Punic War, he decicively defeated the Romans at Cannae through a maneurver that became known as a double envelopment.  Whereas an envelopment is a tactical maneuver that consists of attacking an enemy on a flank.  A double envelopement is just more of that, applied to both flanks.  I think, though, that Hannibal’s true genious at Cannae was the way in which he lured the Romans into a false sense that they controlled the tempo of the fight.  The concave formation of his front line was deliberately designed to enable the Romans to build forward momentum.  As the Romans pushed foward, that line became convex and allowed the infantry on both sides of the line to pivot inward onto the Roman flanks.  Meanwhile, Hannibal used his cavalry to close in from the rear and prevent a Roman retreat.  The Romans found themselves fighting in every direction, lost their momentum, and were effectively decimated.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-market-index&quot;&gt;The Market Index&lt;/h3&gt;
+
+&lt;p&gt;And now for something completely different…  Well, sort of.  I actually believe one can draw an analogy between the Roman experience at Cannae and the influence that a small number of stocks has on the U.S. equities market today.  The &lt;strong&gt;S&amp;amp;P 500&lt;/strong&gt;, if you recall from last month, is an index comprised of the largest 500 publicly traded U.S. companies.  It is often seen as a barometer for the equities market.  One of its main features is its free-float market capitalization (market cap) weighting scheme.  Index constituents are selected based on market cap, or the number of shares outstanding for investors (float), multiplied by the current market price per share.  We can think of a company’s market cap as its equity market value.  While a market cap-weighted index is arguably better than a price-weighted one like the &lt;strong&gt;DOW&lt;/strong&gt; - let’s shelve that one for another time - it is definitely worthy of a little investigative scrutiny.&lt;/p&gt;
+
+&lt;p&gt;Under a free-float market cap weighting approach to indexing, the weight of each constituent company is computed as:&lt;/p&gt;
+
+\[\omega_{i,t} = \frac{M_{i,t}} {\sum_{j=1}^{N} M_{j,t}} \tag{1}\]
+
+&lt;p&gt;Where \(\omega_{i,t}\) is the index weight of company \(i\) at month \(t\), and \(N\) is the total number of companies in the index.&lt;/p&gt;
+
+&lt;p&gt;The contribution to the index return of each company is the stock return of that company multiplied by its weight, or&lt;/p&gt;
+
+\[C_{i,t} = \omega_{i,t} \times r_{i,t} \tag{2}\]
+
+&lt;p&gt;Where \(r_{i,t}\) is the investment return of stock \(i\) at month \(t\).&lt;/p&gt;
+
+&lt;p&gt;The index return at month \(t\) thus becomes&lt;/p&gt;
+
+\[R_{index,t} = \sum_{i=1}^{N} C_{i,t} \tag{3}\]
+
+&lt;p&gt;The actual index level as you would see it published is a little more involved, but the basic mechanics are as described above.&lt;/p&gt;
+
+&lt;p&gt;As of the end of 2024, the S&amp;amp;P 500 (S&amp;amp;P) market cap was hovering around $52Tn.  With the inaguration now in the rearview, the books are open on how durable that $50Tn level remains…  Regardless, the index has had a hell of a run over the last 10 years, returnig ~11% per year.  From &lt;a href=&quot;https://rtrimble13.github.io/TurningBull/2025/shoot-move-communicate&quot;&gt;last month&lt;/a&gt;, we know that means if you had invested $1 in a fund tracking the S&amp;amp;P on Jan 1st, 2015, you would have ~\(\$2.84 = (1 + 11\%)^{10}\) by December 31st, 2024.  Now, imagine a number larger than $1, and you get the picture.  As that investor in an S&amp;amp;P tracker, though, you might wonder what’s driving those gains.  Well, a significant contributor to the success of the U.S. equities market has been &lt;em&gt;Big Tech&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Technology companies have revolutionized not only how we interact with the world - think personal computing, mobile devices, AI, e-commerce, etc. - but also how the world interacts with us - think social media, automation, AI, cyber warfare, and so on.  Thanks to technological innovation, the world has changed in the past couple of decades in ways that would have taken centuries in other eras.  Besides the point, but at least human behavior hasn’t changed, right??  As technology has exploded, economic growth has come along for the ride.  And, there you have the S&amp;amp;P.&lt;/p&gt;
+
+&lt;p&gt;As that S&amp;amp;P investor, you might believe those investment returns are the result of tech innovation being shared in a &lt;em&gt;diversified&lt;/em&gt; manner among all of those 500 largest companies.  Afterall, how much can a few Tech companies really influence the performance of a 500-stock portfolio?  Why not rely on the power of numbers and let their momentum ride?  Well, here’s where a little scrutiny of the market cap weighting method becomes useful.  As we discussed above, the S&amp;amp;P chooses its constituents based on market cap.  So long as the market caps of the largest 500 companies in the U.S. equities market are of a similar order of magnitude, then I would argue you are getting roughly the diversified exposure you would expect.  However, if the market caps of a minority of companies begin to dominate the rest, then you start to see that &lt;em&gt;double envelopment&lt;/em&gt; action start to kick in.&lt;/p&gt;
+
+&lt;p&gt;For instance, let’s say we have a four-stock index comprised of stocks \(FOO\), \(BAR\), \(BAZ\) and \(OOF\).  If they each have a market cap of ~$1Bn, then according to &lt;strong&gt;(1)&lt;/strong&gt;, their individual weights are each 0.25 (25%).  If the stocks’ respective returns are 4%, 3%, 2% and -2%, then the resulting (simplified) index return is \(1.75\% = (0.25 \times 4\%) + (0.25 \times 3\%) + (0.25 \times 2\%) + (0.25 \times -2\%)\).  In this case, no single stock is driving the index.  Now, let’s say \(OOF\) has a market cap that dwarfs the rest such that its weight is 0.4 (40%), and the others are equal weighted at 0.2 (20%).  The index return according to &lt;strong&gt;(3)&lt;/strong&gt; becomes \(1\% = (0.2 \times 4\%) + (0.2 \times 3\%) + (0.2 \times 2\%) + (0.4 \times -2\%)\).  \(OOF\)’s price action is clearly driving the index due to its hefty weight relative to the rest.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-magnificent-7&quot;&gt;The Magnificent 7&lt;/h3&gt;
+
+&lt;p&gt;So, let’s take the discussion back to Big Tech.  We’ve established technology’s impact on the world.  As it happens, market commentators began to coin a new term for the largest tech growth stocks that were regularly impacting the market.  &lt;strong&gt;FANG&lt;/strong&gt; came to represent the combined influence of Facebook, Amazon, Netflix and Google.  They became &lt;strong&gt;FAANGs&lt;/strong&gt; in 2017 after adding Apple in the mix.  In 2023, the group’s membership changed to include Alphabet (was Google), Amazon, Apple, Meta (was Facebook), Microsoft, Nvidia, and Tesla.  Absent a crafty acronym, they’re known as the &lt;em&gt;Magnificent 7&lt;/em&gt;, not to be confused with the Western.  Though don’t be surprised if there’s an executive order in the pipeline to change the name to the &lt;em&gt;Beautiful American 7&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Our task this month is to assess just how much influence the Mag-7 have on the S&amp;amp;P by comparing their performance and allocation within the index over the last 10 years. The conditions under which we’ll undertake this analysis include having access to monthly returns of the index and the Mag-7 stocks, as well as the historical index composition over the period.  The standard, like last month, is to develop a set of useful visualizations to communicate our conclusion.  For those who are interested, there is a &lt;a href=&quot;https://github.com/rtrimble13/tb-notebooks.git&quot;&gt;companion Jupyter Notebook&lt;/a&gt; with the code used for the analysis.&lt;/p&gt;
+
+&lt;p&gt;Before going much further, it’s worth mentioning how S&amp;amp;P constituents and monthly constituent weights were factored into the analysis.  Since the data available consisted of the current list of constituent stocks as of Feb’25 and the intramonth changes to constituents dating back to the 1950’s, the approach I’ve taken is to start with the current set of index constituents and work backwards.  Within a given month, consituents that were added in that month are excluded from the index for that month (their performance returns are reflected in the next month going forward).  Constituents that were removed from the index in the given month are retained, but excluded going forward.  With a list of index constituents for each month between Jan’15 and Dec’24, I assign the weight for each member stock based on its market cap as of the 1st of the month.&lt;/p&gt;
+
+&lt;p&gt;So, for starters let’s take a look at the cumulative return of the S&amp;amp;P since 2015 compared with how the index would have performed sans the Mag-7s.  To be explicit, we’re working with monthly returns, excluding dividends.  The dividends exclusion is perhaps a little controversial.  It was a practical decision more than by choice; I only had access to S&amp;amp;P index returns without dividends (also known as the S&amp;amp;P Total Return Index).  I don’t believe the result changes the outcome, however.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/feb25/image_m1.png&quot; alt=&quot;Cumulative Returns&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From this plot, we can see that a version of the S&amp;amp;P exluding our Mag friends returns ~3.7% \((= 11.1\% - 7.4\%)\) less per year, which over the 10 year period amounts to ~44% \((= 1.037^{10} - 1)\) in total return.&lt;/p&gt;
+
+&lt;p&gt;Computing the return series of the S&amp;amp;P excluding Mag-7s is straightforward, but perhaps worth explaining.  If we consider that the S&amp;amp;P return for a given month is the weighted return of the Mag-7 stocks + the weighted return of the non-Mag-7 stocks, and if we know the S&amp;amp;P return, the Mag-7 return and the relative weighting of the Mag’s for the given month, then we can arrive at the non-Mag-7 return through simple rearrangement of terms as shown below:&lt;/p&gt;
+
+\[\begin{aligned}
+R_{S\&amp;amp;P, i} = (\omega_{Mag7,i} \times R_{Mag7,i}) + (\omega_{\not{Mag7,i}} \times R_{\not{Mag7,i}})~~~~(1)
+\\
+\omega_{\not{Mag7,i}} \times R_{\not{Mag7,i}} = R_{S\&amp;amp;P,i} - (\omega_{Mag7,i} \times R_{Mag7,i})~~~~(2)
+\\
+R_{\not{Mag7,i}} = \frac{R_{S\&amp;amp;P,i} - (\omega_{Mag7,i} \times R_{Mag7,i})}{\omega_{\not{Mag7,i}}}~~~~(3)
+\end{aligned}\]
+
+&lt;p&gt;Where \(R_{S\&amp;amp;P,i}\) is the return of the S&amp;amp;P in month \(i\), \(\omega_{Mag7,i}\) is the weight of the Mag-7s in month \(i\), \(R_{Mag7,i}\) is the Mag-7 return in month \(i\), \(\omega_{\not{Mag7,i}}\) is the weight of non-Mag stocks in month \(i\), and \(R_{\not{Mag7,i}}\) is the return of the non-Mags in month \(i\).&lt;/p&gt;
+
+&lt;p&gt;From this chart along, we can already see that our seven &lt;em&gt;magnificent&lt;/em&gt; stocks make a big difference in the index.  Let’s now compare rolling 1-year returns of the S&amp;amp;P and the Mags:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/feb25/image_m2.png&quot; alt=&quot;Rolling 1Y Returns&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A rolling 1-yr return is simply a 1-year return computed one month at a time.  This means that the 1-year return computed for Dec’23 is based on the 12 monthly returns for 2023.  The Jan’24 return is then based on the 12 monthly returns beginning Feb’23.  In computing the Mag-7 1-yr returns, I’m treating the Mags as if they were a stand-alone portfolio.  So, their seven weights sum to 100%, rather than use their actual weights within the S&amp;amp;P, which would sum to a number much less than 100%.  This permits a more direct comparison of their rolling performance.  Due to the correlated nature of rolling returns, however, one should take caution in extracting too much statistical insight.  I think the chart is still insightful, though.&lt;/p&gt;
+
+&lt;p&gt;What immediately stands out is the order of magnitude difference in both the average 1-yr returns for both series as well as their standard deviations.  For both measures the Mag-7s are roughly 2x the index, meaning that both the average return and dispersion of those returns double that of the index.  Over the period, the Mag-7s alone have delivered higher returns on average than the index at the cost of being more volatile.  One takeaway from this is when the S&amp;amp;P is doing well, the Mags are probably doing better, and vice versa.&lt;/p&gt;
+
+&lt;p&gt;Now, let’s see how much the Mags are contributing to the S&amp;amp;P monthly returns:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/feb25/image_m3.png&quot; alt=&quot;Monthly Returns&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The blue bars represent the S&amp;amp;P return in each month.  The red ones are the contributions of the Mags to those returns.  With the precision of throwing a dart, it seems like the beginning of 2020 marks a period where the Mags truely begin to dominate the index.  This period also coincides with a time in our lives that many of us should recall.  Everyone have their masks and hand sanitizer?  Don’t forget to socially distance yourselves…&lt;/p&gt;
+
+&lt;p&gt;Splitting the observation period at Jan’20, we can confirm there is indeed a regime change.  The average contribution to the S&amp;amp;P after Jan’20 is more than twice the average contribution prior to 2020 at 1.6% and 0.7%, respectively.  Although I have not computed it, it also appears 2020 was a regime change for volatility as well, which would be consistent with the message from the prior chart.&lt;/p&gt;
+
+&lt;p&gt;Still awake?  Or, are you pretending to be a Roman again?  Well, the last chart completes my double envelopment analogy:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/feb25/image_m4.png&quot; alt=&quot;Mag-7 Weights&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, I’ve plotted the S&amp;amp;P market cap for the last 10 years overlayed with the Mag-7 weights.  While I believe my market cap data may not be entirely correct - most sources on the web indicate the S&amp;amp;P market cap is closer to $52Tn than $55Tn - the trend seems to be spot on.  Over the last 10 years, the S&amp;amp;P market has grown ~190%, with particularly explosive periods between 2020 - 2022 and from 2023 on.  The allocation afforded to the Mags has grown from 10% of the S&amp;amp;P in 2015 to just over 30% at the end of 2024.  Seven stocks commanding ~32% of the index price action.  I’m a taker of opinions of which one you think resembles the Carthaginian Cavalry.&lt;/p&gt;
+
+&lt;p&gt;To wrap up, my goal this month was to explore the impact that a small number of tech stocks is having on an index that is supposed to be symbolic of a diversifed basket of the largest publically traded U.S. companies.  Chances are that if you are an investor of stocks, then you probably have exposure to these stocks through packaged products, such as ETFs and mutual funds.  And, if you have most of your U.S. equity exposure spread across a selection of various funds, then you are probably more concentrated in these seven stocks than you realize.  The recent times have been good, and momentum has been on your side.  I encourage you to consider the cautionary tale of the Roman infantryman at Cannae, though.  The tempo of this market is being driven by a small, disruptive force.  As such, the direction of battle can change very quickly.  When that line starts to bow, watch your flanks and beware the cavalry to your rear, lest you find yourself uttering, “Well, I’ll be damned…”&lt;/p&gt;
+
+&lt;p&gt;Action front!  Let’s move out and draw fire!!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This post is not investment advice.  It is meant to be educational and entertaining.  If you find it useful, please let me know.  If you think it sucks, please also let me know - though I prefer constructive criticism : &amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Postscript:&lt;/strong&gt; This article was written on 28 Febrary, 2025.  It is a day that will live in infamy with regards to American diplomacy and the post-WW2 liberal world order.  I stand with Ukraine.&lt;/p&gt;
+
+&lt;h4 id=&quot;sources&quot;&gt;Sources&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Battle_of_Cannae&quot;&gt;Wikipedia: Battle of Cannae&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/S%26P_500&quot;&gt;Wikipedia: S&amp;amp;P 500&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://money.usnews.com/investing/articles/magnificent-7-stocks-explainer&quot;&gt;US News: History of the Magnificent 7&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/rtrimble13/tb-notebooks.git&quot;&gt;TurningBull companion Jupyter Notebook Git Repository&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://site.financialmodelingprep.com&quot;&gt;Financial Modeling Prep (FMP)&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 28 Feb 2025 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/TurningBull/2025/double-envelopment/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/double-envelopment/</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Shoot, Move and Communicate</title>
+        <description>&lt;p&gt;Despite the heat, you’re in full battle dress, weighed down with an additional 50lbs of tactical equipment and ammunition.  Your sweat-soaked clothes cling to your body like a toddler testing your patience.  And then there are the mosquitoes.  You are a mosquito magnet - the tastiest one in a long time - and word has reached the biting gnats, too.&lt;/p&gt;
+
+&lt;p&gt;Despite all that, you’re running late.  Adjacent units are counting on you to clear an objective where the enemy is dug in and expecting you.  As it happens, the terrain seems to be on their side.  After encountering a river that was not on the map and a bog endowed with mines, you need to make up time.&lt;/p&gt;
+
+&lt;p&gt;The sounds of distant gunfire and artillery momentarily take you back to the first lesson you learned in Basic: &lt;strong&gt;No excuse!&lt;/strong&gt;  You’re jolted from your mini daydream as the commander’s barking over the radio for your &lt;em&gt;sitrep&lt;/em&gt;.  By his tone, you know that he knows you’re late, too.  You have a time and place to be in 30 minutes, and at this rate, you will be late.&lt;/p&gt;
+
+&lt;p&gt;Fortunately, you also have a platoon of the finest cavalry troopers you will ever know who share your sense of urgency.  Adding to your fortune, you are all well versed in the basic language of tactical maneuver.  You are free to improvise and problem solve on the spot because you’ve drilled the basics of &lt;em&gt;shoot, move and communicate&lt;/em&gt; since day 1.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/jan25/fm3-21-8_fig3-18.png&quot; alt=&quot;Tactical Maneuver&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Concepts like &lt;em&gt;traveling overwatch&lt;/em&gt; and &lt;em&gt;alternating bounds&lt;/em&gt; are the articles and prepositions of your platoon’s maneuver lingua.  It’s the stuff that’s spoken subconsciously, freeing up cycles to handle novel circumstances.  All of the classroom instruction and field training have led to this moment.  It’s a moment where the bullets are real, the mosquitoes are hungry, and you’re late….&lt;/p&gt;
+
+&lt;p&gt;Alright, enough with the hook!  It’s time to get to the main subject of this post before I completely lose myself in a fictional fever dream of an assault.  The title of this post is meant to be a metaphore for being proficient in the basics.  I view &lt;em&gt;shoot, move, and communicate&lt;/em&gt; as a professional mindset.  In any profession it is important to master the tactics of the trade; to be able to execute, maneuver, and convey complex concepts to a wide audience.  These are the key ingredients to accomplishing the mission, regardless of your job.  A professional is a subject matter expert in their domain, and a successful professional is one who is able to &lt;em&gt;shoot, move, and communicate&lt;/em&gt; their way through any challenge with which they are confronted.&lt;/p&gt;
+
+&lt;p&gt;Implicit in this mindset is a view that the table stakes for success, among other things, is competency in the fundamentals.  A platoon that is unversed in the basics will fail to be effective on the battlefield.  Similarly, a quantitative analyst must be fluent in the most basic financial concepts, know how to wrangle data, and be a versatile communicator to be able to produce interesting and actionable analyses.&lt;/p&gt;
+
+&lt;p&gt;Thus, it is in the spirit of &lt;em&gt;shoot, move, and communicate&lt;/em&gt; that we’ll start with basics: financial returns.  And it doesn’t get more basic than that, so let’s jump in it….  We’ll start with the concept of simple returns, and then show how they can be linked together to yield a compounded time-weighted return.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Our task:&lt;/strong&gt; Calculate the total return of the S&amp;amp;P 500 Index for the two years ended Dec’24 and produce a graphic to visualize it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Conditions:&lt;/strong&gt; With two years of monthly price history for the index, we’ll leverage &lt;strong&gt;python&lt;/strong&gt; and a few useful libraries to do the heavy lifting.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Standard:&lt;/strong&gt; Armed only with the resources mentioned above, we’ll perform our own custom computations and visual output.&lt;/p&gt;
+
+&lt;p&gt;A full example of this exercise is available on my &lt;a href=&quot;https://github.com/rtrimble13/tb-notebooks/blob/main/src/twr.ipynb&quot;&gt;notebooks git repository&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s start with a plot of the monthly closing prices, sourced from &lt;a href=&quot;https://finance.yahoo.com&quot;&gt;Yahoo! Finance&lt;/a&gt;, for the index to gain some intuition about its price evolution:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/jan25/s&amp;amp;p_close.png&quot; alt=&quot;S&amp;amp;P 500 Index Closing Prices&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As we can see, it’s been a good couple of years for the index.  Starting at close to the 4,000 level, it has gained ~2,000 points over the two-year period, with the strongest increase ocurring in 2024.  Even if you don’t follow the markets, it has been hard to avoid the talking heads remarking on the dissonance between Wall Street and Main Street.&lt;/p&gt;
+
+&lt;h3 id=&quot;simple-returns&quot;&gt;Simple Returns&lt;/h3&gt;
+
+&lt;p&gt;The simple return is perhaps the most atomic building block in quantitative analysis.  It represents a percent change in the value of an asset, measured as the change in value of the asset over a time period divided by the starting value in that period.  Mathematically, it is:&lt;/p&gt;
+
+\[R_t = \frac{V_t - V_0}{V_0} \tag{1}\]
+
+&lt;p&gt;Where \(V_0\) is the starting value and \(V_t\) is the ending value after \(t\) amount of time.  For example, if you have a thing that is worth $10 at the beginning of the day and is worth $11 at the end of the day, then your return on the day is \(10\% = \frac{\$11-\$10}{\$10}\).&lt;/p&gt;
+
+&lt;p&gt;If you received additional cash flows, or dividends, during the return period, then the expression becomes:&lt;/p&gt;
+
+\[R_t = \frac{V_t + D - V_0}{V_0} \tag{2}\]
+
+&lt;p&gt;Where \(D\) are the additional cash flows that occured during \(t\).  For example, if your thing had a starting value \(V_0\) and then paid a dividend \(D\) during the day, the dividend event will have reduced the value of your thing.  Since, you still received the dividend, you need to add that cash flow back into the return calculation for it to be accurate.  We’ll talk more about dividends at a later time \(t\)…&lt;/p&gt;
+
+&lt;p&gt;The simple return is the most appropriate measure of investment performance over short time periods and when compounding is immaterial to the asset’s return.  When compounding is material, e.g., when the price is affected by incoming and outgoing cash flows, then simple returns are likely to misstate performance.  Absent compounding effects, however, simple returns work as advertised.  They can provide quick intuition about the growth potential of a security, index, or anything else that has a measurable value.  They are also useful for comparing similar assets, such as the performance of two stocks over the course of a year.  Note, if either of those stocks pays dividends, or is impacted by corporate actions, such as a stock split, then those events need to be accounted for.  Also for another another time.&lt;/p&gt;
+
+&lt;p&gt;In short, presenting performance in terms of simple returns is best for situations where compounding is not a factor in the asset’s value.&lt;/p&gt;
+
+&lt;p&gt;Given our time series of S&amp;amp;P 500 monthly close prices, stored in a &lt;strong&gt;pandas&lt;/strong&gt; DataFrame, here are a couple of ways to compute monthly simple returns:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;sp_returns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sp_prices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;Close&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pct_change&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# method 1 
+&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sp_returns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sp_prices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;Close&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rolling&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# method 2 
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Clearly, the first method is better for this exercise, since it’s more readable.  The second method is more &lt;em&gt;‘DYI’&lt;/em&gt;, and has a time and place better suited for more complex operations.&lt;/p&gt;
+
+&lt;h3 id=&quot;geometric-time-weighted-returns&quot;&gt;Geometric (Time-Weighted) Returns&lt;/h3&gt;
+&lt;p&gt;As mentioned above, the simple return puches above its weight in many scenarios.  There are times, though, when it is not the best return measure.  Consider an investment portfolio, for instance.  Over time, there are likely to be cash flows into and out of the portfolio.  Those flows will affect the overall value of the portfolio, since cash is either being invested in return-generating securities, or securities are being sold for cash to be withdrawn from the portfolio.  Either of these scenarios produce compounding effects that invalidate the simple return.&lt;/p&gt;
+
+&lt;p&gt;For instance, let’s say on Monday you have a portfolio with $100 invested in stock \(FOO\).  On Tuesday you deposit another $110 and invest it in stock \(BAR\) at the end of the trading session.  Also, the value of \(FOO\) increased to $110.  Your day-over-day investment return is \(10\% = \frac{\$110 - \$100}{\$100}\), due to \(FOO\)’s price gain even though your total portfolio value is $220.&lt;/p&gt;
+
+&lt;p&gt;On Wednesday you sell $50 of \(FOO\) and buy $50 of \(BAR\) at the market open, and at the end of day your \(FOO\) position is worth $72 and your \(BAR\) position is worth $135.  Your total portfolio value at Wednesday market close is \(\$207=\$72 + \$135\).  The return on the day is \(-5.9\%=\frac{\$207-\$220}{\$220}\).  Notice Wednesday’s return is not impacted by cash flows.  All cash is invested and contributing to investment performance.&lt;/p&gt;
+
+&lt;p&gt;Thursday rolls around, and you sell $50 of \(FOO\) and $50 of \(BAR\) to buy a much needed book on investing.  By the end of session your \(FOO\) position is worth $10 and your \(BAR\) position is worth $90.  Your ending value on Thursday, including price action in the two stocks, is $100.  Your investment return is \(-3.4\% = \frac{\$100 + \$100 - \$207}{\$207}\).  Notice our handling of the cash we withdrew.&lt;/p&gt;
+
+&lt;p&gt;Finally, it’s Friday - thought we’d never get there!  And, fortunately, the investing book you bought had $500 squirled away in the index.  You immediately deposit that cash into your account.  Your stock positions are flat for the day, so the ending value of your portfolio is \(\$600 = \$100 + \$500\).  If we now wanted to compute our week-to-date return, we might be tempted to simply use starting and ending values and say it is \(500\% = \frac{\$600 - \$100}{\$100}\), when in fact it is actually 0%.&lt;/p&gt;
+
+&lt;p&gt;To isolate the impact of investment performance from the effects of cash flows, we introduce the time-weighted return, or TWR.  Mathematically, TWR is a geometric linking of subperiod simple returns, or:&lt;/p&gt;
+
+\[R_{TWR} = \prod_{i=1}^{N}{(1 + R_i)} - 1 \tag{3}\]
+
+&lt;p&gt;Where \(N\) is the number of subperiods, e.g., 24 months in a 2-year period, and \(R_i\) are the subperiod (monthly) returns.  Under this approach, our return calculation will still be impacted by intra-month cash activity, but the impact is isolated to the return of the month the activity occured.  Increasing the frequency of subperiods, e.g., from monthly to weekly or daily, improves the accuracy of the performance return.  Fortunately, in our case with S&amp;amp;P data, we’re unaffected by compounding effects, so this exercise is largely for show!  Sometimes, though, we might only have returns data provided to us.  Computing the TWR is then often the best way to go.&lt;/p&gt;
+
+&lt;p&gt;Using our portfolio example from above, we would compute our total return for the week as \(0\% = (1 + 10\%) \times (1 - 5.9\%) \times (1 - 3.4\%)-1\).&lt;/p&gt;
+
+&lt;p&gt;So, how do we compute a TWR with &lt;strong&gt;pandas&lt;/strong&gt;?  There are many ways to skin this cat, and here’s one of them:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sp_data&lt;/span&gt;                      &lt;span class=&quot;c1&quot;&gt;# our dataframe.
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;returns&lt;/span&gt;                     &lt;span class=&quot;c1&quot;&gt;# the monthly returns series (pre-computed)
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dropna&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;                    &lt;span class=&quot;c1&quot;&gt;# since the first price month has no return, we need to drop it.
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cumprod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# TWR calculation see (3).
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                    &lt;span class=&quot;c1&quot;&gt;# convert to percentage.  
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;                    &lt;span class=&quot;c1&quot;&gt;# the last series value is our TWR.
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;And that’s it..  Too easy, right?&lt;/p&gt;
+
+&lt;p&gt;Usually, it’s easier to work with annualized returns for the sake of comparing investments.  An annualized return is just a TWR expressed as an annual growth rate, and is computed as:&lt;/p&gt;
+
+\[R_{Annual} = (1 + R_{TWR})^{\frac{t}{n}} - 1  \tag{4}\]
+
+&lt;p&gt;Where \(R_{TWR}\) is the total return, \(t\) is the number of subperiods in a year, e.g., 12 for monthly data, and $n$ is the number of subperiods used to compute the total return.  Since our TWR is based on 2 years of monthly returns, \(n=24\).&lt;/p&gt;
+
+&lt;p&gt;Putting it all together, starting with closing prices, we can compute the annualized return for the S&amp;amp;P 500 ended Dec’24 as:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sp_data&lt;/span&gt;                             &lt;span class=&quot;c1&quot;&gt;# closing prices 
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pct_change&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;                       &lt;span class=&quot;c1&quot;&gt;# compute the subperiod returns.
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dropna&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;                           &lt;span class=&quot;c1&quot;&gt;# first month has no return.
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cumprod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;                   &lt;span class=&quot;c1&quot;&gt;# compute TWR. 
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;12.&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sp_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# annualize the TWR.
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                           &lt;span class=&quot;c1&quot;&gt;# convert to percentage. 
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;                 &lt;span class=&quot;c1&quot;&gt;# take the last value. 
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;visualizing-the-data&quot;&gt;Visualizing the Data&lt;/h3&gt;
+&lt;p&gt;We all know a good picture is worth more than a sentence or two..  Thus, putting some effort into a good visual is well worth the time.  Luckily, with just a handful of code, &lt;strong&gt;matplotlib&lt;/strong&gt; makes this almost as easy as it sounds.  Contrast the bare-bones chart of closing prices above with this one depicting the index performance:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/jan25/spy_return_plot.png&quot; alt=&quot;S&amp;amp;P 500 Investment Performance&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;While this chart won’t win any awards, I feel it is visually more appealing than the one above.  The full code to produce it is available in the companion notebook, so it won’t add value to spill it here.  Some highlights to call out, though:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Labeling data points is an art more than science.  I’ve added one for the total return (44.28%).  I could have added more at some key points in the series.&lt;/li&gt;
+  &lt;li&gt;The return series by itself hides a lot of information.  Adding a bar plot of the monthly returns helps provide intuition about the trending strength or weakness of the index over time.&lt;/li&gt;
+  &lt;li&gt;Adding a histogram of the monthly returns further emphasizes the distribution characteristics.&lt;/li&gt;
+  &lt;li&gt;Comparing the emperical distribution to a normal distribution via the red curve reminds us that financial returns are rarely normally distributed.&lt;/li&gt;
+  &lt;li&gt;Finally, calling out the +/- one and two standard deviation levels can help us understand the significance of a given monthly return.  This information is perhaps most useful for appreciating the downside potential, or risk, of an investment.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;As a teaser for next month, I’ll add one more chart:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/TurningBull/images/posts/jan25/stock_index_5y.png&quot; alt=&quot;U.S. Stock Indices 5-Year Performance&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this chart we have three major U.S. stock indices, the Nasdaq 100, the S&amp;amp;P 500 and the Russell 2K.  It’s fairly easy to see the joy you may have experienced in owning stocks over the past few years has depended on the index your portfolio most closely resembles.  For example, a portfolio resembling the tech-heavy Nasdaq has fared nearly 3x better than the small-cap’ish Russell year-over-year.  There’s a lot to unpack in that statement, however, so let’s shelve it for next time.&lt;/p&gt;
+
+&lt;p&gt;In the meantime, there’s an enemy objective to occupy, and we’re late to the party…&lt;/p&gt;
+
+&lt;p&gt;Action front!  Let’s move out and draw fire!!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This post is not investment advice.  It is meant to be educational and entertaining.  If you find it useful, please let me know.  If you think it sucks, please also let me know - though I prefer constructive criticism : &amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Sources:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Army Field Manual FM 3-21.18&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/rtrimble13/tb-notebooks.git&quot;&gt;TurningBull companion Jupyter Notebook Git repository&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.python.org&quot;&gt;Python homepage&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://pandas.pydata.org/docs/&quot;&gt;Pandas documentation page&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://matplotlib.org/&quot;&gt;Matplotlib documentation page&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://finance.yahoo.com&quot;&gt;Yahoo! Finance&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 31 Jan 2025 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/TurningBull/2025/shoot-move-communicate/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/shoot-move-communicate/</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Welcome to the TurningBull</title>
+        <description>&lt;p&gt;“That’s it,” I tell myself.  “Finally going to start that blog,” as I finish Palahniuk’s &lt;em&gt;Survivor&lt;/em&gt;.  In truth, I’ve wanted to do this for a long time.  Now it’s 2025, and what better time than the present.  The country has chosen Trump, the stock market is on a tear, the world is playing with matches, and AI is after everyone’s job.&lt;/p&gt;
+
+&lt;p&gt;While I have views on each of these topics, they are not my intended focus.  My opinions may show through from time to time, but my intent is to refrain from partisan commentary.  Instead, I’ll strive to remain objective and support claims with objective analysis.&lt;/p&gt;
+
+&lt;p&gt;So, what is it that I’d like to accomplish with this blog?  After a lot of deliberation, I think I can summarize my intent most simply in saying that I would like to explore a range of topics relating to quantitative finance, economics and leadership.  Each of these subjects is relevant to our world and intersect in interesting ways.  My goal, thus, is to educate, illuminate, and share my enthusiasm for the ways in which these topics influence us.&lt;/p&gt;
+
+&lt;p&gt;Quantitative finance is my trade, and my interests span the field’s range.  From markets and securities analysis to portfolio construction and risk management, there is an endless array of topics to explore.  I’ll strive to demystify seemingly complex and abstract concepts with a mix of theory and practical examples.  Since programming and data analysis remain integral skillsets to the craft, I’ll also strive to include relevant code and visualization techniques.&lt;/p&gt;
+
+&lt;p&gt;Economics may be the &lt;em&gt;dismal science&lt;/em&gt;, but it governs our world in innumerable ways.  Coupling economic analysis with quantitative financial techniques offers a unique and insightful way to understand what is happening around us beyond the headlines.  Much of what occurs at the macro, and even micro, levels is outside of our control.  However, improving our economic understanding can help us make informed decisions.  At the end of the day, it is generally better to be informed than naive.&lt;/p&gt;
+
+&lt;p&gt;Then there’s leadership - one of the most underappreciated and misunderstood concepts, in my opinion.  So often we seem to either confuse leadership with hubris or recognize true leadership only in retrospect.  The importance of character in defining leadership is never so apparent as when it is missing.  And for many, leadership is learned by example.  So, when the pool of good leadership examples is limited, the risk of learning the wrong principles is elevated.  We feel the effects of leadership, both good and bad, daily at our own local levels, whether in the classroom, on the atheletic field, or at work.  We are also impacted by the cumulative effects of leadership on the macro stage through laws, policies, trade, court decisions, etc.  With so much riding on our &lt;em&gt;leaders’&lt;/em&gt; decisions, I feel this subject deserves an equal seat at the table.&lt;/p&gt;
+
+&lt;p&gt;Finally, “what’s with the tank?” you might ask.  Well, although I’m not the punk captain I was nearly 25 years ago, the cavalry still runs through my veins.  And, anyone who’s spent time in &lt;em&gt;the suck&lt;/em&gt; can attest that we all left a part of ourselves in the desert.&lt;/p&gt;
+
+&lt;p&gt;I don’t have a clue where this will lead, but I’m optimistic that it will be interesting.  It’s been a goal of mine for a while, and it felt like the right time to finally cross the line.  This will be a random walk, so to speak.  So, mount up!  Action front!  Let’s move out and draw fire!!  Welcome to the TurningBull.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 04 Jan 2025 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/TurningBull/2025/introduction/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/introduction/</guid>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
