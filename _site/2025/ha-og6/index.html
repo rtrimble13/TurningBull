@@ -52,8 +52,8 @@
   <meta name="msapplication-TileImage" content="/TurningBull/images/favicons/mstile-144x144.png">
   <meta name="theme-color" content="#ffffff">
   
-  <link rel="stylesheet" href="/TurningBull/css/main.css?1752840893397943302">
-  <link rel="canonical" href="https://rtrimble13.github.io/TurningBull/TurningBull/2025/ha-og6/">
+  <link rel="stylesheet" href="/TurningBull/css/main.css?1752841309215837778">
+  <link rel="canonical" href="http://0.0.0.0:4000/TurningBull/2025/ha-og6/">
   <link rel="alternate" type="application/rss+xml" title="the TurningBull" href="/TurningBull/feed.xml">
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -396,11 +396,175 @@ H_a := ERP \neq 0\]
       </div>
 
       <footer class="footer">
+  <div class="email-subscription">
+  <div class="email-subscription__content">
+    <h3 class="email-subscription__title">
+      <i class="icon icon-mail"></i>
+      Subscribe for Updates
+    </h3>
+    <p class="email-subscription__description">
+      Get notified when new articles about quantitative finance, economics, and leadership are published.
+    </p>
+    
+    <form class="email-subscription__form" 
+          action="https://formspree.io/f/xwpeangg" 
+          method="POST"
+          id="subscription-form">
+      <div class="email-subscription__input-group">
+        <input type="email" 
+               name="email" 
+               placeholder="Enter your email address" 
+               required 
+               class="email-subscription__input"
+               id="subscription-email">
+        <input type="hidden" name="_subject" value="New subscription to TurningBull blog">
+        <input type="hidden" name="_next" value="http://0.0.0.0:4000/TurningBull/subscription-success">
+        <input type="hidden" name="_captcha" value="false">
+        <button type="submit" class="email-subscription__button">
+          <span class="email-subscription__button-text">Subscribe</span>
+          <span class="email-subscription__button-loading hidden">
+            <i class="icon icon-refresh"></i>
+          </span>
+        </button>
+      </div>
+    </form>
+    
+    <p class="email-subscription__privacy">
+      <small>No spam, unsubscribe anytime. We respect your privacy.</small>
+    </p>
+    
+    <div class="email-subscription__messages">
+      <div class="email-subscription__success hidden" id="success-message">
+        <i class="icon icon-check"></i>
+        Thank you for subscribing! Please check your email to confirm.
+      </div>
+      <div class="email-subscription__error hidden" id="error-message">
+        <i class="icon icon-close"></i>
+        <span class="error-message">Something went wrong. Please try again.</span>
+      </div>
+    </div>
+  </div>
+  
+  <button class="email-subscription__close" title="Close" onclick="this.parentElement.style.display='none'; localStorage.setItem('tb-subscription-interacted', 'dismissed');">
+    <i class="icon icon-x-circle"></i>
+  </button>
+</div>
+
+<script>
+// Vanilla JavaScript fallback for subscription form functionality
+(function() {
+  'use strict';
+  
+  function initSubscriptionForm() {
+    var form = document.getElementById('subscription-form');
+    var emailInput = document.getElementById('subscription-email');
+    var submitButton = form.querySelector('.email-subscription__button');
+    var buttonText = form.querySelector('.email-subscription__button-text');
+    var buttonLoading = form.querySelector('.email-subscription__button-loading');
+    var successMsg = document.getElementById('success-message');
+    var errorMsg = document.getElementById('error-message');
+    
+    if (!form) return;
+    
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      var email = emailInput.value.trim();
+      
+      // Reset messages
+      successMsg.classList.add('hidden');
+      errorMsg.classList.add('hidden');
+      
+      // Validate email
+      if (!isValidEmail(email)) {
+        showError('Please enter a valid email address.');
+        return;
+      }
+      
+      // Show loading state
+      submitButton.disabled = true;
+      buttonText.classList.add('hidden');
+      buttonLoading.classList.remove('hidden');
+      
+      // Create form data
+      var formData = new FormData(form);
+      
+      // Submit to Formspree
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(function(response) {
+        if (response.ok) {
+          showSuccess();
+          form.reset();
+          localStorage.setItem('tb-subscription-interacted', 'subscribed');
+        } else {
+          response.json().then(function(data) {
+            if (data.errors) {
+              showError(data.errors.map(function(error) {
+                return error.message;
+              }).join(', '));
+            } else {
+              showError('Unable to subscribe. Please try again later.');
+            }
+          });
+        }
+      })
+      .catch(function(error) {
+        showError('Unable to subscribe. Please try again later.');
+      })
+      .finally(function() {
+        // Reset button state
+        submitButton.disabled = false;
+        buttonText.classList.remove('hidden');
+        buttonLoading.classList.add('hidden');
+      });
+    });
+    
+    function isValidEmail(email) {
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+    
+    function showSuccess() {
+      successMsg.classList.remove('hidden');
+      setTimeout(function() {
+        successMsg.classList.add('hidden');
+      }, 5000);
+    }
+    
+    function showError(message) {
+      errorMsg.querySelector('.error-message').textContent = message;
+      errorMsg.classList.remove('hidden');
+      setTimeout(function() {
+        errorMsg.classList.add('hidden');
+      }, 5000);
+    }
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSubscriptionForm);
+  } else {
+    initSubscriptionForm();
+  }
+})();
+</script>
   <span class="footer__copyright">&copy; 2025 Roger Trimble. All rights reserved.</span>
 </footer>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="/TurningBull/js/main.js?1752840893397943302"></script>
+<script>
+// Fallback for jQuery if CDN fails
+if (typeof jQuery == 'undefined') {
+  document.write('<script type="text/javascript" src="/TurningBull/js/jquery-3.3.1.min.js"><\/script>');
+}
+</script>
+<script type="text/javascript" src="/TurningBull/js/main.js?1752841309215837778"></script>
 
 
     </div>

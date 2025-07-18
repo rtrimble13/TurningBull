@@ -3,10 +3,10 @@
   <channel>
     <title>the TurningBull</title>
     <description>Random reflections on quantitative finance, economics and leadership</description>
-    <link>https://rtrimble13.github.io/TurningBull/TurningBull/</link>
-    <atom:link href="https://rtrimble13.github.io/TurningBull/TurningBull/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 18 Jul 2025 12:14:53 +0000</pubDate>
-    <lastBuildDate>Fri, 18 Jul 2025 12:14:53 +0000</lastBuildDate>
+    <link>http://0.0.0.0:4000/TurningBull/</link>
+    <atom:link href="http://0.0.0.0:4000/TurningBull/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 18 Jul 2025 12:21:49 +0000</pubDate>
+    <lastBuildDate>Fri, 18 Jul 2025 12:21:49 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
@@ -177,8 +177,8 @@ There, that’s a million and one times.  The point is that important, though.  
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This post is not investment advice.  Any opinions stated are my own and do not reflect those of my employer.  This post is meant to be educational and entertaining.  If you find it useful, then please let me know.  If you think it sucks, then please let me know that, too!&lt;/p&gt;
 </description>
         <pubDate>Mon, 30 Jun 2025 00:00:00 +0000</pubDate>
-        <link>https://rtrimble13.github.io/TurningBull/TurningBull/2025/island-hopping/</link>
-        <guid isPermaLink="true">https://rtrimble13.github.io/TurningBull/TurningBull/2025/island-hopping/</guid>
+        <link>http://0.0.0.0:4000/TurningBull/2025/island-hopping/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/island-hopping/</guid>
         
         
         <category>jekyll</category>
@@ -361,8 +361,8 @@ There, that’s a million and one times.  The point is that important, though.  
 &lt;/ul&gt;
 </description>
         <pubDate>Sat, 31 May 2025 00:00:00 +0000</pubDate>
-        <link>https://rtrimble13.github.io/TurningBull/TurningBull/2025/clear-the-way/</link>
-        <guid isPermaLink="true">https://rtrimble13.github.io/TurningBull/TurningBull/2025/clear-the-way/</guid>
+        <link>http://0.0.0.0:4000/TurningBull/2025/clear-the-way/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/clear-the-way/</guid>
         
         
         <category>jekyll</category>
@@ -459,8 +459,8 @@ There, that’s a million and one times.  The point is that important, though.  
 &lt;p&gt;&lt;a href=&quot;https://www.economist.com/&quot;&gt;The Economist&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 30 Apr 2025 00:00:00 +0000</pubDate>
-        <link>https://rtrimble13.github.io/TurningBull/TurningBull/2025/magical-thinking/</link>
-        <guid isPermaLink="true">https://rtrimble13.github.io/TurningBull/TurningBull/2025/magical-thinking/</guid>
+        <link>http://0.0.0.0:4000/TurningBull/2025/magical-thinking/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/magical-thinking/</guid>
         
         
         <category>jekyll</category>
@@ -698,8 +698,8 @@ H_a := ERP \neq 0\]
 &lt;p&gt;&lt;a href=&quot;https://site.financialmodelingprep.com&quot;&gt;Financial Modeling Prep (FMP)&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 31 Mar 2025 00:00:00 +0000</pubDate>
-        <link>https://rtrimble13.github.io/TurningBull/TurningBull/2025/ha-og6/</link>
-        <guid isPermaLink="true">https://rtrimble13.github.io/TurningBull/TurningBull/2025/ha-og6/</guid>
+        <link>http://0.0.0.0:4000/TurningBull/2025/ha-og6/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/ha-og6/</guid>
         
         
         <category>jekyll</category>
@@ -833,8 +833,8 @@ R_{\not{Mag7,i}} = \frac{R_{S\&amp;amp;P,i} - (\omega_{Mag7,i} \times R_{Mag7,i}
 &lt;p&gt;&lt;a href=&quot;https://site.financialmodelingprep.com&quot;&gt;Financial Modeling Prep (FMP)&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Fri, 28 Feb 2025 00:00:00 +0000</pubDate>
-        <link>https://rtrimble13.github.io/TurningBull/TurningBull/2025/double-envelopment/</link>
-        <guid isPermaLink="true">https://rtrimble13.github.io/TurningBull/TurningBull/2025/double-envelopment/</guid>
+        <link>http://0.0.0.0:4000/TurningBull/2025/double-envelopment/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/double-envelopment/</guid>
         
         
         <category>jekyll</category>
@@ -997,8 +997,8 @@ R_{\not{Mag7,i}} = \frac{R_{S\&amp;amp;P,i} - (\omega_{Mag7,i} \times R_{Mag7,i}
 &lt;p&gt;&lt;a href=&quot;https://finance.yahoo.com&quot;&gt;Yahoo! Finance&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Fri, 31 Jan 2025 00:00:00 +0000</pubDate>
-        <link>https://rtrimble13.github.io/TurningBull/TurningBull/2025/shoot-move-communicate/</link>
-        <guid isPermaLink="true">https://rtrimble13.github.io/TurningBull/TurningBull/2025/shoot-move-communicate/</guid>
+        <link>http://0.0.0.0:4000/TurningBull/2025/shoot-move-communicate/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/shoot-move-communicate/</guid>
         
         
         <category>jekyll</category>
@@ -1026,8 +1026,8 @@ R_{\not{Mag7,i}} = \frac{R_{S\&amp;amp;P,i} - (\omega_{Mag7,i} \times R_{Mag7,i}
 &lt;p&gt;I don’t have a clue where this will lead, but I’m optimistic that it will be interesting.  It’s been a goal of mine for a while, and it felt like the right time to finally cross the line.  This will be a random walk, so to speak.  So, mount up!  Action front!  Let’s move out and draw fire!!  Welcome to the TurningBull.&lt;/p&gt;
 </description>
         <pubDate>Sat, 04 Jan 2025 00:00:00 +0000</pubDate>
-        <link>https://rtrimble13.github.io/TurningBull/TurningBull/2025/introduction/</link>
-        <guid isPermaLink="true">https://rtrimble13.github.io/TurningBull/TurningBull/2025/introduction/</guid>
+        <link>http://0.0.0.0:4000/TurningBull/2025/introduction/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/TurningBull/2025/introduction/</guid>
         
         
       </item>

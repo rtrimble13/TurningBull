@@ -7,6 +7,9 @@ baseurl: '/TurningBull'
 # disqus_shortname: 'your-disqus-name'
 # disable_landing_page: true
 
+# Email subscription (replace with your own Formspree form ID)
+formspree_id: 'xwpeangg'
+
 author:
   name: 'Roger Trimble'
   email: roger@turningbull.com
