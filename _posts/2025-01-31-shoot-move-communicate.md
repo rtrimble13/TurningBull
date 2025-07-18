@@ -3,11 +3,11 @@ layout: post
 title: "Shoot, Move and Communicate"
 date: 2025-01-31
 categories: jekyll update
-image: /images/posts/jan25/platoon_on_plain_202501.jpg
-image1: /images/posts/jan25/fm3-21-8_fig3-18.png
-image2: /images/posts/jan25/s&p_close.png
-image3: /images/posts/jan25/spy_return_plot.png
-image4: /images/posts/jan25/stock_index_5y.png
+image: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jan25/platoon_on_plain_202501.jpg
+image1: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jan25/fm3-21-8_fig3-18.png
+image2: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jan25/s&p_close.png
+image3: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jan25/spy_return_plot.png
+image4: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/jan25/stock_index_5y.png
 ---
 
 Despite the heat, you're in full battle dress, weighed down with an additional 50lbs of tactical equipment and ammunition.  Your sweat-soaked clothes cling to your body like a toddler testing your patience.  And then there are the mosquitoes.  You are a mosquito magnet - the tastiest one in a long time - and word has reached the biting gnats, too.  
