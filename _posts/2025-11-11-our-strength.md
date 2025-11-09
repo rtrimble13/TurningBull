@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Our Strength"
-date: 2025-11-11
+date: 2025-11-09
 categories: jekyll update
 image: https://raw.githubusercontent.com/rtrimble13/TurningBull-assets/main/images/posts/nov25/tuskegee.jpg
 ---
